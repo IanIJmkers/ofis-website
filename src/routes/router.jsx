@@ -15,7 +15,6 @@ import AboutMethodology from "../pages/AboutMethodology";
 import AboutFAQs from "../pages/AboutFAQs";
 import AboutCareers from "../pages/AboutCareers";
 import News from "../pages/News";
-import NewsArticle from "../pages/NewsArticle";
 import Contact from "../pages/Contact";
 import NotFound from "../pages/NotFound";
 
@@ -54,13 +53,7 @@ export const router = createBrowserRouter([
           { path: "careers", element: <AboutCareers />, handle: { title: "Werken bij" } },
         ],
       },
-      {
-        path: "news",
-        children: [
-          { index: true, element: <News />, handle: { title: "Nieuws" } },
-          { path: ":slug", element: <NewsArticle />, handle: { title: "Artikel" } },
-        ],
-      },
+      { path: "news", element: <News />, handle: { title: "Nieuws" } },
       { path: "contact", element: <Contact />, handle: { title: "Contact" } },
     ],
   },
