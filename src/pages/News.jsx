@@ -1,44 +1,12 @@
+import { useState, useEffect } from "react";
+import { Link } from "react-router";
 import { motion } from "motion/react";
 import PageTransition from "../components/animation/PageTransition";
 import StaggerChildren, { staggerItem } from "../components/animation/StaggerChildren";
 import SectionWrapper from "../components/layout/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import CTASection from "../components/sections/CTASection";
-
-const articles = [
-  {
-    id: 1,
-    category: "Regelgeving",
-    date: "12 december 2024",
-    title: "Nieuwe richtlijnen voor ANBI-stichtingen in 2025",
-    excerpt:
-      "De Belastingdienst heeft aangescherpte richtlijnen gepubliceerd voor ANBI-stichtingen. Wij analyseren de belangrijkste veranderingen en wat ze betekenen voor uw stichting.",
-  },
-  {
-    id: 2,
-    category: "Vermogensbeheer",
-    date: "28 november 2024",
-    title: "Duurzaam beleggen: de nieuwe standaard voor goede doelen",
-    excerpt:
-      "Steeds meer stichtingen integreren ESG-criteria in hun beleggingsbeleid. Hoe kunt u maatschappelijk verantwoord beleggen zonder rendement in te leveren?",
-  },
-  {
-    id: 3,
-    category: "Governance",
-    date: "15 november 2024",
-    title: "Digitale transformatie in het bestuur van stichtingen",
-    excerpt:
-      "Van digitale handtekeningen tot online dashboards — hoe technologie het bestuur van charitatieve organisaties efficiënter en transparanter maakt.",
-  },
-  {
-    id: 4,
-    category: "Sector",
-    date: "2 november 2024",
-    title: "Orchestra behaalt hoogste klanttevredenheid in vijf jaar",
-    excerpt:
-      "Uit ons jaarlijkse klanttevredenheidsonderzoek blijkt dat 97% van onze klanten ons beoordeelt met een 8 of hoger. Een resultaat waar wij trots op zijn.",
-  },
-];
+import { fetchPublishedPosts } from "../lib/blog";
 
 const categoryColors = {
   Regelgeving: "bg-navy-100 text-navy-800",
@@ -47,7 +15,47 @@ const categoryColors = {
   Sector: "bg-warm-gray-200 text-warm-gray-700",
 };
 
+function formatDate(dateString) {
+  return new Date(dateString).toLocaleDateString("nl-NL", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+}
+
+function SkeletonCard() {
+  return (
+    <div className="bg-white rounded-lg shadow-card overflow-hidden flex flex-col animate-pulse">
+      <div className="h-1 bg-warm-gray-200" />
+      <div className="p-8 flex flex-col flex-1">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="h-3 w-28 bg-warm-gray-200 rounded" />
+          <div className="h-5 w-20 bg-warm-gray-200 rounded-full" />
+        </div>
+        <div className="h-6 w-3/4 bg-warm-gray-200 rounded mb-2" />
+        <div className="h-6 w-1/2 bg-warm-gray-200 rounded mb-3" />
+        <div className="space-y-2 mb-6 flex-1">
+          <div className="h-4 w-full bg-warm-gray-100 rounded" />
+          <div className="h-4 w-full bg-warm-gray-100 rounded" />
+          <div className="h-4 w-2/3 bg-warm-gray-100 rounded" />
+        </div>
+        <div className="h-4 w-24 bg-warm-gray-200 rounded mt-auto" />
+      </div>
+    </div>
+  );
+}
+
 export default function News() {
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchPublishedPosts().then((data) => {
+      setArticles(data);
+      setLoading(false);
+    });
+  }, []);
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -94,64 +102,81 @@ export default function News() {
           align="center"
         />
 
-        <StaggerChildren className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-          {articles.map((article) => (
-            <motion.article
-              key={article.id}
-              variants={staggerItem}
-              className="group bg-white rounded-lg shadow-card hover:shadow-card-hover transition-shadow duration-300 overflow-hidden flex flex-col"
-            >
-              {/* Card top accent */}
-              <div className="h-1 bg-linear-to-r from-navy-900 to-gold-700" />
+        {loading ? (
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+            {[1, 2, 3, 4].map((i) => (
+              <SkeletonCard key={i} />
+            ))}
+          </div>
+        ) : articles.length === 0 ? (
+          <div className="mt-16 text-center py-16">
+            <p className="text-warm-gray-400 text-lg">
+              Er zijn momenteel geen artikelen beschikbaar.
+            </p>
+          </div>
+        ) : (
+          <StaggerChildren className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+            {articles.map((article) => (
+              <motion.article
+                key={article.id}
+                variants={staggerItem}
+                className="group bg-white rounded-lg shadow-card hover:shadow-card-hover transition-shadow duration-300 overflow-hidden flex flex-col"
+              >
+                {/* Card top accent */}
+                <div className="h-1 bg-linear-to-r from-navy-900 to-gold-700" />
 
-              <div className="p-8 flex flex-col flex-1">
-                {/* Meta row */}
-                <div className="flex items-center gap-3 mb-4">
-                  <time className="text-xs font-body text-warm-gray-400 tracking-wide">
-                    {article.date}
-                  </time>
-                  <span
-                    className={`text-[10px] font-body font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full ${
-                      categoryColors[article.category] || "bg-warm-gray-200 text-warm-gray-700"
-                    }`}
-                  >
-                    {article.category}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h3 className="text-xl lg:text-2xl font-heading text-navy-900 leading-snug mb-3">
-                  {article.title}
-                </h3>
-
-                {/* Excerpt */}
-                <p className="text-sm text-warm-gray-500 leading-relaxed mb-6 flex-1">
-                  {article.excerpt}
-                </p>
-
-                {/* Read more */}
-                <div className="mt-auto">
-                  <span className="inline-flex items-center gap-2 text-xs font-body font-semibold tracking-wider uppercase text-gold-700">
-                    Lees meer
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
+                <div className="p-8 flex flex-col flex-1">
+                  {/* Meta row */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <time className="text-xs font-body text-warm-gray-400 tracking-wide">
+                      {formatDate(article.published_at)}
+                    </time>
+                    <span
+                      className={`text-[10px] font-body font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full ${
+                        categoryColors[article.category] || "bg-warm-gray-200 text-warm-gray-700"
+                      }`}
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M17 8l4 4m0 0l-4 4m4-4H3"
-                      />
-                    </svg>
-                  </span>
+                      {article.category}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-xl lg:text-2xl font-heading text-navy-900 leading-snug mb-3 group-hover:text-gold-700 transition-colors duration-200">
+                    {article.title}
+                  </h3>
+
+                  {/* Excerpt */}
+                  <p className="text-sm text-warm-gray-500 leading-relaxed mb-6 flex-1">
+                    {article.excerpt}
+                  </p>
+
+                  {/* Read more */}
+                  <div className="mt-auto">
+                    <Link
+                      to={`/news/${article.slug}`}
+                      className="inline-flex items-center gap-2 text-xs font-body font-semibold tracking-wider uppercase text-gold-700 hover:text-gold-600 transition-colors"
+                    >
+                      Lees meer
+                      <svg
+                        className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </motion.article>
-          ))}
-        </StaggerChildren>
+              </motion.article>
+            ))}
+          </StaggerChildren>
+        )}
       </SectionWrapper>
 
       <CTASection />
