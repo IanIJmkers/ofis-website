@@ -1,4 +1,47 @@
 import { supabase } from "./supabase";
+import { marked } from "marked";
+
+// Configure marked for GFM (checkboxes, tables, strikethrough)
+marked.setOptions({
+  gfm: true,
+  breaks: true,
+});
+
+/**
+ * Detects if content is Markdown (vs already-HTML) and converts accordingly.
+ * Handles: # headings, [interne link: X] placeholders, H3: prefix syntax.
+ */
+export function processContent(content) {
+  if (!content) return "";
+
+  // If it already contains HTML block elements, assume it's HTML
+  if (/<(?:p|h[1-6]|div|ul|ol|table|blockquote)\b/i.test(content)) {
+    return content;
+  }
+
+  // Preprocess non-standard patterns before Markdown conversion
+  let processed = content;
+
+  // Convert "H3: Title" to "### Title"
+  processed = processed.replace(/^H3:\s*(.+)$/gm, "### $1");
+
+  // Convert [interne link: X] to a styled placeholder link
+  processed = processed.replace(
+    /\[interne link:\s*(.+?)\]/gi,
+    (_, label) => {
+      const slug = label
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/\s+/g, "-");
+      return `[${label} →](/news#${slug})`;
+    }
+  );
+
+  // Remove the top-level # title (it's already shown as the page title)
+  processed = processed.replace(/^#\s+.+\n*/m, "");
+
+  return marked.parse(processed);
+}
 
 export async function fetchPublishedPosts() {
   if (!supabase) return [];

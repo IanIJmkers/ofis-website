@@ -13,6 +13,7 @@ import {
   fetchRelatedPosts,
   fetchRecentPosts,
   estimateReadingTime,
+  processContent,
 } from "../lib/blog";
 import { useLanguage } from "../context/LanguageContext";
 
@@ -204,7 +205,7 @@ export default function NewsArticle() {
   }, []);
 
   const readingTime = post ? estimateReadingTime(post.content) : 0;
-  const processedContent = useMemo(() => (post ? addIdsToHeadings(post.content) : ""), [post]);
+  const processedContent = useMemo(() => (post ? addIdsToHeadings(processContent(post.content)) : ""), [post]);
   const headings = useMemo(() => extractHeadings(processedContent), [processedContent]);
   const { intro, sections } = useMemo(() => splitContentBySections(processedContent), [processedContent]);
 
