@@ -1,23 +1,28 @@
 import { Link } from "react-router";
-import { siteMetadata } from "../../data/siteMetadata";
-import { regulators } from "../../data/regulators";
-
-const quickLinks = [
-  { label: "Diensten", path: "/services" },
-  { label: "Klanten", path: "/clients" },
-  { label: "Over Ons", path: "/about" },
-  { label: "Nieuws", path: "/news" },
-  { label: "Contact", path: "/contact" },
-];
-
-const legalLinks = [
-  { label: "Algemene Voorwaarden", path: "#" },
-  { label: "Privacy- & Cookiebeleid", path: "#" },
-  { label: "Duurzaamheidsverklaring", path: "#" },
-  { label: "Beloningsbeleid", path: "#" },
-];
+import { getSiteMetadata } from "../../data/siteMetadata";
+import { getRegulators } from "../../data/regulators";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function Footer() {
+  const { language, t } = useLanguage();
+  const meta = getSiteMetadata(language);
+  const regs = getRegulators(language);
+
+  const quickLinks = [
+    { label: language === "nl" ? "Diensten" : "Services", path: "/services" },
+    { label: language === "nl" ? "Klanten" : "Clients", path: "/clients" },
+    { label: language === "nl" ? "Over Ons" : "About Us", path: "/about" },
+    { label: language === "nl" ? "Nieuws" : "News", path: "/news" },
+    { label: "Contact", path: "/contact" },
+  ];
+
+  const legalLinks = [
+    { label: t("footer", "termsConditions"), path: "#" },
+    { label: t("footer", "privacyCookie"), path: "#" },
+    { label: t("footer", "sustainability"), path: "#" },
+    { label: t("footer", "remuneration"), path: "#" },
+  ];
+
   return (
     <footer className="bg-navy-900">
       {/* Main footer content */}
@@ -26,13 +31,13 @@ export default function Footer() {
           {/* Company */}
           <div>
             <h3 className="text-2xl font-heading text-white mb-4">
-              {siteMetadata.companyName}
+              {meta.companyName}
             </h3>
             <p className="text-navy-300 text-sm leading-relaxed mb-6">
-              {siteMetadata.description}
+              {meta.description}
             </p>
             <a
-              href={siteMetadata.linkedin}
+              href={meta.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-sm text-navy-300 hover:text-gold-400 transition-colors"
@@ -48,7 +53,7 @@ export default function Footer() {
           {/* Quick Links */}
           <div>
             <h4 className="text-sm font-semibold tracking-wider uppercase text-gold-400 mb-6">
-              Snelkoppelingen
+              {t("footer", "quickLinks")}
             </h4>
             <ul className="space-y-3">
               {quickLinks.map((link) => (
@@ -67,7 +72,7 @@ export default function Footer() {
           {/* Legal */}
           <div>
             <h4 className="text-sm font-semibold tracking-wider uppercase text-gold-400 mb-6">
-              Juridisch
+              {t("footer", "legal")}
             </h4>
             <ul className="space-y-3">
               {legalLinks.map((link) => (
@@ -90,26 +95,26 @@ export default function Footer() {
             </h4>
             <address className="not-italic space-y-3 text-sm text-navy-300">
               <p>
-                {siteMetadata.address.street}
+                {meta.address.street}
                 <br />
-                {siteMetadata.address.postalCode} {siteMetadata.address.city}
+                {meta.address.postalCode} {meta.address.city}
                 <br />
-                {siteMetadata.address.country}
+                {meta.address.country}
               </p>
               <p>
                 <a
-                  href={`tel:${siteMetadata.phone.replace(/\s/g, "")}`}
+                  href={`tel:${meta.phone.replace(/\s/g, "")}`}
                   className="hover:text-white transition-colors"
                 >
-                  {siteMetadata.phone}
+                  {meta.phone}
                 </a>
               </p>
               <p>
                 <a
-                  href={`mailto:${siteMetadata.email}`}
+                  href={`mailto:${meta.email}`}
                   className="hover:text-white transition-colors"
                 >
-                  {siteMetadata.email}
+                  {meta.email}
                 </a>
               </p>
             </address>
@@ -122,7 +127,7 @@ export default function Footer() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 py-8">
           {/* Regulatory badges */}
           <div className="flex flex-wrap items-center justify-center gap-6 mb-6">
-            {regulators.map((reg) => (
+            {regs.map((reg) => (
               <span
                 key={reg.abbreviation}
                 className="text-xs text-navy-400 font-medium tracking-wide"
@@ -133,8 +138,8 @@ export default function Footer() {
             ))}
           </div>
           <p className="text-center text-xs text-navy-500">
-            &copy; {new Date().getFullYear()} {siteMetadata.fullName}. Alle
-            rechten voorbehouden.
+            &copy; {new Date().getFullYear()} {meta.fullName}.{" "}
+            {t("footer", "allRightsReserved")}
           </p>
         </div>
       </div>

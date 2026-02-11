@@ -7,7 +7,8 @@ import StaggerChildren, {
 import SectionWrapper from "../components/layout/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import CTASection from "../components/sections/CTASection";
-import { team } from "../data/team";
+import { getTeam } from "../data/team";
+import { useLanguage } from "../context/LanguageContext";
 
 function getInitials(name) {
   return name
@@ -19,6 +20,9 @@ function getInitials(name) {
 }
 
 export default function AboutTeam() {
+  const { language, t } = useLanguage();
+  const team = getTeam(language);
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -27,17 +31,14 @@ export default function AboutTeam() {
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection className="max-w-3xl">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-400">
-              Ons Team
+              {t("aboutTeam", "heroEyebrow")}
             </span>
             <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-tight">
-              De Mensen Achter Orchestra
+              {t("aboutTeam", "heroTitle")}
             </h1>
             <div className="mt-6 h-0.75 w-12 bg-gold-700" />
             <p className="mt-6 text-lg lg:text-xl text-navy-200 leading-relaxed max-w-2xl">
-              Ons team combineert decennia aan ervaring in financiele
-              dienstverlening met een oprechte passie voor de goede doelen
-              sector. Elk lid brengt specialistische expertise en een
-              persoonlijke toewijding aan het succes van onze klanten.
+              {t("aboutTeam", "heroDescription")}
             </p>
           </AnimatedSection>
         </div>
@@ -46,9 +47,9 @@ export default function AboutTeam() {
       {/* Team Grid */}
       <SectionWrapper bg="white" size="lg">
         <SectionHeading
-          eyebrow="Maak Kennis met de Specialisten"
-          title="Toegewijde Professionals"
-          subtitle="Een team van negen specialisten, die elk unieke expertise inbrengen om de hoogste standaard van dienstverlening te garanderen voor elke stichting die wij bedienen."
+          eyebrow={t("aboutTeam", "gridEyebrow")}
+          title={t("aboutTeam", "gridTitle")}
+          subtitle={t("aboutTeam", "gridSubtitle")}
           align="center"
         />
         <StaggerChildren className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -126,25 +127,21 @@ export default function AboutTeam() {
       <SectionWrapper bg="cream" size="md">
         <AnimatedSection className="text-center max-w-3xl mx-auto">
           <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-700">
-            Onze Cultuur
+            {t("aboutTeam", "cultureEyebrow")}
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl font-heading text-navy-900">
-            Verenigd door een Doel
+            {t("aboutTeam", "cultureTitle")}
           </h2>
           <div className="mt-4 h-0.75 w-10 mx-auto bg-gold-700" />
           <p className="mt-6 text-lg text-warm-gray-500 leading-relaxed">
-            Wat ons team verenigt is een gedeelde overtuiging dat goede doelen
-            stichtingen dezelfde kwaliteit van financiele expertise verdienen
-            als de grootste commerciele instellingen. Wij brengen
-            institutioneel professionalisme met een persoonlijke, menselijke
-            aanpak.
+            {t("aboutTeam", "cultureText")}
           </p>
         </AnimatedSection>
       </SectionWrapper>
 
       <CTASection
-        title="Wilt u bij ons team komen?"
-        subtitle="Wij zijn altijd op zoek naar getalenteerde professionals die onze passie voor de goede doelen sector delen."
+        title={t("aboutTeam", "ctaTitle")}
+        subtitle={t("aboutTeam", "ctaSubtitle")}
       />
     </PageTransition>
   );

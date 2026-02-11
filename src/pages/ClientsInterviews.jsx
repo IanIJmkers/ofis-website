@@ -7,9 +7,13 @@ import StaggerChildren, {
 import SectionWrapper from "../components/layout/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import CTASection from "../components/sections/CTASection";
-import { testimonials } from "../data/testimonials";
+import { getTestimonials } from "../data/testimonials";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function ClientsInterviews() {
+  const { language, t } = useLanguage();
+  const testimonials = getTestimonials(language);
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -18,17 +22,14 @@ export default function ClientsInterviews() {
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection className="max-w-3xl">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-400">
-              Klantverhalen
+              {t("clientsInterviews", "heroEyebrow")}
             </span>
             <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-tight">
-              Stemmen van Vertrouwen
+              {t("clientsInterviews", "heroTitle")}
             </h1>
             <div className="mt-6 h-0.75 w-12 bg-gold-700" />
             <p className="mt-6 text-lg lg:text-xl text-navy-200 leading-relaxed max-w-2xl">
-              Hoor rechtstreeks van de stichtingen en instellingen die Orchestra
-              als hun vertrouwde financiele partner hebben gekozen. Hun
-              ervaringen spreken voor de kwaliteit en toewijding die wij in
-              elke relatie brengen.
+              {t("clientsInterviews", "heroDescription")}
             </p>
           </AnimatedSection>
         </div>
@@ -37,9 +38,9 @@ export default function ClientsInterviews() {
       {/* Full-Width Testimonial Cards */}
       <SectionWrapper bg="white" size="lg">
         <SectionHeading
-          eyebrow="In Hun Eigen Woorden"
-          title="Klantervaringen"
-          subtitle="Elk partnerschap met Orchestra is gebouwd op vertrouwen, transparantie en een gedeelde toewijding aan excellentie."
+          eyebrow={t("clientsInterviews", "storiesEyebrow")}
+          title={t("clientsInterviews", "storiesTitle")}
+          subtitle={t("clientsInterviews", "storiesSubtitle")}
           align="center"
         />
         <StaggerChildren className="mt-16 space-y-10">
@@ -97,23 +98,20 @@ export default function ClientsInterviews() {
       <SectionWrapper bg="cream" size="md">
         <AnimatedSection className="text-center max-w-3xl mx-auto">
           <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-700">
-            Een Bewezen Track Record
+            {t("clientsInterviews", "trackEyebrow")}
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl font-heading text-navy-900">
-            Duurzame Partnerschappen Bouwen
+            {t("clientsInterviews", "trackTitle")}
           </h2>
           <div className="mt-4 h-0.75 w-10 mx-auto bg-gold-700" />
           <p className="mt-6 text-lg text-warm-gray-500 leading-relaxed">
-            Onze klantrelaties beslaan decennia, geen jaren. Wij geloven dat
-            de sterkste partnerschappen gebouwd zijn op wederzijds vertrouwen,
-            volledige transparantie en een oprecht begrip van de unieke missie
-            en ambities van elke stichting.
+            {t("clientsInterviews", "trackText")}
           </p>
           <div className="mt-12 grid grid-cols-3 gap-8">
             {[
-              { value: "20+", label: "Jaar Dienstverlening" },
-              { value: "21+", label: "Stichtingen Bediend" },
-              { value: "100%", label: "Klantretentie" },
+              { value: "20+", label: t("clientsInterviews", "statYearsService") },
+              { value: "21+", label: t("clientsInterviews", "statFoundationsServed") },
+              { value: "100%", label: t("clientsInterviews", "statClientRetention") },
             ].map((stat, index) => (
               <div key={index}>
                 <p className="text-3xl lg:text-4xl font-heading text-navy-900">
@@ -127,8 +125,8 @@ export default function ClientsInterviews() {
       </SectionWrapper>
 
       <CTASection
-        title="Ervaar het Orchestra verschil"
-        subtitle="Sluit u aan bij de stichtingen die Orchestra vertrouwen met hun financiele toekomst."
+        title={t("clientsInterviews", "ctaTitle")}
+        subtitle={t("clientsInterviews", "ctaSubtitle")}
       />
     </PageTransition>
   );

@@ -9,6 +9,7 @@ import SectionHeading from "../components/ui/SectionHeading";
 import Button from "../components/ui/Button";
 import CTASection from "../components/sections/CTASection";
 import { clientOrganizations } from "../data/clients";
+import { useLanguage } from "../context/LanguageContext";
 
 const charityOrganizations = clientOrganizations.filter((org) =>
   [
@@ -26,30 +27,28 @@ const charityOrganizations = clientOrganizations.filter((org) =>
   ].includes(org)
 );
 
-const charityServices = [
-  {
-    title: "Subsidieadministratie",
-    description:
-      "Volledig beheer van uw subsidieproces, van aanvraagintake en beoordeling tot uitbetaling en impactrapportage.",
-  },
-  {
-    title: "Fondsenwervings Compliance",
-    description:
-      "Zorg dat uw fondsenwervingsactiviteiten voldoen aan alle wettelijke en regelgevende eisen, inclusief CBF-erkenningsnormen en ANBI-verplichtingen.",
-  },
-  {
-    title: "Financiele Rapportage",
-    description:
-      "Transparante en nauwkeurige jaarrekeningen die voldoen aan de specifieke rapportagestandaarden voor goede doelen instellingen.",
-  },
-  {
-    title: "Digitaal Toezicht",
-    description:
-      "Realtime inzicht in uw financiele positie via het Mijn Orchestra dashboard, waarmee uw bestuur te allen tijde volledig transparantie heeft.",
-  },
-];
-
 export default function ClientsCharities() {
+  const { t } = useLanguage();
+
+  const charityServices = [
+    {
+      title: t("clientsCharities", "service1Title"),
+      description: t("clientsCharities", "service1Desc"),
+    },
+    {
+      title: t("clientsCharities", "service2Title"),
+      description: t("clientsCharities", "service2Desc"),
+    },
+    {
+      title: t("clientsCharities", "service3Title"),
+      description: t("clientsCharities", "service3Desc"),
+    },
+    {
+      title: t("clientsCharities", "service4Title"),
+      description: t("clientsCharities", "service4Desc"),
+    },
+  ];
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -58,16 +57,14 @@ export default function ClientsCharities() {
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection className="max-w-3xl">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-400">
-              Goede Doelen
+              {t("clientsCharities", "heroEyebrow")}
             </span>
             <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-tight">
-              Ondersteuning voor Goede Doelen Organisaties
+              {t("clientsCharities", "heroTitle")}
             </h1>
             <div className="mt-6 h-0.75 w-12 bg-gold-700" />
             <p className="mt-6 text-lg lg:text-xl text-navy-200 leading-relaxed max-w-2xl">
-              Fondsenwervende organisaties, goede doelen instellingen met of
-              zonder CBF-erkenning -- wij begrijpen de unieke eisen van elk en
-              stemmen onze diensten daarop af.
+              {t("clientsCharities", "heroDescription")}
             </p>
           </AnimatedSection>
         </div>
@@ -76,9 +73,9 @@ export default function ClientsCharities() {
       {/* Services for Charities */}
       <SectionWrapper bg="white" size="lg">
         <SectionHeading
-          eyebrow="Oplossingen op Maat"
-          title="Diensten voor Goede Doelen Instellingen"
-          subtitle="Van subsidieadministratie tot compliance rapportage, wij bieden de financiele ruggengraat waardoor uw goede doel zich kan richten op haar missie."
+          eyebrow={t("clientsCharities", "servicesEyebrow")}
+          title={t("clientsCharities", "servicesTitle")}
+          subtitle={t("clientsCharities", "servicesSubtitle")}
           align="center"
         />
         <StaggerChildren className="mt-16 grid sm:grid-cols-2 gap-8">
@@ -104,31 +101,24 @@ export default function ClientsCharities() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <AnimatedSection direction="left">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-700">
-              Sector Expertise
+              {t("clientsCharities", "expertiseEyebrow")}
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-heading text-navy-900">
-              Wij Begrijpen Uw Missie
+              {t("clientsCharities", "expertiseTitle")}
             </h2>
             <div className="mt-4 h-0.75 w-10 bg-gold-700" />
             <p className="mt-6 text-warm-gray-500 leading-relaxed">
-              Goede doelen opereren in een uniek landschap waar financieel
-              beheer direct invloed heeft op het vermogen om goed te doen. Elke
-              euro bespaard op administratie is een euro beschikbaar voor uw
-              missie.
+              {t("clientsCharities", "expertiseText1")}
             </p>
             <p className="mt-4 text-warm-gray-500 leading-relaxed">
-              De exclusieve focus van Orchestra op de goede doelen sector
-              betekent dat wij het regelgevende landschap, de verwachtingen van
-              donateurs en de governance-eisen begrijpen die uw activiteiten
-              vormgeven. Wij beheren niet alleen uw financien -- wij helpen uw
-              vermogen om impact te creeren te beschermen.
+              {t("clientsCharities", "expertiseText2")}
             </p>
             <ul className="mt-8 space-y-3">
               {[
-                "CBF- en ANBI-compliance expertise",
-                "Transparante vaste tarieven",
-                "Toegewijde goede doelen sectorspecialisten",
-                "Geintegreerd financieel toezicht",
+                t("clientsCharities", "expertiseBullet1"),
+                t("clientsCharities", "expertiseBullet2"),
+                t("clientsCharities", "expertiseBullet3"),
+                t("clientsCharities", "expertiseBullet4"),
               ].map((item, index) => (
                 <li key={index} className="flex items-start gap-3">
                   <span className="shrink-0 mt-1 w-5 h-5 rounded-full bg-gold-700 flex items-center justify-center">
@@ -154,7 +144,7 @@ export default function ClientsCharities() {
             </ul>
             <div className="mt-10">
               <Button href="/contact" variant="primary" size="lg">
-                Spreek met een Specialist
+                {t("clientsCharities", "expertiseCta")}
               </Button>
             </div>
           </AnimatedSection>
@@ -165,7 +155,7 @@ export default function ClientsCharities() {
                   21+
                 </p>
                 <p className="mt-2 text-warm-gray-500 font-body">
-                  Goede doelen organisaties bediend
+                  {t("clientsCharities", "statOrgsServed")}
                 </p>
               </div>
               <div className="h-px bg-warm-gray-100 my-8" />
@@ -173,13 +163,13 @@ export default function ClientsCharities() {
                 <div>
                   <p className="text-2xl font-heading text-navy-900">100%</p>
                   <p className="mt-1 text-sm text-warm-gray-500">
-                    Compliance percentage
+                    {t("clientsCharities", "statComplianceRate")}
                   </p>
                 </div>
                 <div>
                   <p className="text-2xl font-heading text-navy-900">Vast</p>
                   <p className="mt-1 text-sm text-warm-gray-500">
-                    Jaarlijkse tarieven
+                    {t("clientsCharities", "statAnnualFees")}
                   </p>
                 </div>
               </div>
@@ -191,9 +181,9 @@ export default function ClientsCharities() {
       {/* Client Organizations */}
       <SectionWrapper bg="white" size="lg">
         <SectionHeading
-          eyebrow="Goede Doelen Klanten"
-          title="Organisaties die Wij Bedienen"
-          subtitle="Een selectie van de goede doelen instellingen die Orchestra hebben toevertrouwd met hun financiele administratie en governance."
+          eyebrow={t("clientsCharities", "clientsEyebrow")}
+          title={t("clientsCharities", "clientsTitle")}
+          subtitle={t("clientsCharities", "clientsSubtitle")}
           align="center"
         />
         <StaggerChildren className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -217,8 +207,8 @@ export default function ClientsCharities() {
       </SectionWrapper>
 
       <CTASection
-        title="Laat ons uw goede doelen missie ondersteunen"
-        subtitle="Ontdek hoe Orchestra uw financiele activiteiten en governance kan versterken."
+        title={t("clientsCharities", "ctaTitle")}
+        subtitle={t("clientsCharities", "ctaSubtitle")}
       />
     </PageTransition>
   );

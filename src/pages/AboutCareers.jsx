@@ -8,40 +8,39 @@ import SectionWrapper from "../components/layout/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import Button from "../components/ui/Button";
 import CTASection from "../components/sections/CTASection";
-
-const cultureValues = [
-  {
-    title: "Sectortoewijding",
-    description:
-      "Wij werken uitsluitend met goede doelen stichtingen. Deze exclusieve focus stelt ons in staat ongeevenaarde expertise te ontwikkelen en betekenisvolle relaties op te bouwen met elke klant.",
-  },
-  {
-    title: "Integriteit Voorop",
-    description:
-      "Transparantie, eerlijkheid en ethisch handelen zijn niet-onderhandelbaar. Onze klanten vertrouwen ons met hun financiele activiteiten omdat zij weten dat wij onszelf aan de hoogste standaarden houden.",
-  },
-  {
-    title: "Samenwerkingsgeest",
-    description:
-      "Wij opereren als een geintegreerd team. Vermogensbeheer, administratie en governance werken hand in hand om naadloze dienstverlening te bieden aan elke stichting.",
-  },
-  {
-    title: "Continue Groei",
-    description:
-      "De goede doelen sector evolueert, en wij ook. Wij investeren in de professionele ontwikkeling van ons team om voorop te blijven lopen bij regelgevende veranderingen en best practices.",
-  },
-];
-
-const benefits = [
-  "Concurrerende beloning in lijn met de financiele dienstverleningssector",
-  "Professionele ontwikkeling en doorlopende opleidingsmogelijkheden",
-  "Werk met de meest impactvolle goede doelen stichtingen van Nederland",
-  "Hecht en samenwerkend team van specialisten",
-  "Modern kantoor in Den Haag",
-  "Zinvol werk dat de goede doelen sector ondersteunt",
-];
+import { useLanguage } from "../context/LanguageContext";
 
 export default function AboutCareers() {
+  const { language, t } = useLanguage();
+
+  const cultureValues = [
+    {
+      title: t("aboutCareers", "value1Title"),
+      description: t("aboutCareers", "value1Desc"),
+    },
+    {
+      title: t("aboutCareers", "value2Title"),
+      description: t("aboutCareers", "value2Desc"),
+    },
+    {
+      title: t("aboutCareers", "value3Title"),
+      description: t("aboutCareers", "value3Desc"),
+    },
+    {
+      title: t("aboutCareers", "value4Title"),
+      description: t("aboutCareers", "value4Desc"),
+    },
+  ];
+
+  const benefits = [
+    t("aboutCareers", "benefit1"),
+    t("aboutCareers", "benefit2"),
+    t("aboutCareers", "benefit3"),
+    t("aboutCareers", "benefit4"),
+    t("aboutCareers", "benefit5"),
+    t("aboutCareers", "benefit6"),
+  ];
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -50,17 +49,14 @@ export default function AboutCareers() {
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection className="max-w-3xl">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-400">
-              Werken bij Orchestra
+              {t("aboutCareers", "heroEyebrow")}
             </span>
             <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-tight">
-              Werken bij Orchestra
+              {t("aboutCareers", "heroTitle")}
             </h1>
             <div className="mt-6 h-0.75 w-12 bg-gold-700" />
             <p className="mt-6 text-lg lg:text-xl text-navy-200 leading-relaxed max-w-2xl">
-              Sluit u aan bij een team van toegewijde professionals die
-              financiele expertise combineren met een oprechte passie om de
-              goede doelen sector sterker te maken. Bij Orchestra heeft uw werk
-              echte impact.
+              {t("aboutCareers", "heroDescription")}
             </p>
           </AnimatedSection>
         </div>
@@ -71,37 +67,30 @@ export default function AboutCareers() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <AnimatedSection direction="left">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-700">
-              Onze Cultuur
+              {t("aboutCareers", "cultureEyebrow")}
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-heading text-navy-900">
-              Doelgerichte Professionals
+              {t("aboutCareers", "cultureTitle")}
             </h2>
             <div className="mt-4 h-0.75 w-10 bg-gold-700" />
             <p className="mt-6 text-warm-gray-500 leading-relaxed text-lg">
-              Orchestra is geen typisch financieel dienstverlener. Wij zijn een
-              compact team van specialisten die ervoor gekozen hebben hun
-              carriere te wijden aan het bedienen van de goede doelen sector.
+              {t("aboutCareers", "cultureText1")}
             </p>
             <p className="mt-4 text-warm-gray-500 leading-relaxed">
-              Onze teamleden komen uit diverse achtergronden in financien,
-              governance, compliance en klantdiensten, maar zij delen een ding:
-              de overtuiging dat goede doelen stichtingen financiele expertise
-              van wereldklasse verdienen, geleverd met oprechte zorg.
+              {t("aboutCareers", "cultureText2")}
             </p>
             <p className="mt-4 text-warm-gray-500 leading-relaxed">
-              Met een team van negen maakt elk individu een echt verschil. Wij
-              waarderen autonomie, expertise en het vermogen om duurzame
-              relaties op te bouwen met de stichtingen die wij bedienen.
+              {t("aboutCareers", "cultureText3")}
             </p>
           </AnimatedSection>
           <AnimatedSection direction="right" delay={0.2}>
             <div className="bg-cream rounded-lg p-10 border border-warm-gray-100">
               <div className="grid grid-cols-2 gap-8 text-center">
                 {[
-                  { value: "9", label: "Teamleden" },
-                  { value: "20+", label: "Jaar Dienstverlening" },
-                  { value: "21+", label: "Stichtingen Bediend" },
-                  { value: "3", label: "Kerndisciplines" },
+                  { value: "9", label: t("aboutCareers", "statTeamMembers") },
+                  { value: "20+", label: t("aboutCareers", "statYearsService") },
+                  { value: "21+", label: t("aboutCareers", "statFoundationsServed") },
+                  { value: "3", label: t("aboutCareers", "statCoreDisciplines") },
                 ].map((stat, index) => (
                   <div key={index}>
                     <p className="text-3xl lg:text-4xl font-heading text-navy-900">
@@ -121,15 +110,15 @@ export default function AboutCareers() {
       {/* Values */}
       <SectionWrapper bg="cream" size="lg">
         <SectionHeading
-          eyebrow="Waar Wij Voor Staan"
-          title="Onze Waarden"
-          subtitle="De principes die bepalen hoe wij werken, onze klanten bedienen en groeien als team."
+          eyebrow={t("aboutCareers", "valuesEyebrow")}
+          title={t("aboutCareers", "valuesTitle")}
+          subtitle={t("aboutCareers", "valuesSubtitle")}
           align="center"
         />
         <StaggerChildren className="mt-16 grid sm:grid-cols-2 gap-8">
           {cultureValues.map((value, index) => (
             <motion.div
-              key={value.title}
+              key={index}
               variants={staggerItem}
               className="bg-white border border-warm-gray-100 rounded-lg p-8 lg:p-10 shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
             >
@@ -154,17 +143,14 @@ export default function AboutCareers() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <AnimatedSection direction="left">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-700">
-              Waarom bij Ons Werken
+              {t("aboutCareers", "benefitsEyebrow")}
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-heading text-navy-900">
-              Wat Wij Bieden
+              {t("aboutCareers", "benefitsTitle")}
             </h2>
             <div className="mt-4 h-0.75 w-10 bg-gold-700" />
             <p className="mt-6 text-warm-gray-500 leading-relaxed text-lg">
-              Wij geloven dat goed werk goede ondersteuning verdient. Orchestra
-              biedt een professionele omgeving waar getalenteerde individuen
-              hun carriere kunnen laten groeien terwijl zij bijdragen aan de
-              goede doelen sector.
+              {t("aboutCareers", "benefitsText")}
             </p>
           </AnimatedSection>
           <AnimatedSection direction="right" delay={0.15}>
@@ -200,17 +186,14 @@ export default function AboutCareers() {
       <SectionWrapper bg="navy" size="lg">
         <AnimatedSection className="text-center max-w-3xl mx-auto">
           <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-400">
-            Neem Contact Op
+            {t("aboutCareers", "openAppEyebrow")}
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-heading text-white">
-            Interesse om bij Orchestra te werken?
+            {t("aboutCareers", "openAppTitle")}
           </h2>
           <div className="mt-4 h-0.75 w-10 mx-auto bg-gold-700" />
           <p className="mt-6 text-lg text-navy-200 leading-relaxed">
-            Hoewel wij niet altijd openstaande vacatures hebben, zijn wij
-            altijd geinteresseerd in getalenteerde professionals die onze
-            passie voor de goede doelen sector delen. Stuur ons uw CV en een
-            korte introductie, en wij nemen contact met u op.
+            {t("aboutCareers", "openAppText")}
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Button
@@ -219,18 +202,18 @@ export default function AboutCareers() {
               variant="primary"
               size="lg"
             >
-              Verstuur Uw Sollicitatie
+              {t("aboutCareers", "openAppCta")}
             </Button>
             <Button href="/about/team" variant="outline-light" size="lg">
-              Ontmoet het Team
+              {t("aboutCareers", "openAppMeetTeam")}
             </Button>
           </div>
         </AnimatedSection>
       </SectionWrapper>
 
       <CTASection
-        title="Vragen over werken bij Orchestra?"
-        subtitle="Neem contact met ons op voor een vertrouwelijk gesprek over carrieremogelijkheden."
+        title={t("aboutCareers", "ctaTitle")}
+        subtitle={t("aboutCareers", "ctaSubtitle")}
       />
     </PageTransition>
   );

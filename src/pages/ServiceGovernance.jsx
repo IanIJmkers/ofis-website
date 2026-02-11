@@ -7,9 +7,8 @@ import SectionWrapper from "../components/layout/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import Button from "../components/ui/Button";
 import CTASection from "../components/sections/CTASection";
-import { services } from "../data/services";
-
-const service = services.find((s) => s.id === "governance");
+import { useLanguage } from "../context/LanguageContext";
+import { getServices } from "../data/services";
 
 const featureIcons = [
   // Advisory Services
@@ -31,6 +30,10 @@ const featureIcons = [
 ];
 
 export default function ServiceGovernance() {
+  const { language, t } = useLanguage();
+  const services = getServices(language);
+  const service = services.find((s) => s.id === "governance");
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -55,7 +58,7 @@ export default function ServiceGovernance() {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
                 </svg>
-                Alle Diensten
+                {t("common", "allServices")}
               </Link>
             </motion.div>
             <motion.span
@@ -64,7 +67,7 @@ export default function ServiceGovernance() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="inline-block text-xs font-body font-semibold tracking-[0.25em] uppercase text-gold-400 mb-6"
             >
-              Governance
+              {t("serviceGovernance", "heroEyebrow")}
             </motion.span>
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -72,8 +75,8 @@ export default function ServiceGovernance() {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               className="text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-[1.1] mb-6"
             >
-              Uw governance, veilig{" "}
-              <span className="text-gold-400">georkestreerd</span>
+              {t("serviceGovernance", "heroTitle")}
+              <span className="text-gold-400">{t("serviceGovernance", "heroHighlight")}</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -93,27 +96,20 @@ export default function ServiceGovernance() {
           {/* Left: text content */}
           <AnimatedSection direction="left">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-700">
-              Overzicht
+              {t("serviceGovernance", "overviewEyebrow")}
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-heading text-navy-900 leading-snug">
-              Het fundament van elke goed geleide goede doelen organisatie
+              {t("serviceGovernance", "overviewTitle")}
             </h2>
             <div className="mt-4 h-0.75 w-10 bg-gold-700" />
             <p className="mt-6 text-warm-gray-500 leading-relaxed text-lg">
               {service.fullDescription}
             </p>
             <p className="mt-4 text-warm-gray-500 leading-relaxed">
-              Effectieve governance gaat verder dan compliance. Het betekent dat
-              de juiste structuren, processen en toezichtmechanismen aanwezig
-              zijn om ervoor te zorgen dat uw organisatie opereert met
-              integriteit, verantwoording en een duidelijke focus op haar
-              missie.
+              {t("serviceGovernance", "overviewText1")}
             </p>
             <p className="mt-4 text-warm-gray-500 leading-relaxed">
-              Wij bieden de deskundige begeleiding en operationele ondersteuning
-              die uw bestuur nodig heeft om met vertrouwen aan zijn fiduciaire
-              verantwoordelijkheden te voldoen, met behoud van de hoogste
-              normen voor transparantie en verantwoording.
+              {t("serviceGovernance", "overviewText2")}
             </p>
           </AnimatedSection>
 
@@ -154,34 +150,22 @@ export default function ServiceGovernance() {
                 </div>
                 <div>
                   <h3 className="text-2xl lg:text-3xl font-heading text-navy-900 mb-4">
-                    Het meer-ogen-principe
+                    {t("serviceGovernance", "principleTitle")}
                   </h3>
                   <p className="text-warm-gray-500 leading-relaxed text-lg mb-4">
-                    De kern van onze governance-aanpak is het "meer-ogen-principe"
-                    — de praktijk om ervoor te zorgen dat elke belangrijke
-                    beslissing, transactie en elk proces door meerdere
-                    gekwalificeerde professionals wordt beoordeeld voor
-                    uitvoering.
+                    {t("serviceGovernance", "principleText1")}
                   </p>
                   <p className="text-warm-gray-500 leading-relaxed mb-4">
-                    Dit principe van institutioneel toezicht vermindert het
-                    risico op fouten, fraude en slechte besluitvorming. Het
-                    creëert een cultuur van verantwoording waarin transparantie
-                    niet slechts een beleid is, maar een praktijk die in alles
-                    wat wij doen is ingebed.
+                    {t("serviceGovernance", "principleText2")}
                   </p>
                   <p className="text-warm-gray-500 leading-relaxed">
-                    Van betalingsautorisaties tot beleggingsbeslissingen, van
-                    subsidietoewijzingen tot wettelijke rapportages — het
-                    meer-ogen-principe zorgt ervoor dat uw organisatie profiteert
-                    van collectieve expertise en grondige controles bij elke
-                    stap.
+                    {t("serviceGovernance", "principleText3")}
                   </p>
                   <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-6">
                     {[
-                      { value: "Meerdere controleurs", sublabel: "Bij elke kritieke beslissing" },
-                      { value: "Functiescheiding", sublabel: "Ingebouwde checks & balances" },
-                      { value: "Volledige audit trail", sublabel: "Volledige verantwoording" },
+                      { value: t("serviceGovernance", "principleStat1"), sublabel: t("serviceGovernance", "principleStat1Sub") },
+                      { value: t("serviceGovernance", "principleStat2"), sublabel: t("serviceGovernance", "principleStat2Sub") },
+                      { value: t("serviceGovernance", "principleStat3"), sublabel: t("serviceGovernance", "principleStat3Sub") },
                     ].map((item) => (
                       <div key={item.value} className="flex items-start gap-3">
                         <svg className="w-5 h-5 text-gold-700 mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -204,17 +188,16 @@ export default function ServiceGovernance() {
       {/* Governance areas */}
       <SectionWrapper bg="white" size="lg">
         <SectionHeading
-          eyebrow="Governance Raamwerk"
-          title="Uitgebreide governance ondersteuning"
-          subtitle="Wij bestrijken elke dimensie van governance die goede doelen organisaties nodig hebben om met vertrouwen te opereren."
+          eyebrow={t("serviceGovernance", "frameworkEyebrow")}
+          title={t("serviceGovernance", "frameworkTitle")}
+          subtitle={t("serviceGovernance", "frameworkSubtitle")}
         />
 
         <StaggerChildren className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[
             {
-              title: "Bestuursadvies",
-              description:
-                "Strategisch advies over governancestructuren, bestuurssamenstelling, beleidskaders en organisatorische best practices.",
+              title: t("serviceGovernance", "frameworkItem1Title"),
+              description: t("serviceGovernance", "frameworkItem1Desc"),
               icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -222,9 +205,8 @@ export default function ServiceGovernance() {
               ),
             },
             {
-              title: "Beleid & Compliance",
-              description:
-                "Ontwikkeling en onderhoud van governancebeleid, compliance-kaders en interne regelgeving in lijn met ANBI- en sectornormen.",
+              title: t("serviceGovernance", "frameworkItem2Title"),
+              description: t("serviceGovernance", "frameworkItem2Desc"),
               icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -232,9 +214,8 @@ export default function ServiceGovernance() {
               ),
             },
             {
-              title: "Risicotoezicht",
-              description:
-                "Systematische identificatie, beoordeling en mitigatie van organisatorische, financiële en reputatierisico's waarmee uw stichting te maken heeft.",
+              title: t("serviceGovernance", "frameworkItem3Title"),
+              description: t("serviceGovernance", "frameworkItem3Desc"),
               icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -242,9 +223,8 @@ export default function ServiceGovernance() {
               ),
             },
             {
-              title: "Jaarrekeningen",
-              description:
-                "Professionele opstelling en beoordeling van jaarverslagen, financiële overzichten en de managementletter voor uw accountant.",
+              title: t("serviceGovernance", "frameworkItem4Title"),
+              description: t("serviceGovernance", "frameworkItem4Desc"),
               icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -252,9 +232,8 @@ export default function ServiceGovernance() {
               ),
             },
             {
-              title: "Stakeholderrapportage",
-              description:
-                "Heldere, transparante communicatie naar donoren, toezichthouders, begunstigden en andere belanghebbenden over de activiteiten van uw stichting.",
+              title: t("serviceGovernance", "frameworkItem5Title"),
+              description: t("serviceGovernance", "frameworkItem5Desc"),
               icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -262,9 +241,8 @@ export default function ServiceGovernance() {
               ),
             },
             {
-              title: "Digitale Governance",
-              description:
-                "Veilige, georganiseerde toegang tot alle governancedocumenten, notulen en besluitregisters via het Mijn Orchestra platform.",
+              title: t("serviceGovernance", "frameworkItem6Title"),
+              description: t("serviceGovernance", "frameworkItem6Desc"),
               icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -290,9 +268,9 @@ export default function ServiceGovernance() {
       {/* Cross-links */}
       <SectionWrapper bg="cream" size="lg">
         <SectionHeading
-          eyebrow="Gerelateerde Diensten"
-          title="Onderdeel van een geïntegreerde aanpak"
-          subtitle="Governance werkt het best in combinatie met professioneel vermogensbeheer en administratie."
+          eyebrow={t("serviceGovernance", "relatedEyebrow")}
+          title={t("serviceGovernance", "relatedTitle")}
+          subtitle={t("serviceGovernance", "relatedSubtitle")}
         />
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
@@ -310,7 +288,7 @@ export default function ServiceGovernance() {
                     </p>
                     <div className="mt-6 pt-4 border-t border-warm-gray-100">
                       <span className="text-sm font-semibold text-navy-900 tracking-wider uppercase group-hover:text-gold-700 transition-colors">
-                        Meer informatie &rarr;
+                        {t("common", "moreInfo")} &rarr;
                       </span>
                     </div>
                   </div>

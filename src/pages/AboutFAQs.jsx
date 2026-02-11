@@ -4,7 +4,8 @@ import SectionWrapper from "../components/layout/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import Accordion from "../components/ui/Accordion";
 import CTASection from "../components/sections/CTASection";
-import { faqs } from "../data/clients";
+import { getFaqs } from "../data/clients";
+import { useLanguage } from "../context/LanguageContext";
 
 const categoryIcons = {
   Services: (
@@ -12,7 +13,17 @@ const categoryIcons = {
       <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
     </svg>
   ),
+  Diensten: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
+    </svg>
+  ),
   Fees: (
+    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18v-.008zm-12 0h.008v.008H6v-.008z" />
+    </svg>
+  ),
+  Tarieven: (
     <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
       <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18v-.008zm-12 0h.008v.008H6v-.008z" />
     </svg>
@@ -30,6 +41,9 @@ const categoryIcons = {
 };
 
 export default function AboutFAQs() {
+  const { language, t } = useLanguage();
+  const faqs = getFaqs(language);
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -38,17 +52,14 @@ export default function AboutFAQs() {
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection className="max-w-3xl">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-400">
-              Veelgestelde Vragen
+              {t("aboutFaqs", "heroEyebrow")}
             </span>
             <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-tight">
-              Veelgestelde Vragen
+              {t("aboutFaqs", "heroTitle")}
             </h1>
             <div className="mt-6 h-0.75 w-12 bg-gold-700" />
             <p className="mt-6 text-lg lg:text-xl text-navy-200 leading-relaxed max-w-2xl">
-              Vind duidelijke antwoorden op veelgestelde vragen over onze
-              diensten, tariefstructuur, onboardingproces en regelgevend kader.
-              Heeft u aanvullende vragen, dan staan wij altijd klaar om
-              persoonlijk met u te spreken.
+              {t("aboutFaqs", "heroDescription")}
             </p>
           </AnimatedSection>
         </div>
@@ -57,9 +68,9 @@ export default function AboutFAQs() {
       {/* FAQ Categories */}
       <SectionWrapper bg="white" size="lg">
         <SectionHeading
-          eyebrow="Uw Vragen Beantwoord"
-          title="Alles Wat U Moet Weten"
-          subtitle="Wij geloven in volledige transparantie. Bekijk onze veelgestelde vragen per categorie hieronder."
+          eyebrow={t("aboutFaqs", "gridEyebrow")}
+          title={t("aboutFaqs", "gridTitle")}
+          subtitle={t("aboutFaqs", "gridSubtitle")}
           align="center"
         />
 
@@ -76,7 +87,7 @@ export default function AboutFAQs() {
                     {category.category}
                   </h3>
                   <p className="text-sm text-warm-gray-500 mt-0.5">
-                    {category.questions.length} vragen
+                    {category.questions.length} {t("aboutFaqs", "questionsLabel")}
                   </p>
                 </div>
               </div>
@@ -92,17 +103,14 @@ export default function AboutFAQs() {
       <SectionWrapper bg="cream" size="md">
         <AnimatedSection className="text-center max-w-2xl mx-auto">
           <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-700">
-            Nog vragen?
+            {t("aboutFaqs", "stillEyebrow")}
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl font-heading text-navy-900">
-            Wij Helpen U Graag
+            {t("aboutFaqs", "stillTitle")}
           </h2>
           <div className="mt-4 h-0.75 w-10 mx-auto bg-gold-700" />
           <p className="mt-6 text-lg text-warm-gray-500 leading-relaxed">
-            Elke stichting is uniek, en wij begrijpen dat algemene antwoorden
-            mogelijk niet op uw specifieke situatie van toepassing zijn. Ons
-            team staat klaar voor een persoonlijk, vrijblijvend gesprek om de
-            behoeften van uw stichting te bespreken.
+            {t("aboutFaqs", "stillText")}
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
             <div className="flex items-center gap-3 text-navy-900">
@@ -146,8 +154,8 @@ export default function AboutFAQs() {
       </SectionWrapper>
 
       <CTASection
-        title="Klaar voor een persoonlijk gesprek?"
-        subtitle="Plan een consultatie met een van onze Charity Office specialisten."
+        title={t("aboutFaqs", "ctaTitle")}
+        subtitle={t("aboutFaqs", "ctaSubtitle")}
       />
     </PageTransition>
   );

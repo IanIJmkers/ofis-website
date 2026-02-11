@@ -1,17 +1,23 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
-import { navigation } from "../../data/navigation";
-import { siteMetadata } from "../../data/siteMetadata";
+import { getNavigation } from "../../data/navigation";
+import { getSiteMetadata } from "../../data/siteMetadata";
+import { useLanguage } from "../../context/LanguageContext";
 import useScrollDirection from "../../hooks/useScrollDirection";
 import NavDropdown from "./NavDropdown";
 import MobileMenu from "./MobileMenu";
+import LanguageToggle from "../ui/LanguageToggle";
 
 export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const { scrollDirection, scrollY } = useScrollDirection();
   const location = useLocation();
+  const { language, t } = useLanguage();
+
+  const navigation = getNavigation(language);
+  const meta = getSiteMetadata(language);
 
   const isScrolled = scrollY > 20;
   const isHidden = scrollDirection === "down" && scrollY > 200;
@@ -39,7 +45,7 @@ export default function Navbar() {
                   useTransparent ? "text-white" : "text-navy-900"
                 }`}
               >
-                {siteMetadata.companyName}
+                {meta.companyName}
               </span>
             </Link>
 
@@ -106,14 +112,15 @@ export default function Navbar() {
             </nav>
 
             {/* Right side */}
-            <div className="hidden lg:flex items-center gap-4">
+            <div className="hidden lg:flex items-center gap-3">
+              <LanguageToggle transparent={useTransparent} />
               <a
-                href={siteMetadata.myOrchestra}
+                href={meta.myOrchestra}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-5 py-2.5 text-xs font-semibold tracking-wider uppercase bg-gold-700 text-white rounded-md hover:bg-gold-600 transition-colors duration-200"
               >
-                Mijn Orchestra
+                {t("common", "myOrchestra")}
               </a>
             </div>
 

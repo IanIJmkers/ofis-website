@@ -5,9 +5,13 @@ import SectionWrapper from "../components/layout/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import Button from "../components/ui/Button";
 import CTASection from "../components/sections/CTASection";
-import { processSteps } from "../data/processSteps";
+import { getProcessSteps } from "../data/processSteps";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function AboutMethodology() {
+  const { language, t } = useLanguage();
+  const steps = getProcessSteps(language);
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -16,17 +20,14 @@ export default function AboutMethodology() {
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection className="max-w-3xl">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-400">
-              Onze Methodiek
+              {t("aboutMethodology", "heroEyebrow")}
             </span>
             <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-tight">
-              Een Bewezen Vijf-Stappen Aanpak
+              {t("aboutMethodology", "heroTitle")}
             </h1>
             <div className="mt-6 h-0.75 w-12 bg-gold-700" />
             <p className="mt-6 text-lg lg:text-xl text-navy-200 leading-relaxed max-w-2xl">
-              Onze methodiek is verfijnd gedurende meer dan twee decennia van
-              dienstverlening aan goede doelen stichtingen. Elke stap is
-              ontworpen om een naadloze overgang en blijvende operationele
-              excellentie te garanderen.
+              {t("aboutMethodology", "heroDescription")}
             </p>
           </AnimatedSection>
         </div>
@@ -36,23 +37,20 @@ export default function AboutMethodology() {
       <SectionWrapper bg="white" size="md">
         <AnimatedSection className="text-center max-w-3xl mx-auto">
           <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-700">
-            Het Traject
+            {t("aboutMethodology", "journeyEyebrow")}
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl font-heading text-navy-900">
-            Van Eerste Kennismaking tot Volledig Toezicht
+            {t("aboutMethodology", "journeyTitle")}
           </h2>
           <div className="mt-4 h-0.75 w-10 mx-auto bg-gold-700" />
           <p className="mt-6 text-lg text-warm-gray-500 leading-relaxed">
-            Elk partnerschap begint met begrip. Onze gestructureerde aanpak
-            zorgt ervoor dat wij de behoeften van uw stichting grondig
-            beoordelen, een transparant voorstel leveren en u door elke fase
-            van het onboardingproces begeleiden.
+            {t("aboutMethodology", "journeyText")}
           </p>
         </AnimatedSection>
       </SectionWrapper>
 
       {/* Process Steps - Alternating Layout */}
-      {processSteps.map((step, index) => {
+      {steps.map((step, index) => {
         const isEven = index % 2 === 0;
         return (
           <SectionWrapper
@@ -91,7 +89,7 @@ export default function AboutMethodology() {
                 className={!isEven ? "lg:[direction:ltr]" : ""}
               >
                 <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-700">
-                  Stap {step.number} van {processSteps.length}
+                  {t("aboutMethodology", "stepLabel")} {step.number} {t("aboutMethodology", "stepOf")} {steps.length}
                 </span>
                 <h2 className="mt-3 text-3xl sm:text-4xl font-heading text-navy-900">
                   {step.title}
@@ -103,7 +101,7 @@ export default function AboutMethodology() {
 
                 {/* Progress indicator */}
                 <div className="mt-8 flex items-center gap-2">
-                  {processSteps.map((_, i) => (
+                  {steps.map((_, i) => (
                     <div
                       key={i}
                       className={`h-1.5 rounded-full transition-all duration-300 ${
@@ -124,29 +122,26 @@ export default function AboutMethodology() {
       <SectionWrapper bg="navy" size="md">
         <AnimatedSection className="text-center max-w-3xl mx-auto">
           <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-400">
-            Het Resultaat
+            {t("aboutMethodology", "resultEyebrow")}
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl lg:text-5xl font-heading text-white">
-            Volledige Gemoedsrust
+            {t("aboutMethodology", "resultTitle")}
           </h2>
           <div className="mt-4 h-0.75 w-10 mx-auto bg-gold-700" />
           <p className="mt-6 text-lg text-navy-200 leading-relaxed">
-            Aan het einde van ons vijf-stappen proces beschikt uw stichting
-            over een volledig geintegreerde financiele infrastructuur met
-            realtime toezicht, volledige wettelijke compliance en de vrijheid
-            om u volledig te richten op uw goede doelen missie.
+            {t("aboutMethodology", "resultText")}
           </p>
           <div className="mt-10">
             <Button href="/contact" variant="primary" size="lg">
-              Begin Uw Traject
+              {t("aboutMethodology", "resultCta")}
             </Button>
           </div>
         </AnimatedSection>
       </SectionWrapper>
 
       <CTASection
-        title="Klaar om te beginnen?"
-        subtitle="Laat ons u door onze methodiek leiden in een persoonlijk gesprek."
+        title={t("aboutMethodology", "ctaTitle")}
+        subtitle={t("aboutMethodology", "ctaSubtitle")}
       />
     </PageTransition>
   );

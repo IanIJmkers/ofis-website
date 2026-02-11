@@ -1,13 +1,17 @@
 import SectionWrapper from "../layout/SectionWrapper";
 import AnimatedSection from "../animation/AnimatedSection";
-import { regulators } from "../../data/regulators";
+import { getRegulators } from "../../data/regulators";
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function TrustBadges() {
+  const { language, t } = useLanguage();
+  const regulators = getRegulators(language);
+
   return (
     <SectionWrapper bg="white" size="md">
       <AnimatedSection className="text-center">
         <p className="text-xs font-semibold tracking-[0.2em] uppercase text-warm-gray-400 mb-8">
-          Gereguleerd en onder toezicht van
+          {t("home", "trustBadgesLabel")}
         </p>
         <div className="flex flex-wrap items-center justify-center gap-8 lg:gap-14">
           {regulators.map((reg) => (

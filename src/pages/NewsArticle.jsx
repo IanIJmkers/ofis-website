@@ -5,6 +5,7 @@ import PageTransition from "../components/animation/PageTransition";
 import SectionWrapper from "../components/layout/SectionWrapper";
 import CTASection from "../components/sections/CTASection";
 import { fetchPostBySlug } from "../lib/blog";
+import { useLanguage } from "../context/LanguageContext";
 
 const categoryColors = {
   Regelgeving: "bg-navy-100 text-navy-800",
@@ -13,8 +14,8 @@ const categoryColors = {
   Sector: "bg-warm-gray-200 text-warm-gray-700",
 };
 
-function formatDate(dateString) {
-  return new Date(dateString).toLocaleDateString("nl-NL", {
+function formatDate(dateString, lang) {
+  return new Date(dateString).toLocaleDateString(lang === "nl" ? "nl-NL" : "en-GB", {
     day: "numeric",
     month: "long",
     year: "numeric",
@@ -37,6 +38,7 @@ function ArticleSkeleton() {
 
 export default function NewsArticle() {
   const { slug } = useParams();
+  const { language, t } = useLanguage();
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -61,10 +63,10 @@ export default function NewsArticle() {
           <div className="absolute inset-0 bg-linear-to-br from-navy-950 via-navy-900 to-navy-800" />
           <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-40 pb-20 text-center">
             <h1 className="text-3xl sm:text-4xl font-heading text-white mb-4">
-              Artikel niet gevonden
+              {t("notFound", "articleNotFound")}
             </h1>
             <p className="text-navy-200 mb-8">
-              Het artikel dat u zoekt bestaat niet of is niet meer beschikbaar.
+              {t("notFound", "articleNotFoundDescription")}
             </p>
             <Link
               to="/news"
@@ -73,7 +75,7 @@ export default function NewsArticle() {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
               </svg>
-              Terug naar Nieuws
+              {t("notFound", "backToNews")}
             </Link>
           </div>
         </section>
@@ -107,7 +109,7 @@ export default function NewsArticle() {
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
                   </svg>
-                  Terug naar Nieuws
+                  {t("notFound", "backToNews")}
                 </Link>
               </motion.div>
 
@@ -125,7 +127,7 @@ export default function NewsArticle() {
                   {post.category}
                 </span>
                 <time className="text-xs font-body text-navy-300 tracking-wide">
-                  {formatDate(post.published_at)}
+                  {formatDate(post.published_at, language)}
                 </time>
               </motion.div>
 
@@ -181,7 +183,7 @@ export default function NewsArticle() {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
                 </svg>
-                Terug naar Nieuws
+                {t("notFound", "backToNews")}
               </Link>
             </div>
           </div>

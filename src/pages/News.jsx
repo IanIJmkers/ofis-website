@@ -7,6 +7,7 @@ import SectionWrapper from "../components/layout/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import CTASection from "../components/sections/CTASection";
 import { fetchPublishedPosts } from "../lib/blog";
+import { useLanguage } from "../context/LanguageContext";
 
 const categoryColors = {
   Regelgeving: "bg-navy-100 text-navy-800",
@@ -14,14 +15,6 @@ const categoryColors = {
   Governance: "bg-navy-100 text-navy-700",
   Sector: "bg-warm-gray-200 text-warm-gray-700",
 };
-
-function formatDate(dateString) {
-  return new Date(dateString).toLocaleDateString("nl-NL", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-}
 
 function SkeletonCard() {
   return (
@@ -46,6 +39,7 @@ function SkeletonCard() {
 }
 
 export default function News() {
+  const { language, t } = useLanguage();
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -55,6 +49,14 @@ export default function News() {
       setLoading(false);
     });
   }, []);
+
+  function formatDate(dateString) {
+    return new Date(dateString).toLocaleDateString(language === "nl" ? "nl-NL" : "en-GB", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  }
 
   return (
     <PageTransition>
@@ -71,7 +73,7 @@ export default function News() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-block text-xs font-body font-semibold tracking-[0.25em] uppercase text-gold-400 mb-4"
           >
-            Inzichten
+            {t("news", "heroEyebrow")}
           </motion.span>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -79,7 +81,7 @@ export default function News() {
             transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
             className="text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-[1.1] mb-6"
           >
-            Nieuws & Opinie
+            {t("news", "heroTitle")}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 30 }}
@@ -87,8 +89,7 @@ export default function News() {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="text-lg text-navy-200 leading-relaxed max-w-2xl"
           >
-            Blijf op de hoogte van de laatste ontwikkelingen op het gebied van financiële
-            regelgeving, governance van goede doelen en vermogensbeheer voor de non-profitsector.
+            {t("news", "heroDescription")}
           </motion.p>
         </div>
       </section>
@@ -96,9 +97,9 @@ export default function News() {
       {/* Articles grid */}
       <SectionWrapper bg="cream" size="lg">
         <SectionHeading
-          eyebrow="Laatste Artikelen"
-          title="Expertperspectieven"
-          subtitle="Thought leadership van ons team van charity office specialisten."
+          eyebrow={t("news", "articlesEyebrow")}
+          title={t("news", "articlesTitle")}
+          subtitle={t("news", "articlesSubtitle")}
           align="center"
         />
 
@@ -111,7 +112,7 @@ export default function News() {
         ) : articles.length === 0 ? (
           <div className="mt-16 text-center py-16">
             <p className="text-warm-gray-400 text-lg">
-              Er zijn momenteel geen artikelen beschikbaar.
+              {t("news", "noArticles")}
             </p>
           </div>
         ) : (
@@ -156,7 +157,7 @@ export default function News() {
                       to={`/news/${article.slug}`}
                       className="inline-flex items-center gap-2 text-xs font-body font-semibold tracking-wider uppercase text-gold-700 hover:text-gold-600 transition-colors"
                     >
-                      Lees meer
+                      {t("news", "readMore")}
                       <svg
                         className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
                         fill="none"

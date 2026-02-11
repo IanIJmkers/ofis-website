@@ -7,9 +7,8 @@ import SectionWrapper from "../components/layout/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import Button from "../components/ui/Button";
 import CTASection from "../components/sections/CTASection";
-import { services } from "../data/services";
-
-const service = services.find((s) => s.id === "wealth-management");
+import { useLanguage } from "../context/LanguageContext";
+import { getServices } from "../data/services";
 
 const featureIcons = [
   // Institutional Process
@@ -31,6 +30,10 @@ const featureIcons = [
 ];
 
 export default function ServiceWealthManagement() {
+  const { language, t } = useLanguage();
+  const services = getServices(language);
+  const service = services.find((s) => s.id === "wealth-management");
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -55,7 +58,7 @@ export default function ServiceWealthManagement() {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
                 </svg>
-                Alle Diensten
+                {t("common", "allServices")}
               </Link>
             </motion.div>
             <motion.span
@@ -64,7 +67,7 @@ export default function ServiceWealthManagement() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="inline-block text-xs font-body font-semibold tracking-[0.25em] uppercase text-gold-400 mb-6"
             >
-              Vermogensbeheer
+              {t("serviceWealth", "heroEyebrow")}
             </motion.span>
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -72,8 +75,8 @@ export default function ServiceWealthManagement() {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               className="text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-[1.1] mb-6"
             >
-              Onafhankelijk, institutioneel{" "}
-              <span className="text-gold-400">vermogensbeheer</span>
+              {t("serviceWealth", "heroTitle")}
+              <span className="text-gold-400">{t("serviceWealth", "heroHighlight")}</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -93,26 +96,20 @@ export default function ServiceWealthManagement() {
           {/* Left: text content */}
           <AnimatedSection direction="left">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-700">
-              Overzicht
+              {t("serviceWealth", "overviewEyebrow")}
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-heading text-navy-900 leading-snug">
-              Een brede span of control over uw beleggingen
+              {t("serviceWealth", "overviewTitle")}
             </h2>
             <div className="mt-4 h-0.75 w-10 bg-gold-700" />
             <p className="mt-6 text-warm-gray-500 leading-relaxed text-lg">
               {service.fullDescription}
             </p>
             <p className="mt-4 text-warm-gray-500 leading-relaxed">
-              Wij bieden uitgebreid toezicht op uw beleggingsportefeuille,
-              treasury-activiteiten en liquiditeitsbeheer. Onze institutionele
-              aanpak zorgt ervoor dat elke beslissing gebaseerd is op grondige
-              analyse, professionele standaarden en een diepgaand begrip van de
-              missie en doelstellingen van uw organisatie.
+              {t("serviceWealth", "overviewText1")}
             </p>
             <p className="mt-4 text-warm-gray-500 leading-relaxed">
-              Door volledige onafhankelijkheid te bewaren ten opzichte van
-              banken, brokers en vermogensbeheerders, zorgen wij ervoor dat
-              elke aanbeveling die wij doen in het belang van uw stichting is.
+              {t("serviceWealth", "overviewText2")}
             </p>
           </AnimatedSection>
 
@@ -152,27 +149,19 @@ export default function ServiceWealthManagement() {
                 </div>
                 <div>
                   <h3 className="text-2xl lg:text-3xl font-heading text-navy-900 mb-4">
-                    Volledige transparantie over tarieven
+                    {t("serviceWealth", "feeTitle")}
                   </h3>
                   <p className="text-warm-gray-500 leading-relaxed text-lg mb-4">
-                    Wij hanteren vaste jaarlijkse tarieven die nooit gebaseerd
-                    zijn op de omvang van uw beheerd vermogen. Dit betekent dat
-                    ons advies altijd objectief en onbevooroordeeld is — wij
-                    hebben geen financiële prikkel om het ene product boven het
-                    andere aan te bevelen.
+                    {t("serviceWealth", "feeText1")}
                   </p>
                   <p className="text-warm-gray-500 leading-relaxed">
-                    Dit is een fundamenteel onderdeel van onze onafhankelijkheid.
-                    Wanneer het inkomen van uw adviseur gekoppeld is aan
-                    vermogensvolumes, zijn belangenconflicten onvermijdelijk.
-                    Ons vaste-tarief-model elimineert dit volledig, zodat elke
-                    aanbeveling uitsluitend in uw belang wordt gedaan.
+                    {t("serviceWealth", "feeText2")}
                   </p>
                   <div className="mt-8 flex flex-wrap gap-6">
                     {[
-                      { label: "Vast jaarlijks tarief", sublabel: "Nooit vermogensafhankelijk" },
-                      { label: "Geen verborgen kosten", sublabel: "Volledige transparantie" },
-                      { label: "Geen provisies", sublabel: "Objectief advies" },
+                      { label: t("serviceWealth", "feeBullet1"), sublabel: t("serviceWealth", "feeBullet1Sub") },
+                      { label: t("serviceWealth", "feeBullet2"), sublabel: t("serviceWealth", "feeBullet2Sub") },
+                      { label: t("serviceWealth", "feeBullet3"), sublabel: t("serviceWealth", "feeBullet3Sub") },
                     ].map((item) => (
                       <div key={item.label} className="flex items-center gap-3">
                         <svg className="w-5 h-5 text-gold-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -195,30 +184,27 @@ export default function ServiceWealthManagement() {
       {/* Process section */}
       <SectionWrapper bg="white" size="lg">
         <SectionHeading
-          eyebrow="Ons Proces"
-          title="Hoe wij uw vermogen beheren"
-          subtitle="Een gedisciplineerde, institutionele aanpak die strategisch denken combineert met zorgvuldige uitvoering."
+          eyebrow={t("serviceWealth", "processEyebrow")}
+          title={t("serviceWealth", "processTitle")}
+          subtitle={t("serviceWealth", "processSubtitle")}
         />
 
         <StaggerChildren className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             {
               step: "01",
-              title: "Strategische Beoordeling",
-              description:
-                "Wij beginnen met het begrijpen van de missie, risicotolerantie, tijdshorizon en rendementsvereisten van uw stichting om een op maat gemaakt beleggingskader op te stellen.",
+              title: t("serviceWealth", "processStep1Title"),
+              description: t("serviceWealth", "processStep1Desc"),
             },
             {
               step: "02",
-              title: "Portefeuille Constructie",
-              description:
-                "Met behulp van institutionele analyse stellen wij een gediversifieerde portefeuille samen die aansluit bij uw strategie, met de meest kostenefficiënte instrumenten.",
+              title: t("serviceWealth", "processStep2Title"),
+              description: t("serviceWealth", "processStep2Desc"),
             },
             {
               step: "03",
-              title: "Doorlopend Toezicht",
-              description:
-                "Continue monitoring, periodieke herbalancering en uitgebreide rapportage zorgen ervoor dat uw portefeuille in lijn blijft met uw doelstellingen.",
+              title: t("serviceWealth", "processStep3Title"),
+              description: t("serviceWealth", "processStep3Desc"),
             },
           ].map((item) => (
             <motion.div key={item.step} variants={staggerItem}>
@@ -241,9 +227,9 @@ export default function ServiceWealthManagement() {
       {/* Cross-links to other services */}
       <SectionWrapper bg="cream" size="lg">
         <SectionHeading
-          eyebrow="Gerelateerde Diensten"
-          title="Onderdeel van een geïntegreerde aanpak"
-          subtitle="Vermogensbeheer werkt het best in combinatie met professionele administratie en governance."
+          eyebrow={t("serviceWealth", "relatedEyebrow")}
+          title={t("serviceWealth", "relatedTitle")}
+          subtitle={t("serviceWealth", "relatedSubtitle")}
         />
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
@@ -261,7 +247,7 @@ export default function ServiceWealthManagement() {
                     </p>
                     <div className="mt-6 pt-4 border-t border-warm-gray-100">
                       <span className="text-sm font-semibold text-navy-900 tracking-wider uppercase group-hover:text-gold-700 transition-colors">
-                        Meer informatie &rarr;
+                        {t("common", "moreInfo")} &rarr;
                       </span>
                     </div>
                   </div>

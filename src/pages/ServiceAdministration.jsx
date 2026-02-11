@@ -7,9 +7,8 @@ import SectionWrapper from "../components/layout/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import Button from "../components/ui/Button";
 import CTASection from "../components/sections/CTASection";
-import { services } from "../data/services";
-
-const service = services.find((s) => s.id === "administration");
+import { useLanguage } from "../context/LanguageContext";
+import { getServices } from "../data/services";
 
 const featureIcons = [
   // Financial Processing
@@ -31,6 +30,10 @@ const featureIcons = [
 ];
 
 export default function ServiceAdministration() {
+  const { language, t } = useLanguage();
+  const services = getServices(language);
+  const service = services.find((s) => s.id === "administration");
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -55,7 +58,7 @@ export default function ServiceAdministration() {
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
                 </svg>
-                Alle Diensten
+                {t("common", "allServices")}
               </Link>
             </motion.div>
             <motion.span
@@ -64,7 +67,7 @@ export default function ServiceAdministration() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="inline-block text-xs font-body font-semibold tracking-[0.25em] uppercase text-gold-400 mb-6"
             >
-              Administratie
+              {t("serviceAdmin", "heroEyebrow")}
             </motion.span>
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -72,8 +75,8 @@ export default function ServiceAdministration() {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               className="text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-[1.1] mb-6"
             >
-              Nooit meer wakker liggen van uw{" "}
-              <span className="text-gold-400">administratie</span>
+              {t("serviceAdmin", "heroTitle")}
+              <span className="text-gold-400">{t("serviceAdmin", "heroHighlight")}</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -93,27 +96,20 @@ export default function ServiceAdministration() {
           {/* Left: text content */}
           <AnimatedSection direction="left">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-700">
-              Overzicht
+              {t("serviceAdmin", "overviewEyebrow")}
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-heading text-navy-900 leading-snug">
-              Nauwgezette financiële administratie, volledig ontzorgd
+              {t("serviceAdmin", "overviewTitle")}
             </h2>
             <div className="mt-4 h-0.75 w-10 bg-gold-700" />
             <p className="mt-6 text-warm-gray-500 leading-relaxed text-lg">
               {service.fullDescription}
             </p>
             <p className="mt-4 text-warm-gray-500 leading-relaxed">
-              Van dagelijkse boekhouding en betalingsverwerking tot
-              jaarrekeningen en belastingaangiften — ons team verzorgt elk
-              aspect van uw financiële administratie met institutionele
-              precisie. Wij nemen de operationele last van uw schouders zodat u
-              zich volledig kunt richten op uw maatschappelijke missie.
+              {t("serviceAdmin", "overviewText1")}
             </p>
             <p className="mt-4 text-warm-gray-500 leading-relaxed">
-              Of u nu subsidieprogramma's, vermogensfondsen of operationele
-              middelen beheert, ons administratieteam zorgt ervoor dat elke
-              transactie nauwkeurig wordt vastgelegd, elk rapport op tijd wordt
-              geleverd en aan elke wettelijke vereiste wordt voldaan.
+              {t("serviceAdmin", "overviewText2")}
             </p>
           </AnimatedSection>
 
@@ -143,27 +139,21 @@ export default function ServiceAdministration() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <AnimatedSection direction="left">
             <span className="text-xs font-body font-semibold tracking-[0.25em] uppercase text-gold-400 mb-4 block">
-              Digitaal Platform
+              {t("serviceAdmin", "platformEyebrow")}
             </span>
             <h2 className="text-3xl sm:text-4xl font-heading text-white leading-snug">
-              Mijn Orchestra — uw gegevens, altijd binnen handbereik
+              {t("serviceAdmin", "platformTitle")}
             </h2>
             <div className="mt-4 h-0.75 w-10 bg-gold-400" />
             <p className="mt-6 text-navy-200 leading-relaxed text-lg">
-              Ons eigen Mijn Orchestra platform geeft u 24/7 real-time toegang
-              tot al uw financiële gegevens, documenten en rapportages. Niet
-              meer wachten op kwartaalupdates of informatie opvragen per e-mail.
+              {t("serviceAdmin", "platformText1")}
             </p>
             <p className="mt-4 text-navy-200 leading-relaxed">
-              Met een intuïtief dashboard en uitgebreide rapportagetools biedt
-              Mijn Orchestra volledige transparantie over de financiële positie
-              van uw stichting op elk moment. Bestuursleden, penningmeesters en
-              geautoriseerde belanghebbenden hebben toegang tot de informatie
-              die ze nodig hebben, wanneer ze die nodig hebben.
+              {t("serviceAdmin", "platformText2")}
             </p>
             <div className="mt-8">
               <Button href="/contact" variant="primary" size="lg">
-                Demo Aanvragen
+                {t("common", "requestDemo")}
               </Button>
             </div>
           </AnimatedSection>
@@ -172,8 +162,8 @@ export default function ServiceAdministration() {
             <StaggerChildren className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {[
                 {
-                  title: "Real-time Dashboard",
-                  description: "Bekijk uw volledige financiële positie in één oogopslag, real-time bijgewerkt.",
+                  title: t("serviceAdmin", "platformCard1Title"),
+                  description: t("serviceAdmin", "platformCard1Desc"),
                   icon: (
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" />
@@ -181,8 +171,8 @@ export default function ServiceAdministration() {
                   ),
                 },
                 {
-                  title: "Documentkluis",
-                  description: "Bewaar en raadpleeg al uw financiële documenten veilig op één plek.",
+                  title: t("serviceAdmin", "platformCard2Title"),
+                  description: t("serviceAdmin", "platformCard2Desc"),
                   icon: (
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
@@ -190,8 +180,8 @@ export default function ServiceAdministration() {
                   ),
                 },
                 {
-                  title: "Rapportgeneratie",
-                  description: "Genereer op maat gemaakte rapporten voor bestuursvergaderingen, audits en toezichthouders.",
+                  title: t("serviceAdmin", "platformCard3Title"),
+                  description: t("serviceAdmin", "platformCard3Desc"),
                   icon: (
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -199,8 +189,8 @@ export default function ServiceAdministration() {
                   ),
                 },
                 {
-                  title: "Rolgebaseerde Toegang",
-                  description: "Gedetailleerde machtigingen zorgen ervoor dat de juiste personen de juiste informatie zien.",
+                  title: t("serviceAdmin", "platformCard4Title"),
+                  description: t("serviceAdmin", "platformCard4Desc"),
                   icon: (
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
@@ -228,30 +218,27 @@ export default function ServiceAdministration() {
       {/* Process */}
       <SectionWrapper bg="white" size="lg">
         <SectionHeading
-          eyebrow="Ons Proces"
-          title="Hoe wij uw administratie verzorgen"
-          subtitle="Een gestroomlijnd proces ontworpen om u gemoedsrust te geven met behoud van volledige transparantie."
+          eyebrow={t("serviceAdmin", "processEyebrow")}
+          title={t("serviceAdmin", "processTitle")}
+          subtitle={t("serviceAdmin", "processSubtitle")}
         />
 
         <StaggerChildren className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
           {[
             {
               step: "01",
-              title: "Onboarding & Inrichting",
-              description:
-                "Wij controleren uw bestaande administratie, migreren uw gegevens en richten uw Mijn Orchestra account in met volledige toegang voor uw team.",
+              title: t("serviceAdmin", "processStep1Title"),
+              description: t("serviceAdmin", "processStep1Desc"),
             },
             {
               step: "02",
-              title: "Doorlopend Beheer",
-              description:
-                "Dagelijkse verwerking van transacties, boekhouding, betaalruns, subsidieadministratie en alle routinematige financiële werkzaamheden.",
+              title: t("serviceAdmin", "processStep2Title"),
+              description: t("serviceAdmin", "processStep2Desc"),
             },
             {
               step: "03",
-              title: "Rapportage & Compliance",
-              description:
-                "Periodieke managementrapportages, jaarrekeningen, belastingaangiften en wettelijke rapportages — allemaal op tijd opgesteld en opgeleverd.",
+              title: t("serviceAdmin", "processStep3Title"),
+              description: t("serviceAdmin", "processStep3Desc"),
             },
           ].map((item) => (
             <motion.div key={item.step} variants={staggerItem}>
@@ -274,9 +261,9 @@ export default function ServiceAdministration() {
       {/* Cross-links */}
       <SectionWrapper bg="cream" size="lg">
         <SectionHeading
-          eyebrow="Gerelateerde Diensten"
-          title="Onderdeel van een geïntegreerde aanpak"
-          subtitle="Administratie werkt het best in combinatie met professioneel vermogensbeheer en governance."
+          eyebrow={t("serviceAdmin", "relatedEyebrow")}
+          title={t("serviceAdmin", "relatedTitle")}
+          subtitle={t("serviceAdmin", "relatedSubtitle")}
         />
 
         <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
@@ -294,7 +281,7 @@ export default function ServiceAdministration() {
                     </p>
                     <div className="mt-6 pt-4 border-t border-warm-gray-100">
                       <span className="text-sm font-semibold text-navy-900 tracking-wider uppercase group-hover:text-gold-700 transition-colors">
-                        Meer informatie &rarr;
+                        {t("common", "moreInfo")} &rarr;
                       </span>
                     </div>
                   </div>

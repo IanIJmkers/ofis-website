@@ -1,14 +1,17 @@
 import CountUp from "../animation/CountUp";
 import AnimatedSection from "../animation/AnimatedSection";
-
-const stats = [
-  { value: 15, suffix: "+", label: "Jaar Ervaring" },
-  { value: 100, suffix: "+", label: "Goede Doelen Organisaties" },
-  { label: "24/7", sublabel: "Dashboard Toegang", isText: true },
-  { value: 5, suffix: "", label: "Toezichthouders" },
-];
+import { useLanguage } from "../../context/LanguageContext";
 
 export default function StatsBar() {
+  const { t } = useLanguage();
+
+  const stats = [
+    { value: 15, suffix: "+", label: t("home", "statsYearsExp") },
+    { value: 100, suffix: "+", label: t("home", "statsOrganizations") },
+    { label: "24/7", sublabel: t("home", "statsDashboard"), isText: true },
+    { value: 5, suffix: "", label: t("home", "statsRegulators") },
+  ];
+
   return (
     <section className="bg-white py-16 lg:py-20 border-b border-warm-gray-100">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">

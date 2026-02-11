@@ -9,6 +9,7 @@ import SectionHeading from "../components/ui/SectionHeading";
 import Button from "../components/ui/Button";
 import CTASection from "../components/sections/CTASection";
 import { clientOrganizations } from "../data/clients";
+import { useLanguage } from "../context/LanguageContext";
 
 const endowmentOrganizations = clientOrganizations.filter((org) =>
   [
@@ -19,36 +20,34 @@ const endowmentOrganizations = clientOrganizations.filter((org) =>
     "Van Leer Foundation",
     "Stichting Elise Mathilde",
     "Stichting Adessium Foundation",
-    "Stichting Haëlla",
+    "Stichting Ha\u00eblla",
     "Stichting Dioraphte",
     "Stichting Fonds 21",
   ].includes(org)
 );
 
-const services = [
-  {
-    title: "Vermogensbeheer",
-    description:
-      "Strategisch vermogensbeheer tegen vaste tarieven, zodat uw fondskapitaal werkt aan de langetermijndoelstellingen van uw stichting.",
-  },
-  {
-    title: "Financiele Administratie",
-    description:
-      "Volledige financiele verwerking, jaarrekeningen en wettelijke rapportages op maat voor de specifieke eisen van vermogensfondsen.",
-  },
-  {
-    title: "Governance Advies",
-    description:
-      "Deskundige begeleiding bij bestuursstructuren, risicobeheer en compliance om ervoor te zorgen dat uw fonds binnen alle wettelijke kaders opereert.",
-  },
-  {
-    title: "ANBI Compliance",
-    description:
-      "Of uw stichting nu een ANBI-status heeft of niet, wij bieden hetzelfde uitgebreide serviceniveau en zorgen voor volledige naleving van regelgeving.",
-  },
-];
-
 export default function ClientsEndowmentFunds() {
+  const { t } = useLanguage();
+
+  const services = [
+    {
+      title: t("clientsEndowment", "service1Title"),
+      description: t("clientsEndowment", "service1Desc"),
+    },
+    {
+      title: t("clientsEndowment", "service2Title"),
+      description: t("clientsEndowment", "service2Desc"),
+    },
+    {
+      title: t("clientsEndowment", "service3Title"),
+      description: t("clientsEndowment", "service3Desc"),
+    },
+    {
+      title: t("clientsEndowment", "service4Title"),
+      description: t("clientsEndowment", "service4Desc"),
+    },
+  ];
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -57,16 +56,14 @@ export default function ClientsEndowmentFunds() {
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection className="max-w-3xl">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-400">
-              Vermogensfondsen
+              {t("clientsEndowment", "heroEyebrow")}
             </span>
             <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-tight">
-              Toegewijde Dienstverlening voor Vermogensfondsen
+              {t("clientsEndowment", "heroTitle")}
             </h1>
             <div className="mt-6 h-0.75 w-12 bg-gold-700" />
             <p className="mt-6 text-lg lg:text-xl text-navy-200 leading-relaxed max-w-2xl">
-              Wij bedienen vermogensfondsen, familiestichtingen en fondsen van
-              alle omvangen. Of uw stichting nu een ANBI-status heeft of niet,
-              wij bieden hetzelfde uitgebreide serviceniveau.
+              {t("clientsEndowment", "heroDescription")}
             </p>
           </AnimatedSection>
         </div>
@@ -75,9 +72,9 @@ export default function ClientsEndowmentFunds() {
       {/* What We Offer */}
       <SectionWrapper bg="white" size="lg">
         <SectionHeading
-          eyebrow="Onze Diensten"
-          title="Uitgebreid Vermogensfondsbeheer"
-          subtitle="Een volledig geintegreerd pakket van financiele diensten specifiek ontworpen voor vermogensfondsen, van vermogensbeheer tot governance advies."
+          eyebrow={t("clientsEndowment", "servicesEyebrow")}
+          title={t("clientsEndowment", "servicesTitle")}
+          subtitle={t("clientsEndowment", "servicesSubtitle")}
           align="center"
         />
         <StaggerChildren className="mt-16 grid sm:grid-cols-2 gap-8">
@@ -103,37 +100,31 @@ export default function ClientsEndowmentFunds() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <AnimatedSection direction="left">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-700">
-              Waarom Orchestra
+              {t("clientsEndowment", "whyEyebrow")}
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-heading text-navy-900">
-              Gebouwd voor de Lange Termijn
+              {t("clientsEndowment", "whyTitle")}
             </h2>
             <div className="mt-4 h-0.75 w-10 bg-gold-700" />
             <p className="mt-6 text-warm-gray-500 leading-relaxed">
-              Vermogensfondsen hebben een partner nodig die in decennia denkt,
-              niet in kwartalen. Het vaste-tarievenmodel van Orchestra betekent
-              dat uw kosten niet stijgen naarmate uw fonds groeit, terwijl onze
-              exclusieve sectorfocus ervoor zorgt dat elke beslissing is
-              gebaseerd op diepgaande expertise in de goede doelen financiering.
+              {t("clientsEndowment", "whyText1")}
             </p>
             <p className="mt-4 text-warm-gray-500 leading-relaxed">
-              Van kapitaalbehoudstrategieen tot subsidieadministratie, wij
-              bieden de infrastructuur die uw bestuur in staat stelt zich
-              volledig op de missie te richten.
+              {t("clientsEndowment", "whyText2")}
             </p>
             <div className="mt-8">
               <Button href="/contact" variant="primary" size="lg">
-                Bespreek Uw Fonds
+                {t("clientsEndowment", "whyCta")}
               </Button>
             </div>
           </AnimatedSection>
           <AnimatedSection direction="right" delay={0.2}>
             <div className="grid grid-cols-2 gap-6">
               {[
-                { value: "20+", label: "Jaar Ervaring" },
-                { value: "Vast", label: "Jaarlijkse Tarieven" },
-                { value: "24/7", label: "Dashboard Toegang" },
-                { value: "100%", label: "Wettelijke Compliance" },
+                { value: "20+", label: t("clientsEndowment", "statYearsExp") },
+                { value: "Vast", label: t("clientsEndowment", "statAnnualFees") },
+                { value: "24/7", label: t("clientsEndowment", "statDashboard") },
+                { value: "100%", label: t("clientsEndowment", "statCompliance") },
               ].map((stat, index) => (
                 <div
                   key={index}
@@ -155,9 +146,9 @@ export default function ClientsEndowmentFunds() {
       {/* Client Organizations */}
       <SectionWrapper bg="white" size="lg">
         <SectionHeading
-          eyebrow="Vermogensfonds Klanten"
-          title="Stichtingen die Wij met Trots Bedienen"
-          subtitle="Een selectie van de vermogensfondsen en familiestichtingen die Orchestra vertrouwen met hun financiele activiteiten."
+          eyebrow={t("clientsEndowment", "clientsEyebrow")}
+          title={t("clientsEndowment", "clientsTitle")}
+          subtitle={t("clientsEndowment", "clientsSubtitle")}
           align="center"
         />
         <StaggerChildren className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -181,8 +172,8 @@ export default function ClientsEndowmentFunds() {
       </SectionWrapper>
 
       <CTASection
-        title="Ontdek hoe Orchestra uw fonds kan bedienen"
-        subtitle="Plan een vertrouwelijk gesprek met een van onze vermogensspecialisten."
+        title={t("clientsEndowment", "ctaTitle")}
+        subtitle={t("clientsEndowment", "ctaSubtitle")}
       />
     </PageTransition>
   );

@@ -9,12 +9,17 @@ import SectionHeading from "../components/ui/SectionHeading";
 import Card from "../components/ui/Card";
 import CTASection from "../components/sections/CTASection";
 import {
-  clientTypes,
+  getClientTypes,
   clientOrganizations,
 } from "../data/clients";
-import { testimonials } from "../data/testimonials";
+import { getTestimonials } from "../data/testimonials";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function ClientsOverview() {
+  const { language, t } = useLanguage();
+  const clientTypes = getClientTypes(language);
+  const testimonials = getTestimonials(language);
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -23,17 +28,14 @@ export default function ClientsOverview() {
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection className="max-w-3xl">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-400">
-              Onze Klanten
+              {t("clientsOverview", "heroEyebrow")}
             </span>
             <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-tight">
-              Vertrouwd door de Toonaangevende Stichtingen van Nederland
+              {t("clientsOverview", "heroTitle")}
             </h1>
             <div className="mt-6 h-0.75 w-12 bg-gold-700" />
             <p className="mt-6 text-lg lg:text-xl text-navy-200 leading-relaxed max-w-2xl">
-              Al meer dan twee decennia vertrouwen goede doelen en
-              vermogensfondsen op Orchestra voor het beheer van hun financiele
-              activiteiten. Wij zijn er trots op een divers portfolio van
-              instellingen te bedienen die zich inzetten voor blijvende impact.
+              {t("clientsOverview", "heroDescription")}
             </p>
           </AnimatedSection>
         </div>
@@ -42,9 +44,9 @@ export default function ClientsOverview() {
       {/* Client Types */}
       <SectionWrapper bg="white" size="lg">
         <SectionHeading
-          eyebrow="Wie Wij Bedienen"
-          title="Twee Pijlers van de Goede Doelen Sector"
-          subtitle="Wij bieden op maat gemaakte financiele diensten aan zowel vermogensfondsen als goede doelen, met begrip voor de unieke eisen en regelgeving van elk."
+          eyebrow={t("clientsOverview", "typesEyebrow")}
+          title={t("clientsOverview", "typesTitle")}
+          subtitle={t("clientsOverview", "typesSubtitle")}
           align="center"
         />
         <div className="mt-16 grid md:grid-cols-2 gap-8">
@@ -54,7 +56,7 @@ export default function ClientsOverview() {
                 title={type.title}
                 description={type.description}
                 href={type.path}
-                ctaText="Ontdek"
+                ctaText={t("clientsOverview", "discover")}
                 accentTop
               />
             </AnimatedSection>
@@ -65,9 +67,9 @@ export default function ClientsOverview() {
       {/* Client Organizations Grid */}
       <SectionWrapper bg="cream" size="lg">
         <SectionHeading
-          eyebrow="Ons Portfolio"
-          title="Stichtingen die Orchestra Vertrouwen"
-          subtitle="Een selectie van de goede doelen en vermogensfondsen die wij met trots mogen bedienen."
+          eyebrow={t("clientsOverview", "portfolioEyebrow")}
+          title={t("clientsOverview", "portfolioTitle")}
+          subtitle={t("clientsOverview", "portfolioSubtitle")}
           align="center"
         />
         <StaggerChildren className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -93,9 +95,9 @@ export default function ClientsOverview() {
       {/* Testimonials */}
       <SectionWrapper bg="white" size="lg">
         <SectionHeading
-          eyebrow="Klantervaringen"
-          title="Wat Onze Klanten Zeggen"
-          subtitle="Hoor rechtstreeks van de stichtingen en organisaties die Orchestra als hun vertrouwde partner hebben gekozen."
+          eyebrow={t("clientsOverview", "storiesEyebrow")}
+          title={t("clientsOverview", "storiesTitle")}
+          subtitle={t("clientsOverview", "storiesSubtitle")}
           align="center"
         />
         <div className="mt-16 grid md:grid-cols-2 gap-8">
@@ -131,7 +133,7 @@ export default function ClientsOverview() {
             href="/clients/interviews"
             className="inline-flex items-center text-sm font-semibold text-navy-900 tracking-wider uppercase hover:text-gold-700 transition-colors"
           >
-            Lees Volledige Klantverhalen &rarr;
+            {t("clientsOverview", "readStories")} &rarr;
           </a>
         </AnimatedSection>
       </SectionWrapper>

@@ -7,7 +7,8 @@ import SectionWrapper from "../components/layout/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import Button from "../components/ui/Button";
 import CTASection from "../components/sections/CTASection";
-import { services } from "../data/services";
+import { useLanguage } from "../context/LanguageContext";
+import { getServices } from "../data/services";
 
 const serviceIcons = {
   "wealth-management": (
@@ -43,6 +44,9 @@ const serviceIcons = {
 };
 
 export default function ServicesOverview() {
+  const { language, t } = useLanguage();
+  const services = getServices(language);
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -61,7 +65,7 @@ export default function ServicesOverview() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="inline-block text-xs font-body font-semibold tracking-[0.25em] uppercase text-gold-400 mb-6"
             >
-              Onze Diensten
+              {t("servicesOverview", "heroEyebrow")}
             </motion.span>
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
@@ -69,8 +73,8 @@ export default function ServicesOverview() {
               transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               className="text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-[1.1] mb-6"
             >
-              Financieel beheer,{" "}
-              <span className="text-gold-400">volledig geïntegreerd</span>
+              {t("servicesOverview", "heroTitle")}
+              <span className="text-gold-400">{t("servicesOverview", "heroHighlight")}</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 30 }}
@@ -78,9 +82,7 @@ export default function ServicesOverview() {
               transition={{ duration: 0.7, delay: 0.5 }}
               className="text-lg lg:text-xl text-navy-200 leading-relaxed max-w-2xl"
             >
-              Drie onderling verbonden diensten die samen elk aspect van de
-              financiële bedrijfsvoering van uw stichting bestrijken — van
-              vermogensbeheer tot administratie en governance.
+              {t("servicesOverview", "heroDescription")}
             </motion.p>
           </div>
         </div>
@@ -89,9 +91,9 @@ export default function ServicesOverview() {
       {/* Services grid */}
       <SectionWrapper bg="white" size="lg">
         <SectionHeading
-          eyebrow="Wat Wij Doen"
-          title="Uitgebreide dienstverlening voor het goede doel"
-          subtitle="Elke dienst is ontworpen om zelfstandig of als onderdeel van een geïntegreerd geheel te functioneren, met de flexibiliteit die past bij de behoeften van uw stichting."
+          eyebrow={t("servicesOverview", "gridEyebrow")}
+          title={t("servicesOverview", "gridTitle")}
+          subtitle={t("servicesOverview", "gridSubtitle")}
         />
 
         <StaggerChildren className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -136,7 +138,7 @@ export default function ServicesOverview() {
 
                   <div className="pt-5 border-t border-warm-gray-100">
                     <span className="text-sm font-semibold text-navy-900 tracking-wider uppercase group-hover:text-gold-700 transition-colors">
-                      Meer informatie &rarr;
+                      {t("common", "moreInfo")} &rarr;
                     </span>
                   </div>
                 </div>
@@ -151,26 +153,21 @@ export default function ServicesOverview() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <AnimatedSection direction="left">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-700">
-              Onze Aanpak
+              {t("servicesOverview", "approachEyebrow")}
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-heading text-navy-900 leading-snug">
-              Een geïntegreerde methodologie voor goede doelen organisaties
+              {t("servicesOverview", "approachTitle")}
             </h2>
             <div className="mt-4 h-0.75 w-10 bg-gold-700" />
             <p className="mt-6 text-warm-gray-500 leading-relaxed text-lg">
-              Onze methodologie zorgt ervoor dat vermogensbeheer, administratie
-              en governance naadloos samenwerken. Door een institutionele aanpak
-              van elke discipline leveren wij het toezicht en de transparantie
-              die uw belanghebbenden verwachten.
+              {t("servicesOverview", "approachText1")}
             </p>
             <p className="mt-4 text-warm-gray-500 leading-relaxed">
-              Als onafhankelijke partij zijn wij geen bank en geen broker. De
-              belangen van onze cliënten staan altijd voorop. Elke beslissing
-              die wij nemen wordt door dit principe geleid.
+              {t("servicesOverview", "approachText2")}
             </p>
             <div className="mt-8">
               <Button href="/about/methodology" variant="primary" size="lg">
-                Ontdek Onze Methodologie
+                {t("common", "discoverMethodology")}
               </Button>
             </div>
           </AnimatedSection>
@@ -178,10 +175,10 @@ export default function ServicesOverview() {
           <AnimatedSection direction="right" delay={0.2}>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { value: "100+", label: "Cliënten bediend" },
-                { value: "Onafhankelijk", label: "Geen bank, geen broker" },
-                { value: "Vast tarief", label: "Nooit vermogensafhankelijk" },
-                { value: "DNB & AFM", label: "Volledig gereguleerd" },
+                { value: t("servicesOverview", "stat1Value"), label: t("servicesOverview", "stat1Label") },
+                { value: t("servicesOverview", "stat2Value"), label: t("servicesOverview", "stat2Label") },
+                { value: t("servicesOverview", "stat3Value"), label: t("servicesOverview", "stat3Label") },
+                { value: t("servicesOverview", "stat4Value"), label: t("servicesOverview", "stat4Label") },
               ].map((stat) => (
                 <div
                   key={stat.label}
@@ -203,17 +200,16 @@ export default function ServicesOverview() {
       {/* Why Orchestra */}
       <SectionWrapper bg="white" size="lg">
         <SectionHeading
-          eyebrow="Waarom Orchestra"
-          title="Wat ons onderscheidt"
-          subtitle="Wij combineren institutioneel financieel beheer met een persoonlijke aanpak op maat van goede doelen organisaties."
+          eyebrow={t("servicesOverview", "whyEyebrow")}
+          title={t("servicesOverview", "whyTitle")}
+          subtitle={t("servicesOverview", "whySubtitle")}
         />
 
         <StaggerChildren className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             {
-              title: "Werkelijk Onafhankelijk",
-              description:
-                "Wij hebben geen banden met banken, brokers of vermogensbeheerders. Uw belangen zijn onze enige prioriteit.",
+              title: t("servicesOverview", "whyItem1Title"),
+              description: t("servicesOverview", "whyItem1Desc"),
               icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
@@ -221,9 +217,8 @@ export default function ServicesOverview() {
               ),
             },
             {
-              title: "Vast Jaarlijks Tarief",
-              description:
-                "Transparante tarieven met een vast jaarlijks tarief. Nooit vermogensafhankelijk, zodat ons advies altijd objectief is.",
+              title: t("servicesOverview", "whyItem2Title"),
+              description: t("servicesOverview", "whyItem2Desc"),
               icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -231,9 +226,8 @@ export default function ServicesOverview() {
               ),
             },
             {
-              title: "Digitaal Platform",
-              description:
-                "Mijn Orchestra geeft u 24/7 real-time toegang tot al uw financiële gegevens, documenten en rapportages.",
+              title: t("servicesOverview", "whyItem3Title"),
+              description: t("servicesOverview", "whyItem3Desc"),
               icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -241,9 +235,8 @@ export default function ServicesOverview() {
               ),
             },
             {
-              title: "Volledige Compliance",
-              description:
-                "Gereguleerd door DNB en AFM. Volledige naleving van alle relevante regelgevingskaders.",
+              title: t("servicesOverview", "whyItem4Title"),
+              description: t("servicesOverview", "whyItem4Desc"),
               icon: (
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />

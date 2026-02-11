@@ -7,7 +7,8 @@ import SectionWrapper from "../components/layout/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import Card from "../components/ui/Card";
 import CTASection from "../components/sections/CTASection";
-import { valueProps } from "../data/valueProps";
+import { getValueProps } from "../data/valueProps";
+import { useLanguage } from "../context/LanguageContext";
 import { motion } from "motion/react";
 
 const iconMap = {
@@ -39,38 +40,17 @@ const iconMap = {
   ),
 };
 
-const subPages = [
-  {
-    title: "Ons Team",
-    description:
-      "Maak kennis met de ervaren professionals die diepgaande sectorkennis en persoonlijke toewijding brengen in elke klantrelatie.",
-    href: "/about/team",
-    ctaText: "Ontmoet het team",
-  },
-  {
-    title: "Onze Methodiek",
-    description:
-      "Ontdek de gestructureerde vijf-stappen aanpak die wij gebruiken om nieuwe stichtingen aan boord te nemen en naadloze financiele activiteiten te garanderen.",
-    href: "/about/methodology",
-    ctaText: "Leer onze aanpak",
-  },
-  {
-    title: "Veelgestelde Vragen",
-    description:
-      "Vind antwoorden op veelgestelde vragen over onze diensten, tarieven, onboardingproces en regelgeving.",
-    href: "/about/faqs",
-    ctaText: "Lees de FAQ",
-  },
-  {
-    title: "Werken bij Orchestra",
-    description:
-      "Sluit u aan bij een team van specialisten toegewijd aan de goede doelen sector. Ontdek mogelijkheden om een betekenisvolle impact te maken.",
-    href: "/about/careers",
-    ctaText: "Bekijk vacatures",
-  },
-];
-
 export default function AboutOverview() {
+  const { language, t } = useLanguage();
+  const props = getValueProps(language);
+
+  const subPages = [
+    { title: t("about", "subPageTeamTitle"), description: t("about", "subPageTeamDesc"), href: "/about/team", ctaText: t("about", "subPageTeamCta") },
+    { title: t("about", "subPageMethodTitle"), description: t("about", "subPageMethodDesc"), href: "/about/methodology", ctaText: t("about", "subPageMethodCta") },
+    { title: t("about", "subPageFaqsTitle"), description: t("about", "subPageFaqsDesc"), href: "/about/faqs", ctaText: t("about", "subPageFaqsCta") },
+    { title: t("about", "subPageCareersTitle"), description: t("about", "subPageCareersDesc"), href: "/about/careers", ctaText: t("about", "subPageCareersCta") },
+  ];
+
   return (
     <PageTransition>
       {/* Hero */}
@@ -79,17 +59,14 @@ export default function AboutOverview() {
         <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatedSection className="max-w-3xl">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-400">
-              Over Orchestra
+              {t("about", "heroEyebrow")}
             </span>
             <h1 className="mt-4 text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-tight">
-              Het Charity Office van Nederland
+              {t("about", "heroTitle")}
             </h1>
             <div className="mt-6 h-0.75 w-12 bg-gold-700" />
             <p className="mt-6 text-lg lg:text-xl text-navy-200 leading-relaxed max-w-2xl">
-              Orchestra is de enige onafhankelijke financiele instelling in
-              Nederland die zich uitsluitend richt op het bedienen van goede
-              doelen stichtingen. Wij combineren vermogensbeheer, administratie
-              en governance onder een dak.
+              {t("about", "heroDescription")}
             </p>
           </AnimatedSection>
         </div>
@@ -100,45 +77,32 @@ export default function AboutOverview() {
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           <AnimatedSection direction="left">
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-700">
-              Onze Missie
+              {t("about", "missionEyebrow")}
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-heading text-navy-900">
-              Stichtingen in Staat Stellen Zich op Hun Missie te Richten
+              {t("about", "missionTitle")}
             </h2>
             <div className="mt-4 h-0.75 w-10 bg-gold-700" />
             <p className="mt-6 text-warm-gray-500 leading-relaxed text-lg">
-              Wij bestaan om goede doelen stichtingen te ontlasten van de
-              complexiteit van financieel beheer, zodat zij al hun energie
-              kunnen richten op het creeren van positieve impact in de
-              samenleving.
+              {t("about", "missionText1")}
             </p>
             <p className="mt-4 text-warm-gray-500 leading-relaxed">
-              Door geintegreerd vermogensbeheer, financiele administratie en
-              governance diensten aan te bieden tegen transparante vaste
-              tarieven, zorgen wij ervoor dat elke stichting die wij bedienen
-              de financiele infrastructuur heeft om met vertrouwen en compliance
-              te opereren.
+              {t("about", "missionText2")}
             </p>
           </AnimatedSection>
           <AnimatedSection direction="right" delay={0.2}>
             <span className="text-xs font-body font-semibold tracking-[0.2em] uppercase text-gold-700">
-              Onze Visie
+              {t("about", "visionEyebrow")}
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-heading text-navy-900">
-              Een Toekomst Waarin Elke Stichting Floreert
+              {t("about", "visionTitle")}
             </h2>
             <div className="mt-4 h-0.75 w-10 bg-gold-700" />
             <p className="mt-6 text-warm-gray-500 leading-relaxed text-lg">
-              Wij zien een goede doelen sector voor ons waarin stichtingen van
-              alle omvangen toegang hebben tot financiele diensten van
-              institutionele kwaliteit, zodat zij hun maatschappelijke bijdrage
-              kunnen maximaliseren.
+              {t("about", "visionText1")}
             </p>
             <p className="mt-4 text-warm-gray-500 leading-relaxed">
-              Door voortdurende innovatie, diepgaande sectorexpertise en een
-              onwrikbare toewijding aan transparantie, streven wij ernaar de
-              definitieve financiele partner te zijn voor elke goede doelen
-              stichting in Nederland en daarbuiten.
+              {t("about", "visionText2")}
             </p>
           </AnimatedSection>
         </div>
@@ -147,14 +111,14 @@ export default function AboutOverview() {
       {/* Quick Links to Sub-Pages */}
       <SectionWrapper bg="cream" size="lg">
         <SectionHeading
-          eyebrow="Ontdek"
-          title="Meer Informatie Over Orchestra"
-          subtitle="Duik dieper in ons team, onze methodiek en wat ons de vertrouwde partner maakt voor goede doelen stichtingen."
+          eyebrow={t("about", "discoverEyebrow")}
+          title={t("about", "discoverTitle")}
+          subtitle={t("about", "discoverSubtitle")}
           align="center"
         />
         <StaggerChildren className="mt-16 grid sm:grid-cols-2 gap-8">
           {subPages.map((page) => (
-            <motion.div key={page.title} variants={staggerItem}>
+            <motion.div key={page.href} variants={staggerItem}>
               <Card
                 title={page.title}
                 description={page.description}
@@ -170,13 +134,13 @@ export default function AboutOverview() {
       {/* Value Propositions */}
       <SectionWrapper bg="white" size="lg">
         <SectionHeading
-          eyebrow="Waarom Orchestra"
-          title="Wat Ons Onderscheidt"
-          subtitle="Vijf pijlers die de Orchestra-aanpak voor financiele diensten aan goede doelen definieren."
+          eyebrow={t("about", "whyEyebrow")}
+          title={t("about", "whyTitle")}
+          subtitle={t("about", "whySubtitle")}
           align="center"
         />
         <StaggerChildren className="mt-16 grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {valueProps.map((prop) => (
+          {props.map((prop) => (
             <motion.div
               key={prop.title}
               variants={staggerItem}

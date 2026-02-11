@@ -2,8 +2,9 @@ import { motion } from "motion/react";
 import SectionWrapper from "../layout/SectionWrapper";
 import SectionHeading from "../ui/SectionHeading";
 import StaggerChildren, { staggerItem } from "../animation/StaggerChildren";
-import { services } from "../../data/services";
+import { getServices } from "../../data/services";
 import { Link } from "react-router";
+import { useLanguage } from "../../context/LanguageContext";
 
 const icons = {
   "wealth-management": (
@@ -24,12 +25,15 @@ const icons = {
 };
 
 export default function ServicesCards() {
+  const { language, t } = useLanguage();
+  const services = getServices(language);
+
   return (
     <SectionWrapper bg="white">
       <SectionHeading
-        eyebrow="Onze Diensten"
-        title="Integrale financiële dienstverlening"
-        subtitle="Drie geïntegreerde diensten die elk aspect van de financiële bedrijfsvoering van uw stichting dekken."
+        eyebrow={t("home", "servicesEyebrow")}
+        title={t("home", "servicesTitle")}
+        subtitle={t("home", "servicesSubtitle")}
       />
 
       <StaggerChildren className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -51,7 +55,7 @@ export default function ServicesCards() {
                 </p>
                 <div className="mt-6 pt-5 border-t border-warm-gray-100">
                   <span className="text-sm font-semibold text-navy-900 tracking-wider uppercase group-hover:text-gold-700 transition-colors">
-                    Meer informatie &rarr;
+                    {t("common", "moreInfo")} &rarr;
                   </span>
                 </div>
               </div>
