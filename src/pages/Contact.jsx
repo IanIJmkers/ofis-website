@@ -7,6 +7,7 @@ import Button from "../components/ui/Button";
 import CTASection from "../components/sections/CTASection";
 import { getSiteMetadata } from "../data/siteMetadata";
 import { useLanguage } from "../context/LanguageContext";
+import { submitContactForm } from "../lib/contact";
 
 export default function Contact() {
   const { language, t } = useLanguage();
@@ -19,13 +20,22 @@ export default function Contact() {
     phone: "",
     message: "",
   });
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
 
   const handleChange = (e) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setStatus("sending");
+    try {
+      await submitContactForm(form);
+      setStatus("success");
+      setForm({ name: "", organization: "", email: "", phone: "", message: "" });
+    } catch {
+      setStatus("error");
+    }
   };
 
   const inputClasses =
@@ -180,9 +190,22 @@ export default function Contact() {
                   />
                 </div>
 
-                <Button type="submit" variant="primary" size="lg">
-                  {t("common", "sendMessage")}
+                <Button type="submit" variant="primary" size="lg" disabled={status === "sending"}>
+                  {status === "sending" ? t("contact", "sending") : t("common", "sendMessage")}
                 </Button>
+
+                {status === "success" && (
+                  <div className="mt-4 p-4 rounded-md bg-green-50 border border-green-200">
+                    <p className="text-sm font-semibold text-green-800">{t("contact", "successTitle")}</p>
+                    <p className="text-sm text-green-700 mt-1">{t("contact", "successText")}</p>
+                  </div>
+                )}
+
+                {status === "error" && (
+                  <div className="mt-4 p-4 rounded-md bg-red-50 border border-red-200">
+                    <p className="text-sm text-red-700">{t("contact", "errorText")}</p>
+                  </div>
+                )}
               </form>
             </div>
           </AnimatedSection>
