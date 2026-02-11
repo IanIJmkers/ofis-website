@@ -1,6 +1,7 @@
 import { supabase } from "./supabase";
 
 export async function fetchPublishedPosts() {
+  if (!supabase) return [];
   const { data, error } = await supabase
     .from("blog_posts")
     .select("id, title, slug, excerpt, featured_image, category, published_at")
@@ -16,6 +17,7 @@ export async function fetchPublishedPosts() {
 }
 
 export async function fetchPostBySlug(slug) {
+  if (!supabase) return null;
   const { data, error } = await supabase
     .from("blog_posts")
     .select("*")
