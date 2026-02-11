@@ -1,7 +1,8 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo, Fragment } from "react";
 import { useParams, Link } from "react-router";
-import { motion, useScroll, useSpring } from "motion/react";
+import { motion, useScroll, useSpring, AnimatePresence } from "motion/react";
 import PageTransition from "../components/animation/PageTransition";
+import AnimatedSection from "../components/animation/AnimatedSection";
 import StaggerChildren from "../components/animation/StaggerChildren";
 import SectionWrapper from "../components/layout/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
@@ -70,6 +71,41 @@ function addIdsToHeadings(html) {
   });
 }
 
+function splitContentBySections(html) {
+  if (!html) return { intro: "", sections: [] };
+
+  const parts = html.split(/(?=<h2[\s>])/i);
+  const intro = parts[0]?.trim() || "";
+
+  const sections = parts.slice(1).map((sectionHtml, index) => {
+    const headingMatch = sectionHtml.match(/<h2[^>]*id="([^"]*)"[^>]*>(.*?)<\/h2>/i);
+    const id = headingMatch?.[1] || `section-${index + 1}`;
+    const title = headingMatch?.[2]?.replace(/<[^>]*>/g, "") || "";
+
+    return {
+      number: String(index + 1).padStart(2, "0"),
+      id,
+      title,
+      fullHtml: sectionHtml,
+    };
+  });
+
+  return { intro, sections };
+}
+
+const proseClasses = `prose prose-lg max-w-none text-warm-gray-600 leading-relaxed
+  prose-headings:font-heading prose-headings:text-navy-900 prose-headings:scroll-mt-24
+  prose-h2:text-2xl prose-h2:mt-0 prose-h2:mb-5 prose-h2:pb-3 prose-h2:border-b prose-h2:border-warm-gray-100
+  prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+  prose-p:mb-6 prose-p:leading-[1.8]
+  prose-a:text-gold-700 prose-a:no-underline hover:prose-a:text-gold-600
+  prose-strong:text-navy-800 prose-strong:font-semibold
+  prose-ul:my-6 prose-li:my-1.5
+  prose-ol:my-6
+  prose-blockquote:border-l-3 prose-blockquote:border-gold-400 prose-blockquote:bg-cream prose-blockquote:rounded-r-lg prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:text-navy-700 prose-blockquote:not-italic prose-blockquote:font-heading prose-blockquote:text-lg
+  prose-img:rounded-xl prose-img:shadow-card prose-img:my-8
+  prose-hr:border-warm-gray-200 prose-hr:my-10`;
+
 function ArticleSkeleton() {
   return (
     <div className="animate-pulse max-w-4xl mx-auto">
@@ -102,6 +138,8 @@ export default function NewsArticle() {
   const [recentArticles, setRecentArticles] = useState([]);
   const [copied, setCopied] = useState(false);
   const [activeHeading, setActiveHeading] = useState("");
+  const [mobileTocOpen, setMobileTocOpen] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const articleRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -158,9 +196,17 @@ export default function NewsArticle() {
     return () => observer.disconnect();
   }, [post]);
 
+  // Back to top visibility
+  useEffect(() => {
+    const handleScroll = () => setShowBackToTop(window.scrollY > 400);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const readingTime = post ? estimateReadingTime(post.content) : 0;
   const processedContent = useMemo(() => (post ? addIdsToHeadings(post.content) : ""), [post]);
   const headings = useMemo(() => extractHeadings(processedContent), [processedContent]);
+  const { intro, sections } = useMemo(() => splitContentBySections(processedContent), [processedContent]);
 
   function handleCopyLink() {
     navigator.clipboard.writeText(window.location.href).then(() => {
@@ -206,7 +252,7 @@ export default function NewsArticle() {
       {/* Reading Progress Bar */}
       <motion.div
         style={{ scaleX }}
-        className="fixed top-0 left-0 right-0 h-0.5 bg-gold-700 origin-left z-50"
+        className="fixed top-0 left-0 right-0 h-1 bg-gold-700 origin-left z-50"
       />
 
       {/* Article Header */}
@@ -317,6 +363,98 @@ export default function NewsArticle() {
             </section>
           )}
 
+          {/* Key Takeaway Box */}
+          {post.excerpt && (
+            <section className="bg-white">
+              <div className="max-w-4xl mx-auto px-6 lg:px-8 pt-10">
+                <AnimatedSection>
+                  <div className="border-l-4 border-gold-700 bg-cream rounded-r-lg p-6 lg:p-8">
+                    <div className="flex items-start gap-4">
+                      <svg className="w-6 h-6 text-gold-700 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
+                      </svg>
+                      <div>
+                        <p className="text-xs font-body font-semibold tracking-wider uppercase text-gold-700 mb-2">
+                          {t("news", "keyTakeaway")}
+                        </p>
+                        <p className="text-base lg:text-lg text-navy-800 leading-relaxed font-body">
+                          {post.excerpt}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              </div>
+            </section>
+          )}
+
+          {/* Mobile/Tablet TOC */}
+          {headings.length >= 3 && (
+            <div className="xl:hidden sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-warm-gray-100">
+              <div className="max-w-4xl mx-auto px-6">
+                <button
+                  onClick={() => setMobileTocOpen(!mobileTocOpen)}
+                  className="flex items-center justify-between w-full py-3.5"
+                >
+                  <div className="flex items-center gap-2 min-w-0">
+                    <svg className="w-4 h-4 text-gold-700 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <span className="text-sm font-body font-semibold text-navy-900">
+                      {t("news", "contents")}
+                    </span>
+                    {activeHeading && (
+                      <span className="text-sm text-warm-gray-400 truncate max-w-40">
+                        — {headings.find((h) => h.id === activeHeading)?.text}
+                      </span>
+                    )}
+                  </div>
+                  <motion.svg
+                    animate={{ rotate: mobileTocOpen ? 180 : 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="w-4 h-4 text-warm-gray-400 shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </motion.svg>
+                </button>
+                <AnimatePresence>
+                  {mobileTocOpen && (
+                    <motion.nav
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <ul className="pb-4 space-y-1.5 border-l border-warm-gray-200 ml-2">
+                        {headings.map((h) => (
+                          <li key={h.id}>
+                            <a
+                              href={`#${h.id}`}
+                              onClick={() => setMobileTocOpen(false)}
+                              className={`block text-sm leading-snug py-1 transition-colors duration-200 ${
+                                h.level === 3 ? "pl-6" : "pl-4"
+                              } ${
+                                activeHeading === h.id
+                                  ? "text-gold-700 font-semibold border-l-2 border-gold-700 -ml-px"
+                                  : "text-warm-gray-400 hover:text-navy-700"
+                              }`}
+                            >
+                              {h.text}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.nav>
+                  )}
+                </AnimatePresence>
+              </div>
+            </div>
+          )}
+
           {/* Article Body with optional TOC sidebar */}
           <section ref={articleRef} className="bg-white py-16 lg:py-20">
             <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -326,7 +464,7 @@ export default function NewsArticle() {
                   <aside className="hidden xl:block w-56 shrink-0">
                     <nav className="sticky top-24">
                       <p className="text-[10px] font-body font-semibold tracking-wider uppercase text-warm-gray-400 mb-4">
-                        {language === "nl" ? "Inhoud" : "Contents"}
+                        {t("news", "contents")}
                       </p>
                       <ul className="space-y-2 border-l border-warm-gray-200">
                         {headings.map((h) => (
@@ -395,26 +533,64 @@ export default function NewsArticle() {
                   </aside>
                 )}
 
-                {/* Article Content */}
+                {/* Article Content — Section Cards */}
                 <div className="min-w-0 grow max-w-3xl mx-auto">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="prose prose-lg max-w-none text-warm-gray-600 leading-relaxed
-                      prose-headings:font-heading prose-headings:text-navy-900 prose-headings:scroll-mt-24
-                      prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-5 prose-h2:pb-3 prose-h2:border-b prose-h2:border-warm-gray-100
-                      prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-                      prose-p:mb-6 prose-p:leading-[1.8]
-                      prose-a:text-gold-700 prose-a:no-underline hover:prose-a:text-gold-600
-                      prose-strong:text-navy-800 prose-strong:font-semibold
-                      prose-ul:my-6 prose-li:my-1.5
-                      prose-ol:my-6
-                      prose-blockquote:border-l-3 prose-blockquote:border-gold-400 prose-blockquote:bg-cream prose-blockquote:rounded-r-lg prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:text-navy-700 prose-blockquote:not-italic prose-blockquote:font-heading prose-blockquote:text-lg
-                      prose-img:rounded-xl prose-img:shadow-card prose-img:my-8
-                      prose-hr:border-warm-gray-200 prose-hr:my-10"
-                    dangerouslySetInnerHTML={{ __html: processedContent }}
-                  />
+                  {/* Intro (content before first h2) */}
+                  {intro && sections.length > 0 && (
+                    <AnimatedSection>
+                      <div
+                        className={proseClasses}
+                        dangerouslySetInnerHTML={{ __html: intro }}
+                      />
+                    </AnimatedSection>
+                  )}
+
+                  {/* Section Cards */}
+                  {sections.length > 0 ? (
+                    <div className={`space-y-6 ${intro ? "mt-10" : ""}`}>
+                      {sections.map((section, i) => (
+                        <Fragment key={section.id}>
+                          {/* Gold dot separator */}
+                          {i > 0 && (
+                            <div className="flex justify-center py-2">
+                              <div className="flex items-center gap-1.5">
+                                <div className="w-1 h-1 rounded-full bg-gold-700/30" />
+                                <div className="w-1.5 h-1.5 rounded-full bg-gold-700/50" />
+                                <div className="w-1 h-1 rounded-full bg-gold-700/30" />
+                              </div>
+                            </div>
+                          )}
+
+                          <AnimatedSection delay={i * 0.05}>
+                            <div
+                              className={`relative rounded-xl p-6 sm:p-8 lg:p-10 border-l-4 border-gold-700/20 hover:border-gold-700 transition-colors duration-300 ${
+                                i % 2 === 0 ? "bg-white shadow-card" : "bg-warm-gray-50"
+                              }`}
+                            >
+                              {/* Watermark section number */}
+                              <span className="absolute top-4 right-6 text-7xl font-heading text-navy-900/4 select-none pointer-events-none leading-none">
+                                {section.number}
+                              </span>
+
+                              {/* Section content */}
+                              <div
+                                className={proseClasses}
+                                dangerouslySetInnerHTML={{ __html: section.fullHtml }}
+                              />
+                            </div>
+                          </AnimatedSection>
+                        </Fragment>
+                      ))}
+                    </div>
+                  ) : (
+                    /* Fallback: no h2 sections — render as single block (same as before) */
+                    <AnimatedSection>
+                      <div
+                        className={proseClasses}
+                        dangerouslySetInnerHTML={{ __html: processedContent }}
+                      />
+                    </AnimatedSection>
+                  )}
 
                   {/* Share & Back — below article (visible on all screens) */}
                   <div className="border-t border-warm-gray-200 mt-12 pt-8 flex flex-wrap items-center justify-between gap-4">
@@ -520,6 +696,25 @@ export default function NewsArticle() {
       )}
 
       <CTASection />
+
+      {/* Back to Top Button */}
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-gold-700 text-white shadow-card-hover flex items-center justify-center hover:bg-gold-600 transition-colors z-40"
+            aria-label="Back to top"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+            </svg>
+          </motion.button>
+        )}
+      </AnimatePresence>
     </PageTransition>
   );
 }

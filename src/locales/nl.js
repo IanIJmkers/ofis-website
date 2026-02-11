@@ -480,6 +480,8 @@ export default {
     shareArticle: "Deel dit artikel",
     copiedToClipboard: "Link gekopieerd!",
     copyLink: "Kopieer link",
+    contents: "Inhoud",
+    keyTakeaway: "Samenvatting",
     relatedArticlesEyebrow: "Gerelateerd",
     relatedArticlesTitle: "Gerelateerde artikelen",
     relatedArticlesSubtitle: "Meer artikelen over hetzelfde onderwerp.",

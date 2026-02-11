@@ -467,6 +467,8 @@ export default {
     shareArticle: "Share this article",
     copiedToClipboard: "Link copied!",
     copyLink: "Copy link",
+    contents: "Contents",
+    keyTakeaway: "Key Takeaway",
     relatedArticlesEyebrow: "Related",
     relatedArticlesTitle: "Related articles",
     relatedArticlesSubtitle: "More articles on the same topic.",
