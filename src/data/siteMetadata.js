@@ -9,7 +9,7 @@ const base = {
   phone: "+31 (0)70 205 11 81",
   email: "info@orchestra-charityoffice.com",
   linkedin: "https://linkedin.com/company/orchestra-family-charity-office",
-  myOrchestra: "https://orchestra-charityoffice.com/en/mijn-orchestra/",
+  myOrchestra: "https://ofis.orchestrabeheer.nl/Ofis/Client",
 };
 
 const data = {

@@ -32,7 +32,13 @@ export default function Contact() {
     try {
       await submitContactForm(form);
       setStatus("success");
-      setForm({ name: "", organization: "", email: "", phone: "", message: "" });
+      setForm({
+        name: "",
+        organization: "",
+        email: "",
+        phone: "",
+        message: "",
+      });
     } catch {
       setStatus("error");
     }
@@ -61,7 +67,11 @@ export default function Contact() {
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+            transition={{
+              duration: 0.7,
+              delay: 0.3,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
             className="text-4xl sm:text-5xl lg:text-6xl font-heading text-white leading-[1.1] mb-6"
           >
             {t("contact", "heroTitle")}
@@ -99,7 +109,8 @@ export default function Contact() {
                       htmlFor="name"
                       className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
                     >
-                      {t("contact", "labelName")} <span className="text-gold-700">*</span>
+                      {t("contact", "labelName")}{" "}
+                      <span className="text-gold-700">*</span>
                     </label>
                     <input
                       id="name"
@@ -138,7 +149,8 @@ export default function Contact() {
                       htmlFor="email"
                       className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
                     >
-                      {t("contact", "labelEmail")} <span className="text-gold-700">*</span>
+                      {t("contact", "labelEmail")}{" "}
+                      <span className="text-gold-700">*</span>
                     </label>
                     <input
                       id="email"
@@ -162,6 +174,7 @@ export default function Contact() {
                       id="phone"
                       name="phone"
                       type="tel"
+                      required
                       value={form.phone}
                       onChange={handleChange}
                       placeholder={t("contact", "placeholderPhone")}
@@ -176,7 +189,8 @@ export default function Contact() {
                     htmlFor="message"
                     className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
                   >
-                    {t("contact", "labelMessage")} <span className="text-gold-700">*</span>
+                    {t("contact", "labelMessage")}{" "}
+                    <span className="text-gold-700">*</span>
                   </label>
                   <textarea
                     id="message"
@@ -190,20 +204,33 @@ export default function Contact() {
                   />
                 </div>
 
-                <Button type="submit" variant="primary" size="lg" disabled={status === "sending"}>
-                  {status === "sending" ? t("contact", "sending") : t("common", "sendMessage")}
+                <Button
+                  type="submit"
+                  variant="primary"
+                  size="lg"
+                  disabled={status === "sending"}
+                >
+                  {status === "sending"
+                    ? t("contact", "sending")
+                    : t("common", "sendMessage")}
                 </Button>
 
                 {status === "success" && (
                   <div className="mt-4 p-4 rounded-md bg-green-50 border border-green-200">
-                    <p className="text-sm font-semibold text-green-800">{t("contact", "successTitle")}</p>
-                    <p className="text-sm text-green-700 mt-1">{t("contact", "successText")}</p>
+                    <p className="text-sm font-semibold text-green-800">
+                      {t("contact", "successTitle")}
+                    </p>
+                    <p className="text-sm text-green-700 mt-1">
+                      {t("contact", "successText")}
+                    </p>
                   </div>
                 )}
 
                 {status === "error" && (
                   <div className="mt-4 p-4 rounded-md bg-red-50 border border-red-200">
-                    <p className="text-sm text-red-700">{t("contact", "errorText")}</p>
+                    <p className="text-sm text-red-700">
+                      {t("contact", "errorText")}
+                    </p>
                   </div>
                 )}
               </form>
@@ -211,7 +238,11 @@ export default function Contact() {
           </AnimatedSection>
 
           {/* Right: Contact info */}
-          <AnimatedSection className="lg:col-span-2" direction="right" delay={0.15}>
+          <AnimatedSection
+            className="lg:col-span-2"
+            direction="right"
+            delay={0.15}
+          >
             <div className="space-y-8">
               {/* Contact info card */}
               <div className="bg-white rounded-lg shadow-card p-8">
@@ -249,8 +280,7 @@ export default function Contact() {
                     <p className="text-sm text-navy-900 leading-relaxed">
                       {meta.address.street}
                       <br />
-                      {meta.address.postalCode}{" "}
-                      {meta.address.city}
+                      {meta.address.postalCode} {meta.address.city}
                       <br />
                       {meta.address.country}
                     </p>
