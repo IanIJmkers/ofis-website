@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { useParams, Link } from "react-router";
-import { motion } from "motion/react";
+import { motion, useScroll, useSpring } from "motion/react";
 import PageTransition from "../components/animation/PageTransition";
 import StaggerChildren from "../components/animation/StaggerChildren";
 import SectionWrapper from "../components/layout/SectionWrapper";
@@ -23,9 +23,56 @@ function formatDate(dateString, lang) {
   });
 }
 
+function extractHeadings(html) {
+  if (!html) return [];
+  const regex = /<h([23])[^>]*id="([^"]*)"[^>]*>(.*?)<\/h[23]>/gi;
+  const headings = [];
+  let match;
+  while ((match = regex.exec(html)) !== null) {
+    headings.push({
+      level: parseInt(match[1]),
+      id: match[2],
+      text: match[3].replace(/<[^>]*>/g, ""),
+    });
+  }
+  // Fallback: try headings without IDs and generate IDs
+  if (headings.length === 0) {
+    const fallbackRegex = /<h([23])[^>]*>(.*?)<\/h[23]>/gi;
+    let fallbackMatch;
+    while ((fallbackMatch = fallbackRegex.exec(html)) !== null) {
+      const text = fallbackMatch[2].replace(/<[^>]*>/g, "");
+      const id = text
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/\s+/g, "-")
+        .slice(0, 60);
+      headings.push({
+        level: parseInt(fallbackMatch[1]),
+        id,
+        text,
+      });
+    }
+  }
+  return headings;
+}
+
+function addIdsToHeadings(html) {
+  if (!html) return html;
+  return html.replace(/<h([23])([^>]*)>(.*?)<\/h([23])>/gi, (match, level, attrs, content, closeLevel) => {
+    if (attrs.includes('id="')) return match;
+    const text = content.replace(/<[^>]*>/g, "");
+    const id = text
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .slice(0, 60);
+    return `<h${level}${attrs} id="${id}">${content}</h${closeLevel}>`;
+  });
+}
+
 function ArticleSkeleton() {
   return (
-    <div className="animate-pulse">
+    <div className="animate-pulse max-w-4xl mx-auto">
       <div className="flex items-center gap-2 mb-8">
         <div className="h-3 w-12 bg-warm-gray-200 rounded" />
         <div className="h-3 w-3 bg-warm-gray-200 rounded" />
@@ -36,9 +83,12 @@ function ArticleSkeleton() {
         <div className="h-3 w-28 bg-warm-gray-200 rounded" />
         <div className="h-3 w-20 bg-warm-gray-200 rounded" />
       </div>
-      <div className="h-10 w-3/4 bg-warm-gray-300 rounded mb-3" />
-      <div className="h-10 w-1/2 bg-warm-gray-300 rounded mb-4" />
-      <div className="h-0.75 w-10 bg-warm-gray-200" />
+      <div className="h-12 w-3/4 bg-warm-gray-300 rounded mb-3" />
+      <div className="h-12 w-1/2 bg-warm-gray-300 rounded mb-6" />
+      <div className="h-0.75 w-10 bg-warm-gray-200 mb-8" />
+      <div className="h-5 w-full bg-warm-gray-100 rounded mb-2" />
+      <div className="h-5 w-5/6 bg-warm-gray-100 rounded mb-8" />
+      <div className="aspect-video bg-warm-gray-200 rounded-lg" />
     </div>
   );
 }
@@ -51,6 +101,14 @@ export default function NewsArticle() {
   const [relatedArticles, setRelatedArticles] = useState([]);
   const [recentArticles, setRecentArticles] = useState([]);
   const [copied, setCopied] = useState(false);
+  const [activeHeading, setActiveHeading] = useState("");
+  const articleRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: articleRef,
+    offset: ["start start", "end end"],
+  });
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   useEffect(() => {
     setLoading(true);
@@ -79,7 +137,30 @@ export default function NewsArticle() {
     }
   }, [post]);
 
+  // Intersection observer for active heading in TOC
+  useEffect(() => {
+    if (!post) return;
+    const headingElements = articleRef.current?.querySelectorAll("h2[id], h3[id]");
+    if (!headingElements?.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveHeading(entry.target.id);
+          }
+        }
+      },
+      { rootMargin: "-80px 0px -60% 0px", threshold: 0 }
+    );
+
+    headingElements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [post]);
+
   const readingTime = post ? estimateReadingTime(post.content) : 0;
+  const processedContent = useMemo(() => (post ? addIdsToHeadings(post.content) : ""), [post]);
+  const headings = useMemo(() => extractHeadings(processedContent), [processedContent]);
 
   function handleCopyLink() {
     navigator.clipboard.writeText(window.location.href).then(() => {
@@ -122,6 +203,12 @@ export default function NewsArticle() {
 
   return (
     <PageTransition>
+      {/* Reading Progress Bar */}
+      <motion.div
+        style={{ scaleX }}
+        className="fixed top-0 left-0 right-0 h-0.5 bg-gold-700 origin-left z-50"
+      />
+
       {/* Article Header */}
       <section className="bg-cream">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 pt-32 pb-8">
@@ -192,120 +279,201 @@ export default function NewsArticle() {
                 initial={{ opacity: 0, scaleX: 0 }}
                 animate={{ opacity: 1, scaleX: 1 }}
                 transition={{ duration: 0.5, delay: 0.5 }}
-                className="h-0.75 w-10 bg-gold-700 origin-left"
+                className="h-0.75 w-10 bg-gold-700 origin-left mb-6"
               />
+
+              {/* Excerpt as intro highlight */}
+              {post.excerpt && (
+                <motion.p
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  className="text-lg text-warm-gray-500 leading-relaxed font-body"
+                >
+                  {post.excerpt}
+                </motion.p>
+              )}
             </>
           )}
         </div>
       </section>
 
-      {/* Featured Image + Content */}
+      {/* Article Content Area */}
       {!loading && post && (
         <>
-          {/* Featured Image */}
+          {/* Featured Image — full bleed style */}
           {post.featured_image && (
             <section className="bg-white">
-              <div className="max-w-4xl mx-auto px-6 lg:px-8 pt-10">
+              <div className="max-w-5xl mx-auto px-6 lg:px-8 pt-12">
                 <motion.img
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
                   src={post.featured_image}
                   alt={post.title}
-                  className="w-full rounded-lg shadow-card object-cover max-h-130"
+                  className="w-full rounded-xl shadow-card object-cover max-h-130"
                 />
               </div>
             </section>
           )}
 
-          {/* Article Body */}
-          <SectionWrapper bg="white" size="md">
-            <div className="max-w-3xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="prose prose-lg max-w-none text-warm-gray-600 leading-relaxed
-                  prose-headings:font-heading prose-headings:text-navy-900
-                  prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4
-                  prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
-                  prose-p:mb-5
-                  prose-a:text-gold-700 prose-a:no-underline hover:prose-a:text-gold-600
-                  prose-strong:text-navy-800
-                  prose-ul:my-5 prose-li:my-1
-                  prose-blockquote:border-gold-400 prose-blockquote:text-navy-700
-                  prose-img:rounded-lg prose-img:shadow-card"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-              />
-            </div>
-          </SectionWrapper>
+          {/* Article Body with optional TOC sidebar */}
+          <section ref={articleRef} className="bg-white py-16 lg:py-20">
+            <div className="max-w-7xl mx-auto px-6 lg:px-8">
+              <div className="flex gap-16">
+                {/* Sticky TOC Sidebar — desktop only */}
+                {headings.length >= 3 && (
+                  <aside className="hidden xl:block w-56 shrink-0">
+                    <nav className="sticky top-24">
+                      <p className="text-[10px] font-body font-semibold tracking-wider uppercase text-warm-gray-400 mb-4">
+                        {language === "nl" ? "Inhoud" : "Contents"}
+                      </p>
+                      <ul className="space-y-2 border-l border-warm-gray-200">
+                        {headings.map((h) => (
+                          <li key={h.id}>
+                            <a
+                              href={`#${h.id}`}
+                              className={`block text-sm leading-snug transition-colors duration-200 ${
+                                h.level === 3 ? "pl-6" : "pl-4"
+                              } ${
+                                activeHeading === h.id
+                                  ? "text-gold-700 font-semibold border-l-2 border-gold-700 -ml-px"
+                                  : "text-warm-gray-400 hover:text-navy-700"
+                              }`}
+                            >
+                              {h.text}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
 
-          {/* Share & Back */}
-          <div className="bg-white">
-            <div className="max-w-3xl mx-auto px-6 lg:px-8 pb-12">
-              <div className="border-t border-warm-gray-200 pt-8 flex flex-wrap items-center justify-between gap-4">
-                {/* Share buttons */}
-                <div className="flex items-center gap-3">
-                  <span className="text-xs font-body font-semibold tracking-wider uppercase text-warm-gray-400">
-                    {t("news", "shareArticle")}
-                  </span>
+                      {/* Share buttons in sidebar */}
+                      <div className="mt-8 pt-6 border-t border-warm-gray-200">
+                        <p className="text-[10px] font-body font-semibold tracking-wider uppercase text-warm-gray-400 mb-3">
+                          {t("news", "shareArticle")}
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <a
+                            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-8 h-8 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
+                            aria-label="Share on LinkedIn"
+                          >
+                            <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                            </svg>
+                          </a>
+                          <a
+                            href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(post.title)}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-8 h-8 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
+                            aria-label="Share on X"
+                          >
+                            <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                            </svg>
+                          </a>
+                          <button
+                            onClick={handleCopyLink}
+                            className="relative w-8 h-8 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
+                            aria-label={t("news", "copyLink")}
+                          >
+                            <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                            </svg>
+                            {copied && (
+                              <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-navy-900 text-white px-2 py-1 rounded whitespace-nowrap">
+                                {t("news", "copiedToClipboard")}
+                              </span>
+                            )}
+                          </button>
+                        </div>
+                      </div>
+                    </nav>
+                  </aside>
+                )}
 
-                  {/* LinkedIn */}
-                  <a
-                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
-                    aria-label="Share on LinkedIn"
-                  >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                    </svg>
-                  </a>
+                {/* Article Content */}
+                <div className="min-w-0 grow max-w-3xl mx-auto">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="prose prose-lg max-w-none text-warm-gray-600 leading-relaxed
+                      prose-headings:font-heading prose-headings:text-navy-900 prose-headings:scroll-mt-24
+                      prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-5 prose-h2:pb-3 prose-h2:border-b prose-h2:border-warm-gray-100
+                      prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3
+                      prose-p:mb-6 prose-p:leading-[1.8]
+                      prose-a:text-gold-700 prose-a:no-underline hover:prose-a:text-gold-600
+                      prose-strong:text-navy-800 prose-strong:font-semibold
+                      prose-ul:my-6 prose-li:my-1.5
+                      prose-ol:my-6
+                      prose-blockquote:border-l-3 prose-blockquote:border-gold-400 prose-blockquote:bg-cream prose-blockquote:rounded-r-lg prose-blockquote:py-4 prose-blockquote:px-6 prose-blockquote:text-navy-700 prose-blockquote:not-italic prose-blockquote:font-heading prose-blockquote:text-lg
+                      prose-img:rounded-xl prose-img:shadow-card prose-img:my-8
+                      prose-hr:border-warm-gray-200 prose-hr:my-10"
+                    dangerouslySetInnerHTML={{ __html: processedContent }}
+                  />
 
-                  {/* X / Twitter */}
-                  <a
-                    href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(post.title)}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-9 h-9 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
-                    aria-label="Share on X"
-                  >
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                    </svg>
-                  </a>
-
-                  {/* Copy Link */}
-                  <button
-                    onClick={handleCopyLink}
-                    className="relative w-9 h-9 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
-                    aria-label={t("news", "copyLink")}
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                    </svg>
-                    {copied && (
-                      <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-navy-900 text-white px-2 py-1 rounded whitespace-nowrap">
-                        {t("news", "copiedToClipboard")}
+                  {/* Share & Back — below article (visible on all screens) */}
+                  <div className="border-t border-warm-gray-200 mt-12 pt-8 flex flex-wrap items-center justify-between gap-4">
+                    <div className="flex items-center gap-3">
+                      <span className="text-xs font-body font-semibold tracking-wider uppercase text-warm-gray-400">
+                        {t("news", "shareArticle")}
                       </span>
-                    )}
-                  </button>
-                </div>
+                      <a
+                        href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-9 h-9 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
+                        aria-label="Share on LinkedIn"
+                      >
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                        </svg>
+                      </a>
+                      <a
+                        href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(post.title)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-9 h-9 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
+                        aria-label="Share on X"
+                      >
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                        </svg>
+                      </a>
+                      <button
+                        onClick={handleCopyLink}
+                        className="relative w-9 h-9 rounded-full bg-navy-50 flex items-center justify-center text-navy-600 hover:bg-navy-900 hover:text-white transition-colors"
+                        aria-label={t("news", "copyLink")}
+                      >
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+                        </svg>
+                        {copied && (
+                          <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs bg-navy-900 text-white px-2 py-1 rounded whitespace-nowrap">
+                            {t("news", "copiedToClipboard")}
+                          </span>
+                        )}
+                      </button>
+                    </div>
 
-                {/* Back to News */}
-                <Link
-                  to="/news"
-                  className="inline-flex items-center gap-2 text-sm font-body font-semibold text-gold-700 hover:text-gold-600 transition-colors"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
-                  </svg>
-                  {t("notFound", "backToNews")}
-                </Link>
+                    <Link
+                      to="/news"
+                      className="inline-flex items-center gap-2 text-sm font-body font-semibold text-gold-700 hover:text-gold-600 transition-colors"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 19l-7-7 7-7" />
+                      </svg>
+                      {t("notFound", "backToNews")}
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
+          </section>
 
           {/* Related Articles */}
           {relatedArticles.length > 0 && (
