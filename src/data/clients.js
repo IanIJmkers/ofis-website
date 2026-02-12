@@ -1,3 +1,25 @@
+import amsterdamUmcLogo from "../assets/images/clients/amsterdam-umc.jpg";
+import fondsDblLogo from "../assets/images/clients/fonds-dbl.png";
+import erasmusTrustfondsLogo from "../assets/images/clients/erasmus-trustfonds.png";
+import jumpstartLogo from "../assets/images/clients/jumpstart.png";
+import vlinderkindLogo from "../assets/images/clients/vlinderkind.png";
+import alsLogo from "../assets/images/clients/als.png";
+import dyslexiefondsLogo from "../assets/images/clients/dyslexiefonds.png";
+import feyenoordFoundationLogo from "../assets/images/clients/feyenoord-foundation.png";
+import stokroosLogo from "../assets/images/clients/stokroos.png";
+import emmaLogo from "../assets/images/clients/emma.png";
+import impactMattersLogo from "../assets/images/clients/impact-matters.png";
+import finLogo from "../assets/images/clients/fin.jpg";
+import papagenoLogo from "../assets/images/clients/papageno.jpg";
+import tromboseStichtingLogo from "../assets/images/clients/trombose-stichting.jpg";
+import erasmusMcFoundationLogo from "../assets/images/clients/erasmus-mc-foundation.jpg";
+import kasteelDuivenvoordeLogo from "../assets/images/clients/kasteel-duivenvoorde.jpg";
+import buddyNetwerkLogo from "../assets/images/clients/buddy-netwerk.png";
+import boschuysenLogo from "../assets/images/clients/boschuysen.png";
+import fundatieVanRenswoudeLogo from "../assets/images/clients/fundatie-van-renswoude.png";
+import gphVerhagenLogo from "../assets/images/clients/gph-verhagen.png";
+import zabawasLogo from "../assets/images/clients/zabawas.png";
+
 const clientTypesData = {
   nl: [
     {
@@ -34,27 +56,29 @@ const clientTypesData = {
 };
 
 export const clientOrganizations = [
-  "Insinger Foundation",
-  "Stichting Boschuysen",
-  "Stichting van het Kind",
-  "FIN",
-  "Stichting De Verre Bergen",
-  "Stichting Zabawas",
-  "Van Leer Foundation",
-  "Stichting Prins Bernhard Cultuurfonds",
-  "Ars Donandi",
-  "Stichting Elise Mathilde",
-  "Stichting VSBfonds",
-  "Stichting Adessium Foundation",
-  "Stichting het Rijksmuseum",
-  "Stichting Volkskracht",
-  "Stichting Kansfonds",
-  "Stichting Haëlla",
-  "Stichting Dioraphte",
-  "Stichting Fonds 21",
-  "Stichting SNS Reaal Fonds",
-  "Stichting Lotto",
-  "Stichting BankGiro Loterij",
+  // Charities (Goede Doelen)
+  { id: "amsterdam-umc", name: "Amsterdam UMC", logo: amsterdamUmcLogo, url: "https://www.steunamsterdamumc.nl/stichting-amc-foundation", type: "charity" },
+  { id: "vlinderkind", name: "Vlinderkind", logo: vlinderkindLogo, url: "https://www.vlinderkind.nl/index.php/nl/", type: "charity" },
+  { id: "stichting-als", name: "Stichting ALS", logo: alsLogo, url: "https://www.als.nl", type: "charity" },
+  { id: "feyenoord-foundation", name: "Feyenoord Foundation", logo: feyenoordFoundationLogo, url: "https://www.feyenoord.nl/maatschappelijk/over-ons/feyenoord-foundation", type: "charity" },
+  { id: "steun-emma", name: "Steun Emma", logo: emmaLogo, url: "https://www.steunemma.nl", type: "charity" },
+  { id: "impact-matters", name: "Impact Matters", logo: impactMattersLogo, url: "https://www.impactmatters.nl", type: "charity" },
+  { id: "papageno", name: "Papageno", logo: papagenoLogo, url: "https://www.papageno.nl/", type: "charity" },
+  { id: "trombose-stichting", name: "Trombose Stichting", logo: tromboseStichtingLogo, url: "https://www.trombosestichting.nl/", type: "charity" },
+  { id: "erasmus-mc-foundation", name: "Erasmus MC Foundation", logo: erasmusMcFoundationLogo, url: "https://erasmusmcfoundation.nl/", type: "charity" },
+  { id: "buddy-netwerk", name: "Buddy Netwerk", logo: buddyNetwerkLogo, url: "https://www.buddynetwerk.nl/", type: "charity" },
+  // Endowment Funds (Vermogensfondsen)
+  { id: "fonds-dbl", name: "Fonds DBL", logo: fondsDblLogo, url: "https://www.fondsdbl.nl", type: "endowment" },
+  { id: "erasmus-trustfonds", name: "Stichting Erasmus Trustfonds", logo: erasmusTrustfondsLogo, url: "https://trustfonds.nl", type: "endowment" },
+  { id: "jumpstart-jr", name: "Jumpstart Jr", logo: jumpstartLogo, url: "https://jumpstartjr.org", type: "endowment" },
+  { id: "dyslexiefonds", name: "Dyslexiefonds", logo: dyslexiefondsLogo, url: "https://dyslexie.nl", type: "endowment" },
+  { id: "stokroos", name: "Stichting Stokroos", logo: stokroosLogo, url: "https://stokroos.nl", type: "endowment" },
+  { id: "fin", name: "Fondsen in Nederland", logo: finLogo, url: "https://fondseninnederland.nl", type: "endowment" },
+  { id: "kasteel-duivenvoorde", name: "Kasteel Duivenvoorde", logo: kasteelDuivenvoordeLogo, url: "https://www.kasteelduivenvoorde.nl/", type: "endowment" },
+  { id: "boschuysen", name: "Stichting Boschuysen", logo: boschuysenLogo, url: "https://boschuysen.nl/", type: "endowment" },
+  { id: "fundatie-van-renswoude", name: "Fundatie van Renswoude", logo: fundatieVanRenswoudeLogo, url: "https://www.fundatievanrenswoude.nl", type: "endowment" },
+  { id: "gph-verhagen", name: "G.Ph. Verhagen", logo: gphVerhagenLogo, url: "http://www.verhagenstichting.nl/", type: "endowment" },
+  { id: "zabawas", name: "Stichting Zabawas", logo: zabawasLogo, url: "https://www.zabawas.nl/", type: "endowment" },
 ];
 
 const faqsData = {

@@ -11,20 +11,8 @@ import CTASection from "../components/sections/CTASection";
 import { clientOrganizations } from "../data/clients";
 import { useLanguage } from "../context/LanguageContext";
 
-const charityOrganizations = clientOrganizations.filter((org) =>
-  [
-    "Stichting van het Kind",
-    "FIN",
-    "Stichting Prins Bernhard Cultuurfonds",
-    "Ars Donandi",
-    "Stichting VSBfonds",
-    "Stichting het Rijksmuseum",
-    "Stichting Volkskracht",
-    "Stichting Kansfonds",
-    "Stichting SNS Reaal Fonds",
-    "Stichting Lotto",
-    "Stichting BankGiro Loterij",
-  ].includes(org)
+const charityOrganizations = clientOrganizations.filter(
+  (org) => org.type === "charity"
 );
 
 export default function ClientsCharities() {
@@ -186,22 +174,23 @@ export default function ClientsCharities() {
           subtitle={t("clientsCharities", "clientsSubtitle")}
           align="center"
         />
-        <StaggerChildren className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <StaggerChildren className="mt-16 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
           {charityOrganizations.map((org) => (
-            <motion.div
-              key={org}
+            <motion.a
+              key={org.id}
+              href={org.url}
+              target="_blank"
+              rel="noopener noreferrer"
               variants={staggerItem}
-              className="bg-cream border border-warm-gray-100 rounded-lg px-6 py-5 flex items-center gap-4 shadow-sm hover:shadow-card transition-shadow duration-300"
+              className="group bg-white border border-warm-gray-100 rounded-lg p-6 flex flex-col items-center text-center shadow-sm hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1"
             >
-              <div className="shrink-0 w-10 h-10 rounded-full bg-navy-900 flex items-center justify-center">
-                <span className="text-sm font-heading text-gold-400">
-                  {org.charAt(0)}
-                </span>
+              <div className="w-36 h-36 flex items-center justify-center overflow-hidden">
+                <img src={org.logo} alt={org.name} className="max-w-full max-h-full object-contain" />
               </div>
-              <span className="font-body text-navy-900 font-medium text-sm leading-snug">
-                {org}
+              <span className="mt-4 font-body text-navy-900 font-medium text-sm leading-snug group-hover:text-gold-700 transition-colors">
+                {org.name}
               </span>
-            </motion.div>
+            </motion.a>
           ))}
         </StaggerChildren>
       </SectionWrapper>

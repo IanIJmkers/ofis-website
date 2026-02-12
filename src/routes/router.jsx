@@ -9,6 +9,7 @@ import ClientsOverview from "../pages/ClientsOverview";
 import ClientsEndowmentFunds from "../pages/ClientsEndowmentFunds";
 import ClientsCharities from "../pages/ClientsCharities";
 import ClientsInterviews from "../pages/ClientsInterviews";
+import InterviewArticle from "../pages/InterviewArticle";
 import AboutOverview from "../pages/AboutOverview";
 import AboutTeam from "../pages/AboutTeam";
 import AboutMethodology from "../pages/AboutMethodology";
@@ -42,6 +43,7 @@ export const router = createBrowserRouter([
           { path: "endowment-funds", element: <ClientsEndowmentFunds />, handle: { titleKey: "endowmentFunds" } },
           { path: "charities", element: <ClientsCharities />, handle: { titleKey: "charities" } },
           { path: "interviews", element: <ClientsInterviews />, handle: { titleKey: "interviews" } },
+          { path: "interviews/:slug", element: <InterviewArticle />, handle: { titleKey: "interviews" } },
         ],
       },
       {
