@@ -90,6 +90,15 @@ export default {
     testimonialsSubtitle: "Lees wat onze klanten zeggen over de samenwerking met Orchestra.",
     // TrustBadges
     trustBadgesLabel: "Gereguleerd en onder toezicht van",
+    // MobileAppShowcase
+    appEyebrow: "Altijd en overal toegang",
+    appTitle: "My Orchestra App",
+    appDescription: "Bekijk uw portefeuille, ontvang persoonlijke rapportages en blijf op de hoogte van de laatste ontwikkelingen — direct vanaf uw telefoon.",
+    appFeature1: "Portefeuille inzicht",
+    appFeature2: "Persoonlijke rapportages",
+    appFeature3: "Actuele waardes",
+    appDownloadAppStore: "Download in de",
+    appDownloadPlayStore: "Beschikbaar op",
     // CTASection (default)
     ctaTitle: "Klaar om u te richten op uw missie?",
     ctaSubtitle: "Maak een afspraak met een van onze Charity Office specialisten.",

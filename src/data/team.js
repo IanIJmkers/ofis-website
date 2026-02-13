@@ -8,6 +8,9 @@ import davePricePhoto from "../assets/images/team/dave-price.jpg";
 import pienVerweijPhoto from "../assets/images/team/pien-verweij.jpg";
 import emmaVanSteijnPhoto from "../assets/images/team/emma-van-steijn.jpg";
 import ianIjmkersPhoto from "../assets/images/team/ian-ijmkers.jpg";
+import arvindBisoenPhoto from "../assets/images/team/arvind-bisoen.jpg";
+import christelPoorterPhoto from "../assets/images/team/christel-poorter.jpg";
+import carolineGroenBokPhoto from "../assets/images/team/caroline-groen-bok.jpg";
 
 const members = [
   {
@@ -80,6 +83,34 @@ const members = [
     phone: "070-2051184",
     linkedin: "https://www.linkedin.com/in/kai-van-kampen-9126591a6/",
     photo: kaiVanKampenPhoto,
+  },
+  {
+    name: "Arvind Bisoen",
+    role: { nl: "Portfolio Manager Multi-Asset", en: "Portfolio Manager Multi-Asset" },
+    email: "a.bisoen@orchestra-contact.com",
+    phone: "070-2197217",
+    linkedin: "https://www.linkedin.com/in/arvindbisoen/",
+    photo: arvindBisoenPhoto,
+  },
+  {
+    name: "Christel Poorter",
+    role: { nl: "HR & Administratie medewerker", en: "HR & Administration Employee" },
+    email: "c.poorter@orchestra-contact.com",
+    phone: "070-2051186",
+    photo: christelPoorterPhoto,
+  },
+  {
+    name: "Caroline Groen-Bok",
+    role: { nl: "Officemanager / PA", en: "Office Manager / PA" },
+    email: "c.groen-bok@orchestra-contact.com",
+    phone: "070-2051181",
+    linkedin: "https://www.linkedin.com/in/caroline-groen-bok-a49aba12b",
+    photo: carolineGroenBokPhoto,
+  },
+  {
+    name: "Jordy Verkerk",
+    role: { nl: "Medewerker", en: "Employee" },
+    photo: null,
   },
   {
     name: "Ian IJmkers",
