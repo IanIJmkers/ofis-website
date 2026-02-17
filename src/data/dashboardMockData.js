@@ -20,25 +20,129 @@ export const balansData = {
   passivaTotal: ["50.989.411", "48.683.854"],
 };
 
-/* ─── Boekhouding: Category cards ─── */
-export const boekhoudingCards = [
-  { title: "Boekingen", items: [] },
-  { title: "Rapportages", items: [] },
-  { title: "Jaarlijkse boekhouding", items: [] },
-];
+/* ─── Boekhouding: Journal post detail ─── */
+export const journaalpostData = {
+  id: 90,
+  tabs: ["Details", "Historie"],
+  details: [
+    { label: "ID:", value: "90" },
+    { label: "Boekperiode:", value: "2023-01-01  2023-12-31", isLink: true },
+    { label: "Datum:", value: "2023-10-09" },
+    { label: "Omschrijving:", value: "Aflossing: AV20250007: Symfonie van de Natuur" },
+    { label: "Document:", value: "" },
+  ],
+  items: [
+    { grootboekrekening: "ABN betaalrekening", code: "1500", bedrag: "1.000,00", kostenplaats: "" },
+    { grootboekrekening: "Debiteuren", code: "2121", bedrag: "-1.000,00", kostenplaats: "" },
+  ],
+  referenties: [
+    {
+      type: "LOAN",
+      label: "AV20250007: Symfonie van de Natuur",
+      relatie: "Stichting Natuurklanken",
+      bedrag: "2.000,00",
+    },
+  ],
+  documenten: [],
+};
 
-/* ─── Bankzaken: Category cards with notifications ─── */
-export const bankzakenCards = [
-  { title: "Liquide middelen", items: [] },
-  {
-    title: "Betaalopdrachten",
-    items: [{ text: "Betaalopdrachten kunnen beoordeeld worden", count: 56 }],
-  },
-  {
-    title: "Incasso's",
-    items: [{ text: "Nieuwe incasseerbare donaties.", count: 28 }],
-  },
-];
+/* ─── Bankzaken: Bank transaction table ─── */
+export const bankTransactiesData = {
+  tabs: ["Alle", "Te autoriseren"],
+  approveCount: 56,
+  rejectCount: 56,
+  totalRows: 68,
+  transacties: [
+    {
+      id: 68, datum: "2026-02-13",
+      tegenrekeningNaam: "Automated Design", tegenrekeningIban: "NL74 INGB 5350 2444 69",
+      bedrag: "2.000,00", herkomst: null, oordeel: null, beoordelingen: "",
+      omschrijving: "Werkzaamheden februari", betalingskenmerk: "",
+      bankrekening: { naam: "Bankrekening bedrijf", iban: "NL85 RAB0 7467 5394 36" },
+      document: null,
+    },
+    {
+      id: 67, datum: "2026-02-12",
+      tegenrekeningNaam: "Charta Software", tegenrekeningIban: "NL83 ABNA 1584 1598 84",
+      bedrag: "200,00", herkomst: null, oordeel: null, beoordelingen: "",
+      omschrijving: "febr", betalingskenmerk: "",
+      bankrekening: { naam: "Bankrekening bedrijf", iban: "NL85 RAB0 7467 5394 36" },
+      document: null,
+    },
+    {
+      id: 66, datum: "2026-02-12",
+      tegenrekeningNaam: "Badminton Association Deventer", tegenrekeningIban: "NL88 INGB 3184 7524 88",
+      bedrag: "2.000,00", herkomst: null, oordeel: null, beoordelingen: "",
+      omschrijving: "Test feb", betalingskenmerk: "",
+      bankrekening: { naam: "Bankrekening bedrijf", iban: "NL85 RAB0 7467 5394 36" },
+      document: null,
+    },
+    {
+      id: 65, datum: "2026-01-23",
+      tegenrekeningNaam: "FuelOurbody", tegenrekeningIban: "NL58 ABNA 3286 4980 58",
+      bedrag: "2.300,00", herkomst: null, oordeel: null, beoordelingen: "",
+      omschrijving: "Januari test 2", betalingskenmerk: "",
+      bankrekening: { naam: "Bankrekening bedrijf", iban: "NL85 RAB0 7467 5394 36" },
+      document: "Factuur_F2025-1076312.pdf",
+    },
+    {
+      id: 64, datum: "2026-01-23",
+      tegenrekeningNaam: "FuelOurbody", tegenrekeningIban: "NL58 ABNA 3286 4980 58",
+      bedrag: "2.300,00", herkomst: null, oordeel: null, beoordelingen: "",
+      omschrijving: "Januari test 2", betalingskenmerk: "",
+      bankrekening: { naam: "Bankrekening bedrijf", iban: "NL85 RAB0 7467 5394 36" },
+      document: null,
+    },
+    {
+      id: 63, datum: "2026-01-21",
+      tegenrekeningNaam: "Automated Design", tegenrekeningIban: "NL74 INGB 5350 2444 69",
+      bedrag: "1.520,00", herkomst: null, oordeel: null, beoordelingen: "",
+      omschrijving: "Januari test 26", betalingskenmerk: "",
+      bankrekening: { naam: "Bankrekening bedrijf", iban: "NL85 RAB0 7467 5394 36" },
+      document: null,
+    },
+    {
+      id: 62, datum: "2025-12-17",
+      tegenrekeningNaam: "Stichting Kunst en Cultuur", tegenrekeningIban: "NL37 ABNA 5373 3884 66",
+      bedrag: "800,00",
+      herkomst: { type: "toekenning", ref: "AV20250012", relatie: "Stichting Kunst en Cultuur", bedrag: "800,00", datum: "2025-12-17" },
+      oordeel: "approved", beoordelingen: "Arjan van Gulick\n2025-12-17 15:03",
+      omschrijving: "AV20250012 Toekenning", betalingskenmerk: "AV20250012",
+      bankrekening: { naam: "Stichting", iban: "NL36 ABNA 1157 5383 03" },
+      document: null,
+    },
+    {
+      id: 61, datum: "2025-12-10",
+      tegenrekeningNaam: "test", tegenrekeningIban: "NL51 INGB 3984 2127 98",
+      bedrag: "800,00",
+      herkomst: { type: "toekenning", ref: "AV20250011", relatie: "test", bedrag: "800,00", datum: "2025-12-10" },
+      oordeel: null, beoordelingen: "",
+      omschrijving: "AV20250011 Toekenning", betalingskenmerk: "AV20250011",
+      bankrekening: { naam: "Stichting", iban: "NL36 ABNA 1157 5383 03" },
+      document: null,
+    },
+    {
+      id: 60, datum: "2025-10-09",
+      tegenrekeningNaam: "Stichting Natuurklanken", tegenrekeningIban: "NL90 INGB 5525 2550 73",
+      bedrag: "2.000,00",
+      herkomst: { type: "lening", ref: "AV20250007", label: "Symfonie van de Natuur", relatie: "Stichting Natuurklanken", bedrag: "2.000,00" },
+      oordeel: "approved", beoordelingen: "Arjan van Gulick\n2025-10-09 11:46",
+      omschrijving: "AV20250007: Symfonie van de Natuur", betalingskenmerk: "AV20250007",
+      bankrekening: { naam: "Stichting", iban: "NL36 ABNA 1157 5383 03" },
+      document: null,
+    },
+    {
+      id: 59, datum: "2025-10-09",
+      tegenrekeningNaam: "Stichting Natuurklanken", tegenrekeningIban: "NL90 INGB 5525 2550 73",
+      bedrag: "4.000,00",
+      herkomst: { type: "toekenning", ref: "AV20250007", relatie: "Stichting Natuurklanken", bedrag: "4.000,00", datum: "2025-10-09" },
+      oordeel: null, beoordelingen: "",
+      omschrijving: "AV20250007 Toekenning", betalingskenmerk: "AV20250007",
+      bankrekening: { naam: "Stichting", iban: "NI 36 ABNA 1157 5383 03" },
+      document: null,
+    },
+  ],
+};
 
 /* ─── Projecten: Budget data ─── */
 export const projectenData = {
