@@ -168,7 +168,8 @@ export default function Contact() {
                       htmlFor="phone"
                       className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
                     >
-                      {t("contact", "labelPhone")}
+                      {t("contact", "labelPhone")}{" "}
+                      <span className="text-gold-700">*</span>
                     </label>
                     <input
                       id="phone"

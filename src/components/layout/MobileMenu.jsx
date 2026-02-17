@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { motion, AnimatePresence } from "motion/react";
 import { getNavigation } from "../../data/navigation";
 import { getSiteMetadata } from "../../data/siteMetadata";
@@ -9,6 +9,7 @@ import LanguageToggle from "../ui/LanguageToggle";
 export default function MobileMenu({ open, onClose }) {
   const [expanded, setExpanded] = useState(null);
   const { language, t } = useLanguage();
+  const location = useLocation();
 
   const navigation = getNavigation(language);
   const meta = getSiteMetadata(language);
@@ -76,7 +77,11 @@ export default function MobileMenu({ open, onClose }) {
                     <>
                       <button
                         onClick={() => toggleExpand(item.path)}
-                        className="w-full flex items-center justify-between py-4 text-white/90 hover:text-white text-lg font-medium"
+                        className={`w-full flex items-center justify-between py-4 text-lg font-medium ${
+                          location.pathname === item.path || location.pathname.startsWith(item.path + "/")
+                            ? "text-gold-400"
+                            : "text-white/90 hover:text-white"
+                        }`}
                       >
                         {item.label}
                         <svg
@@ -108,7 +113,11 @@ export default function MobileMenu({ open, onClose }) {
                               <Link
                                 to={item.path}
                                 onClick={onClose}
-                                className="block py-2 text-gold-400 text-sm font-medium"
+                                className={`block py-2 text-sm font-medium ${
+                                  location.pathname === item.path
+                                    ? "text-gold-400"
+                                    : "text-navy-200 hover:text-white"
+                                }`}
                               >
                                 {t("common", "overview")}
                               </Link>
@@ -117,7 +126,11 @@ export default function MobileMenu({ open, onClose }) {
                                   key={child.path}
                                   to={child.path}
                                   onClick={onClose}
-                                  className="block py-2 text-navy-200 hover:text-white text-sm"
+                                  className={`block py-2 text-sm ${
+                                    location.pathname === child.path
+                                      ? "text-gold-400 font-medium"
+                                      : "text-navy-200 hover:text-white"
+                                  }`}
                                 >
                                   {child.label}
                                 </Link>
@@ -131,7 +144,11 @@ export default function MobileMenu({ open, onClose }) {
                     <Link
                       to={item.path}
                       onClick={onClose}
-                      className="block py-4 text-white/90 hover:text-white text-lg font-medium"
+                      className={`block py-4 text-lg font-medium ${
+                        location.pathname === item.path
+                          ? "text-gold-400"
+                          : "text-white/90 hover:text-white"
+                      }`}
                     >
                       {item.label}
                     </Link>
