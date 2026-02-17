@@ -557,4 +557,13 @@ export default {
     article: "Artikel",
     contact: "Contact",
   },
+  cookieConsent: {
+    title: "Wij respecteren uw privacy",
+    description:
+      "Wij gebruiken cookies om uw browse-ervaring te verbeteren en uw voorkeuren te onthouden. U kunt kiezen welke cookies u accepteert.",
+    privacyLink: "Lees ons Privacy- & Cookiebeleid",
+    acceptAll: "Cookies Accepteren",
+    acceptNecessary: "Alleen Noodzakelijk",
+    reject: "Weigeren",
+  },
 };

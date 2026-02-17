@@ -11,6 +11,7 @@ import ianIjmkersPhoto from "../assets/images/team/ian-ijmkers.jpg";
 import arvindBisoenPhoto from "../assets/images/team/arvind-bisoen.jpg";
 import christelPoorterPhoto from "../assets/images/team/christel-poorter.jpg";
 import carolineGroenBokPhoto from "../assets/images/team/caroline-groen-bok.jpg";
+import guusDrijverPhoto from "../assets/images/team/guus-drijver.jpg";
 
 const members = [
   {
@@ -36,6 +37,14 @@ const members = [
     phone: "070-2051182",
     linkedin: "https://www.linkedin.com/in/dave-price-cfa-a766153",
     photo: davePricePhoto,
+  },
+  {
+    name: "Guus Drijver",
+    role: { nl: "Business Development", en: "Business Development" },
+    email: "g.drijver@orchestra-contact.com",
+    phone: "06-52050536",
+    linkedin: "https://www.linkedin.com/in/guusdrijver/",
+    photo: guusDrijverPhoto,
   },
   {
     name: "Tanja Haremaker",

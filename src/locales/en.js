@@ -543,4 +543,13 @@ export default {
     article: "Article",
     contact: "Contact",
   },
+  cookieConsent: {
+    title: "We value your privacy",
+    description:
+      "We use cookies to enhance your browsing experience and remember your preferences. You can choose which cookies to accept.",
+    privacyLink: "Read our Privacy & Cookie Policy",
+    acceptAll: "Accept Cookies",
+    acceptNecessary: "Necessary Only",
+    reject: "Reject",
+  },
 };
