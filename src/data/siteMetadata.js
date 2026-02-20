@@ -8,7 +8,7 @@ const base = {
   },
   phone: "+31 (0)70 205 11 81",
   email: "info@orchestra-charityoffice.com",
-  linkedin: "https://linkedin.com/company/orchestra-family-charity-office",
+  linkedin: "https://www.linkedin.com/company/orchestra-familycharityoffice/",
   myOrchestra: "https://ofis.orchestrabeheer.nl/Ofis/Client",
 };
 
@@ -22,7 +22,8 @@ const data = {
   },
   en: {
     ...base,
-    tagline: "Your wealth management, administration and governance. Orchestrated.",
+    tagline:
+      "Your wealth management, administration and governance. Orchestrated.",
     description:
       "We enable charities and foundations to dedicate their time and resources to their social mission, by managing every aspect of their financial operations.",
     address: { ...base.address, country: "The Netherlands" },
