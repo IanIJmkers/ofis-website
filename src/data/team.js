@@ -12,6 +12,7 @@ import arvindBisoenPhoto from "../assets/images/team/arvind-bisoen.jpg";
 import christelPoorterPhoto from "../assets/images/team/christel-poorter.jpg";
 import carolineGroenBokPhoto from "../assets/images/team/caroline-groen-bok.jpg";
 import guusDrijverPhoto from "../assets/images/team/guus-drijver.jpg";
+import emmaDeNiePhoto from "../assets/images/team/emma-de-nie.jpg";
 
 const members = [
   {
@@ -32,7 +33,10 @@ const members = [
   },
   {
     name: "Dave Price",
-    role: { nl: "Director & Hoofd Portefeuillebeheer", en: "Director & Head of Portfolio Management" },
+    role: {
+      nl: "Director & Hoofd Portefeuillebeheer",
+      en: "Director & Head of Portfolio Management",
+    },
     email: "d.price@orchestra-contact.com",
     phone: "070-2051182",
     linkedin: "https://www.linkedin.com/in/dave-price-cfa-a766153",
@@ -48,7 +52,10 @@ const members = [
   },
   {
     name: "Tanja Haremaker",
-    role: { nl: "Controller / Accountmanager", en: "Controller / Account Manager" },
+    role: {
+      nl: "Controller / Accountmanager",
+      en: "Controller / Account Manager",
+    },
     email: "t.haremaker@orchestra-contact.com",
     phone: "06-51990527",
     linkedin: "https://www.linkedin.com/in/tanjaharemaker/",
@@ -56,7 +63,10 @@ const members = [
   },
   {
     name: "Pien Verweij",
-    role: { nl: "Accountmanager / Manager HR", en: "Account Manager / HR Manager" },
+    role: {
+      nl: "Accountmanager / Manager HR",
+      en: "Account Manager / HR Manager",
+    },
     email: "p.verweij@orchestra-contact.com",
     phone: "06-46761861",
     linkedin: "https://www.linkedin.com/in/pienverweij",
@@ -95,7 +105,10 @@ const members = [
   },
   {
     name: "Arvind Bisoen",
-    role: { nl: "Portfolio Manager Multi-Asset", en: "Portfolio Manager Multi-Asset" },
+    role: {
+      nl: "Portfolio Manager Multi-Asset",
+      en: "Portfolio Manager Multi-Asset",
+    },
     email: "a.bisoen@orchestra-contact.com",
     phone: "070-2197217",
     linkedin: "https://www.linkedin.com/in/arvindbisoen/",
@@ -103,7 +116,10 @@ const members = [
   },
   {
     name: "Christel Poorter",
-    role: { nl: "HR & Administratie medewerker", en: "HR & Administration Employee" },
+    role: {
+      nl: "HR & Administratie medewerker",
+      en: "HR & Administration Employee",
+    },
     email: "c.poorter@orchestra-contact.com",
     phone: "070-2051186",
     photo: christelPoorterPhoto,
@@ -134,7 +150,8 @@ const members = [
     name: "Emma de Nie",
     role: { nl: "Backend Developer", en: "Backend Developer" },
     email: "e.denie@orchestra-contact.com",
-    photo: null,
+    linkedin: "https://www.linkedin.com/in/emmadenie/",
+    photo: emmaDeNiePhoto,
   },
   {
     name: "Boris Rostovskiy",
