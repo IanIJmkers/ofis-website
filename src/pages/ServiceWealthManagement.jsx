@@ -9,6 +9,7 @@ import Button from "../components/ui/Button";
 import CTASection from "../components/sections/CTASection";
 import { useLanguage } from "../context/LanguageContext";
 import { getServices } from "../data/services";
+import impactChart from "../assets/images/impact.jpg";
 
 const featureIcons = [
   // Institutional Process
@@ -176,6 +177,16 @@ export default function ServiceWealthManagement() {
                   </div>
                 </div>
               </div>
+            </div>
+            <div className="mt-10">
+              <p className="text-sm font-semibold text-navy-900 mb-3">
+                {t("serviceWealth", "feeTitle")} — impact over tijd
+              </p>
+              <img
+                src={impactChart}
+                alt="Impactkosten grafiek 1967 – 2026"
+                className="w-full h-auto rounded-lg shadow-card"
+              />
             </div>
           </div>
         </AnimatedSection>
