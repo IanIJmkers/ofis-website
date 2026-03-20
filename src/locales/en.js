@@ -462,6 +462,7 @@ export default {
     successTitle: "Message sent!",
     successText: "Thank you for your message. We will get back to you within two business days.",
     errorText: "Something went wrong while sending. Please try again later.",
+    sendAnother: "Dismiss",
     sending: "Sending...",
     ctaTitle: "Prefer a personal conversation?",
     ctaSubtitle: "Our team is available for a personal meeting at our office in The Hague or via video call.",

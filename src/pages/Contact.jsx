@@ -1,5 +1,58 @@
 import { useState } from "react";
 import { motion } from "motion/react";
+import { getCountries, getCountryCallingCode } from "react-phone-number-input";
+
+const COUNTRIES = getCountries().sort((a, b) => {
+  try {
+    return getCountryCallingCode(a) - getCountryCallingCode(b);
+  } catch { return 0; }
+});
+
+function CountryPhoneInput({ value, onChange, className }) {
+  const [country, setCountry] = useState("NL");
+  const callingCode = getCountryCallingCode(country);
+
+  const handleCountryChange = (e) => {
+    const newCountry = e.target.value;
+    setCountry(newCountry);
+    onChange(`+${getCountryCallingCode(newCountry)}${value.replace(/^\+\d+\s*/, "")}`);
+  };
+
+  const handleNumberChange = (e) => {
+    const localNumber = e.target.value.replace(/[^\d\s]/g, "");
+    onChange(`+${callingCode}${localNumber}`);
+  };
+
+  const localNumber = value.replace(`+${callingCode}`, "").trim();
+
+  return (
+    <div className={className}>
+      <div className="phone-country-select">
+        <select
+          value={country}
+          onChange={handleCountryChange}
+          className="phone-country-dropdown"
+        >
+          {COUNTRIES.map((c) => (
+            <option key={c} value={c}>
+              {c} +{getCountryCallingCode(c)}
+            </option>
+          ))}
+        </select>
+        <span className="phone-country-label">
+          {country} +{callingCode}
+        </span>
+      </div>
+      <input
+        type="tel"
+        value={localNumber}
+        onChange={handleNumberChange}
+        placeholder="6 12345678"
+        className="phone-number-input"
+      />
+    </div>
+  );
+}
 import PageTransition from "../components/animation/PageTransition";
 import AnimatedSection from "../components/animation/AnimatedSection";
 import SectionWrapper from "../components/layout/SectionWrapper";
@@ -93,148 +146,162 @@ export default function Contact() {
           {/* Left: Form */}
           <AnimatedSection className="lg:col-span-3" direction="left">
             <div className="bg-white rounded-lg shadow-card p-8 sm:p-10">
-              <h2 className="text-2xl font-heading text-navy-900 mb-2">
-                {t("contact", "formTitle")}
-              </h2>
-              <div className="h-0.75 w-10 bg-gold-700 mb-6" />
-              <p className="text-sm text-warm-gray-500 leading-relaxed mb-8">
-                {t("contact", "formDescription")}
-              </p>
-
-              <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Name + Organisation */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
-                    >
-                      {t("contact", "labelName")}{" "}
-                      <span className="text-gold-700">*</span>
-                    </label>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      value={form.name}
-                      onChange={handleChange}
-                      placeholder={t("contact", "placeholderName")}
-                      className={inputClasses}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="organization"
-                      className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
-                    >
-                      {t("contact", "labelOrganization")}
-                    </label>
-                    <input
-                      id="organization"
-                      name="organization"
-                      type="text"
-                      value={form.organization}
-                      onChange={handleChange}
-                      placeholder={t("contact", "placeholderOrg")}
-                      className={inputClasses}
-                    />
-                  </div>
-                </div>
-
-                {/* Email + Phone */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
-                    >
-                      {t("contact", "labelEmail")}{" "}
-                      <span className="text-gold-700">*</span>
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder={t("contact", "placeholderEmail")}
-                      className={inputClasses}
-                    />
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="phone"
-                      className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
-                    >
-                      {t("contact", "labelPhone")}{" "}
-                      <span className="text-gold-700">*</span>
-                    </label>
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      required
-                      value={form.phone}
-                      onChange={handleChange}
-                      placeholder={t("contact", "placeholderPhone")}
-                      className={inputClasses}
-                    />
-                  </div>
-                </div>
-
-                {/* Message */}
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
-                  >
-                    {t("contact", "labelMessage")}{" "}
-                    <span className="text-gold-700">*</span>
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    required
-                    rows={5}
-                    value={form.message}
-                    onChange={handleChange}
-                    placeholder={t("contact", "placeholderMessage")}
-                    className={`${inputClasses} resize-none`}
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  variant="primary"
-                  size="lg"
-                  disabled={status === "sending"}
+              {status === "success" ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                  className="flex flex-col items-center justify-center text-center py-12"
                 >
-                  {status === "sending"
-                    ? t("contact", "sending")
-                    : t("common", "sendMessage")}
-                </Button>
-
-                {status === "success" && (
-                  <div className="mt-4 p-4 rounded-md bg-green-50 border border-green-200">
-                    <p className="text-sm font-semibold text-green-800">
-                      {t("contact", "successTitle")}
-                    </p>
-                    <p className="text-sm text-green-700 mt-1">
-                      {t("contact", "successText")}
-                    </p>
+                  <div className="w-16 h-16 rounded-full bg-green-50 flex items-center justify-center mb-6">
+                    <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
-                )}
+                  <h2 className="text-2xl font-heading text-navy-900 mb-3">
+                    {t("contact", "successTitle")}
+                  </h2>
+                  <p className="text-warm-gray-500 leading-relaxed max-w-md mb-8">
+                    {t("contact", "successText")}
+                  </p>
+                  <Button
+                    variant="secondary"
+                    size="md"
+                    onClick={() => setStatus("idle")}
+                  >
+                    {t("contact", "sendAnother")}
+                  </Button>
+                </motion.div>
+              ) : (
+                <>
+                  <h2 className="text-2xl font-heading text-navy-900 mb-2">
+                    {t("contact", "formTitle")}
+                  </h2>
+                  <div className="h-0.75 w-10 bg-gold-700 mb-6" />
+                  <p className="text-sm text-warm-gray-500 leading-relaxed mb-8">
+                    {t("contact", "formDescription")}
+                  </p>
 
-                {status === "error" && (
-                  <div className="mt-4 p-4 rounded-md bg-red-50 border border-red-200">
-                    <p className="text-sm text-red-700">
-                      {t("contact", "errorText")}
-                    </p>
-                  </div>
-                )}
-              </form>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Name + Organisation */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div>
+                        <label
+                          htmlFor="name"
+                          className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
+                        >
+                          {t("contact", "labelName")}{" "}
+                          <span className="text-gold-700">*</span>
+                        </label>
+                        <input
+                          id="name"
+                          name="name"
+                          type="text"
+                          required
+                          value={form.name}
+                          onChange={handleChange}
+                          placeholder={t("contact", "placeholderName")}
+                          className={inputClasses}
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="organization"
+                          className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
+                        >
+                          {t("contact", "labelOrganization")}
+                        </label>
+                        <input
+                          id="organization"
+                          name="organization"
+                          type="text"
+                          value={form.organization}
+                          onChange={handleChange}
+                          placeholder={t("contact", "placeholderOrg")}
+                          className={inputClasses}
+                        />
+                      </div>
+                    </div>
+
+                    {/* Email + Phone */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      <div>
+                        <label
+                          htmlFor="email"
+                          className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
+                        >
+                          {t("contact", "labelEmail")}{" "}
+                          <span className="text-gold-700">*</span>
+                        </label>
+                        <input
+                          id="email"
+                          name="email"
+                          type="email"
+                          required
+                          value={form.email}
+                          onChange={handleChange}
+                          placeholder={t("contact", "placeholderEmail")}
+                          className={inputClasses}
+                        />
+                      </div>
+                      <div>
+                        <label
+                          htmlFor="phone"
+                          className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
+                        >
+                          {t("contact", "labelPhone")}{" "}
+                          <span className="text-gold-700">*</span>
+                        </label>
+                        <CountryPhoneInput
+                          value={form.phone}
+                          onChange={(value) => setForm((prev) => ({ ...prev, phone: value || "" }))}
+                          className="phone-input-custom"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Message */}
+                    <div>
+                      <label
+                        htmlFor="message"
+                        className="block text-xs font-body font-semibold tracking-wider uppercase text-navy-800 mb-2"
+                      >
+                        {t("contact", "labelMessage")}{" "}
+                        <span className="text-gold-700">*</span>
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        required
+                        rows={5}
+                        value={form.message}
+                        onChange={handleChange}
+                        placeholder={t("contact", "placeholderMessage")}
+                        className={`${inputClasses} resize-none`}
+                      />
+                    </div>
+
+                    <Button
+                      type="submit"
+                      variant="primary"
+                      size="lg"
+                      disabled={status === "sending"}
+                    >
+                      {status === "sending"
+                        ? t("contact", "sending")
+                        : t("common", "sendMessage")}
+                    </Button>
+
+                    {status === "error" && (
+                      <div className="mt-4 p-4 rounded-md bg-red-50 border border-red-200">
+                        <p className="text-sm text-red-700">
+                          {t("contact", "errorText")}
+                        </p>
+                      </div>
+                    )}
+                  </form>
+                </>
+              )}
             </div>
           </AnimatedSection>
 

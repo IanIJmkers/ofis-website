@@ -476,6 +476,7 @@ export default {
     successTitle: "Bericht verzonden!",
     successText: "Bedankt voor uw bericht. Wij nemen binnen twee werkdagen contact met u op.",
     errorText: "Er is iets misgegaan bij het verzenden. Probeer het later opnieuw.",
+    sendAnother: "Sluiten",
     sending: "Verzenden...",
     ctaTitle: "Liever een persoonlijk gesprek?",
     ctaSubtitle: "Ons team is beschikbaar voor een persoonlijke ontmoeting op ons kantoor in Den Haag of via een videogesprek.",
