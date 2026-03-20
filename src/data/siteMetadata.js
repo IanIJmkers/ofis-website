@@ -7,7 +7,7 @@ const base = {
     city: "Den Haag",
   },
   phone: "+31 (0)70 205 11 81",
-  email: "info@orchestra-charityoffice.com",
+  email: "contact@orchestra-contact.com",
   linkedin: "https://www.linkedin.com/company/orchestra-familycharityoffice/",
   myOrchestra: "https://ofis.orchestrabeheer.nl/Ofis/Client",
 };

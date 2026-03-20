@@ -88,9 +88,18 @@ export default function AboutCareers() {
               <div className="grid grid-cols-2 gap-8 text-center">
                 {[
                   { value: "9", label: t("aboutCareers", "statTeamMembers") },
-                  { value: "20+", label: t("aboutCareers", "statYearsService") },
-                  { value: "21+", label: t("aboutCareers", "statFoundationsServed") },
-                  { value: "3", label: t("aboutCareers", "statCoreDisciplines") },
+                  {
+                    value: "20+",
+                    label: t("aboutCareers", "statYearsService"),
+                  },
+                  {
+                    value: "21+",
+                    label: t("aboutCareers", "statFoundationsServed"),
+                  },
+                  {
+                    value: "3",
+                    label: t("aboutCareers", "statCoreDisciplines"),
+                  },
                 ].map((stat, index) => (
                   <div key={index}>
                     <p className="text-3xl lg:text-4xl font-heading text-navy-900">
@@ -197,7 +206,7 @@ export default function AboutCareers() {
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Button
-              href="mailto:info@orchestra-charityoffice.com?subject=Career%20Inquiry"
+              href="mailto:contact@orchestra-contact.com?subject=Career%20Inquiry"
               external
               variant="primary"
               size="lg"
