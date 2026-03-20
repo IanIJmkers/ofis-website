@@ -1,21 +1,65 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion } from "motion/react";
 import { getCountries, getCountryCallingCode } from "react-phone-number-input";
 
-const COUNTRIES = getCountries().sort((a, b) => {
-  try {
-    return getCountryCallingCode(a) - getCountryCallingCode(b);
-  } catch { return 0; }
-});
+const COUNTRY_NAMES = {
+  NL: "Netherlands", US: "United States", GB: "United Kingdom", DE: "Germany",
+  BE: "Belgium", FR: "France", ES: "Spain", IT: "Italy", PT: "Portugal",
+  AT: "Austria", CH: "Switzerland", SE: "Sweden", NO: "Norway", DK: "Denmark",
+  FI: "Finland", PL: "Poland", CZ: "Czech Republic", IE: "Ireland",
+  AU: "Australia", CA: "Canada", BR: "Brazil", MX: "Mexico", JP: "Japan",
+  CN: "China", IN: "India", KR: "South Korea", RU: "Russia", TR: "Turkey",
+  ZA: "South Africa", AE: "UAE", SA: "Saudi Arabia", IL: "Israel",
+  SG: "Singapore", HK: "Hong Kong", TW: "Taiwan", TH: "Thailand",
+  ID: "Indonesia", MY: "Malaysia", PH: "Philippines", VN: "Vietnam",
+  NZ: "New Zealand", AR: "Argentina", CL: "Chile", CO: "Colombia",
+  GR: "Greece", HU: "Hungary", RO: "Romania", BG: "Bulgaria",
+  HR: "Croatia", SK: "Slovakia", LU: "Luxembourg", LT: "Lithuania",
+  LV: "Latvia", EE: "Estonia", SI: "Slovenia", CY: "Cyprus", MT: "Malta",
+};
+
+const COUNTRIES = getCountries()
+  .map((code) => {
+    try {
+      return { code, callingCode: getCountryCallingCode(code), name: COUNTRY_NAMES[code] || code };
+    } catch { return null; }
+  })
+  .filter(Boolean)
+  .sort((a, b) => a.name.localeCompare(b.name));
 
 function CountryPhoneInput({ value, onChange, className }) {
   const [country, setCountry] = useState("NL");
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const dropdownRef = useRef(null);
+  const searchRef = useRef(null);
   const callingCode = getCountryCallingCode(country);
 
-  const handleCountryChange = (e) => {
-    const newCountry = e.target.value;
-    setCountry(newCountry);
-    onChange(`+${getCountryCallingCode(newCountry)}${value.replace(/^\+\d+\s*/, "")}`);
+  useEffect(() => {
+    if (open && searchRef.current) searchRef.current.focus();
+  }, [open]);
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  const filtered = search
+    ? COUNTRIES.filter((c) =>
+        c.name.toLowerCase().includes(search.toLowerCase()) ||
+        c.code.toLowerCase().includes(search.toLowerCase()) ||
+        `+${c.callingCode}`.includes(search)
+      )
+    : COUNTRIES;
+
+  const selectCountry = (c) => {
+    setCountry(c.code);
+    setOpen(false);
+    setSearch("");
+    onChange(`+${c.callingCode}${value.replace(/^\+\d+\s*/, "")}`);
   };
 
   const handleNumberChange = (e) => {
@@ -27,21 +71,45 @@ function CountryPhoneInput({ value, onChange, className }) {
 
   return (
     <div className={className}>
-      <div className="phone-country-select">
-        <select
-          value={country}
-          onChange={handleCountryChange}
-          className="phone-country-dropdown"
+      <div className="phone-country-select" ref={dropdownRef}>
+        <button
+          type="button"
+          onClick={() => setOpen(!open)}
+          className="phone-country-label"
         >
-          {COUNTRIES.map((c) => (
-            <option key={c} value={c}>
-              {c} +{getCountryCallingCode(c)}
-            </option>
-          ))}
-        </select>
-        <span className="phone-country-label">
           {country} +{callingCode}
-        </span>
+          <svg className="w-3.5 h-3.5 ml-1 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        {open && (
+          <div className="phone-country-menu">
+            <input
+              ref={searchRef}
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search..."
+              className="phone-country-search"
+            />
+            <div className="phone-country-list">
+              {filtered.map((c) => (
+                <button
+                  key={c.code}
+                  type="button"
+                  onClick={() => selectCountry(c)}
+                  className={`phone-country-option${c.code === country ? " active" : ""}`}
+                >
+                  <span>{c.name}</span>
+                  <span className="phone-country-code">+{c.callingCode}</span>
+                </button>
+              ))}
+              {filtered.length === 0 && (
+                <p className="phone-country-empty">No results</p>
+              )}
+            </div>
+          </div>
+        )}
       </div>
       <input
         type="tel"
