@@ -25,6 +25,12 @@ function formatDate(dateString, lang) {
   });
 }
 
+function decodeHtmlEntities(str) {
+  const el = typeof document !== "undefined" && document.createElement("textarea");
+  if (el) { el.innerHTML = str; return el.value; }
+  return str.replace(/&#(\d+);/g, (_, n) => String.fromCharCode(n)).replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"');
+}
+
 function extractHeadings(html) {
   if (!html) return [];
   const regex = /<h([23])[^>]*id="([^"]*)"[^>]*>(.*?)<\/h[23]>/gi;
@@ -34,7 +40,7 @@ function extractHeadings(html) {
     headings.push({
       level: parseInt(match[1]),
       id: match[2],
-      text: match[3].replace(/<[^>]*>/g, ""),
+      text: decodeHtmlEntities(match[3].replace(/<[^>]*>/g, "")),
     });
   }
   // Fallback: try headings without IDs and generate IDs
@@ -42,7 +48,7 @@ function extractHeadings(html) {
     const fallbackRegex = /<h([23])[^>]*>(.*?)<\/h[23]>/gi;
     let fallbackMatch;
     while ((fallbackMatch = fallbackRegex.exec(html)) !== null) {
-      const text = fallbackMatch[2].replace(/<[^>]*>/g, "");
+      const text = decodeHtmlEntities(fallbackMatch[2].replace(/<[^>]*>/g, ""));
       const id = text
         .toLowerCase()
         .replace(/[^a-z0-9\s-]/g, "")
@@ -81,7 +87,7 @@ function splitContentBySections(html) {
   const sections = parts.slice(1).map((sectionHtml, index) => {
     const headingMatch = sectionHtml.match(/<h2[^>]*id="([^"]*)"[^>]*>(.*?)<\/h2>/i);
     const id = headingMatch?.[1] || `section-${index + 1}`;
-    const title = headingMatch?.[2]?.replace(/<[^>]*>/g, "") || "";
+    const title = decodeHtmlEntities(headingMatch?.[2]?.replace(/<[^>]*>/g, "") || "");
 
     return {
       number: String(index + 1).padStart(2, "0"),
