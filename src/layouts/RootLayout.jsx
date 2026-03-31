@@ -1,5 +1,6 @@
 import { Outlet, useLocation, useMatches } from "react-router";
 import { useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
 import { useLanguage } from "../context/LanguageContext";
 import Navbar from "../components/layout/Navbar";
 import Footer from "../components/layout/Footer";
@@ -43,6 +44,7 @@ export default function RootLayout() {
       </main>
       <Footer />
       <CookieConsent />
+      <Analytics />
     </>
   );
 }
