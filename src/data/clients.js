@@ -99,7 +99,17 @@ const faqsData = {
         {
           question: "Wat is het Mijn Orchestra dashboard?",
           answer:
-            "Mijn Orchestra is ons eigen online platform dat u 24/7 real-time toegang geeft tot de financiële gegevens, documenten en rapportages van uw stichting. Het biedt volledige transparantie en stelt bestuursleden in staat om de positie van de stichting overal te monitoren.",
+            "Mijn Orchestra is geen dashboard maar het collectieve geheugen van uw stichting: alle financiële gegevens, bestuursnotulen, besluiten, subsidie-aanvragen, documenten en audit trails op één platform met rolgebaseerde toegang. Wat het bestuur in 2024 besluit, kan een nieuw bestuurslid in 2031 nog terugvinden — mét de gronden waarop het besluit werd genomen.",
+        },
+        {
+          question: "Voor welke stichtingsomvang is dit zinvol?",
+          answer:
+            "Onze dienstverlening is structureel gebouwd voor die stichtingen waar de complexiteit van vermogensbeheer, governance en administratie reëel begint te wegen — doorgaans vanaf stichtingsvermogens van indicatief enkele miljoenen euro of fondsenwervende organisaties met substantiële operationele begrotingen. Voor het integrale Charity Office wint elke stichting waar het bestuur meer aan financiële versnippering kwijt is dan aan de missie.",
+        },
+        {
+          question: "Kan ons bestuur eerst een second opinion krijgen?",
+          answer:
+            "Ja natuurlijk. Veel besturen beginnen daarmee. Wij geven graag een onafhankelijke beoordeling van hoe uw stichting op dit moment financieel is georganiseerd — beleggingsstrategie, kostenposities, administratieve inrichting, governance-discipline, compliance — zonder enige verplichting tot samenwerking. Voor veel besturen is dat het eerste moment waarop het volledige financiële plaatje van de eigen stichting op één pagina staat.",
         },
       ],
     },
@@ -115,6 +125,11 @@ const faqsData = {
           question: "Zijn er verborgen kosten?",
           answer:
             "Nee. Onze offerte dekt alle overeengekomen diensten. Er zijn geen verborgen kosten, transactiekosten of onverwachte toeslagen. Wij geloven in volledige transparantie.",
+        },
+        {
+          question: "Waar zit de catch in de vaste vergoeding?",
+          answer:
+            "Er is geen catch. Wij ontvangen een vaste jaarlijkse vergoeding voor het integrale beheer van uw stichting, vooraf afgesproken en alleen voor inflatie aangepast. Geen retrocessies, geen productverkoop, geen verborgen marges. De vergoeding wordt niet hoger als uw vermogen groeit. Voor sommige besturen voelt dat eerst vreemd — dat begrijpen wij. Eén gesprek volstaat meestal om die vreemdheid weg te nemen.",
         },
       ],
     },
@@ -146,6 +161,21 @@ const faqsData = {
           answer:
             "Wij monitoren voortdurend wijzigingen in wet- en regelgeving. Ons compliance-team zorgt ervoor dat alle rapportages, governance-structuren en financiële processen voldoen aan de actuele vereisten. Wij informeren u proactief over eventuele wijzigingen die uw stichting raken.",
         },
+        {
+          question: "Hoe verhoudt dit zich tot onze ANBI-status?",
+          answer:
+            "Onze processen zijn standaard ontworpen voor ANBI-compliance. Inkomstenregistratie, bestedingsverhouding, publicatievereisten, transactietransparantie — alles wat de Belastingdienst en het CBF vragen, leveren wij als onderdeel van onze reguliere dienstverlening. Niet als project. Niet tegen meerwerk. ANBI-status verlies door administratieve omissie behoort tot het soort risico dat onze dienstverlening juist elimineert.",
+        },
+        {
+          question: "Wat als wij grote subsidiestromen ontvangen (VWS, gemeente, EU)?",
+          answer:
+            "Subsidiestromen zijn een aparte specialisatie binnen onze administratiedienstverlening. Aanvraag-administratie, project-administratie per subsidie, voortgangsrapportage, eindverantwoording — wij houden de relatie tussen subsidievoorwaarden en bestede middelen automatisch zichtbaar in Mijn Orchestra. Voor bestuursleden, voor de subsidieverstrekker en voor uw accountant.",
+        },
+        {
+          question: "Wat verandert er voor onze huidige accountant?",
+          answer:
+            "In principe niets verplichts. Veel cliënten houden hun huidige externe accountant aan voor de wettelijke controle van de jaarrekening — die rol is gescheiden van ons werk en blijft onafhankelijk. Wij leveren de management letter en alle onderliggende stukken. In de praktijk verbetert de samenwerking met accountants doordat onze administratie audit-ready aangeleverd wordt; controle-uren bij de accountant nemen vaak af.",
+        },
       ],
     },
   ],
@@ -166,7 +196,17 @@ const faqsData = {
         {
           question: "What is the My Orchestra dashboard?",
           answer:
-            "My Orchestra is our proprietary online platform that gives you 24/7 real-time access to your foundation's financial data, documents and reports. It provides full transparency and enables board members to monitor the foundation's position from anywhere.",
+            "My Orchestra is not a dashboard but the collective memory of your foundation: all financial data, board minutes, decisions, grant applications, documents and audit trails on one platform with role-based access. What the board decides in 2024, a new board member in 2031 can still find back — with the grounds on which the decision was made.",
+        },
+        {
+          question: "For what foundation size does this make sense?",
+          answer:
+            "Our service is structurally built for foundations where the complexity of wealth management, governance and administration begins to weigh meaningfully — typically from foundation assets of indicatively several million euros, or fundraising organisations with substantial operational budgets. For the full Charity Office, every foundation where the board spends more time on financial fragmentation than on the mission stands to gain.",
+        },
+        {
+          question: "Can our board have a second opinion first?",
+          answer:
+            "Yes, of course. Many boards begin there. We are happy to give an independent assessment of how your foundation is currently organised financially — investment strategy, cost positions, administrative setup, governance discipline, compliance — without any obligation to engage further. For many boards this is the first time the full financial picture of their own foundation appears on a single page.",
         },
       ],
     },
@@ -182,6 +222,11 @@ const faqsData = {
           question: "Are there any hidden costs?",
           answer:
             "No. Our proposal covers all agreed services. There are no hidden costs, transaction fees or unexpected surcharges. We believe in full transparency.",
+        },
+        {
+          question: "Where is the catch in the fixed fee?",
+          answer:
+            "There is no catch. We receive a fixed annual fee for the integrated stewardship of your foundation, agreed in advance and adjusted only for inflation. No retrocessions, no product sales, no hidden margins. The fee does not rise as your assets grow. For some boards that feels unusual at first — we understand. One conversation usually removes the unfamiliarity.",
         },
       ],
     },
@@ -212,6 +257,21 @@ const faqsData = {
           question: "How do you ensure our foundation remains compliant?",
           answer:
             "We continuously monitor changes in legislation and regulations. Our compliance team ensures that all reports, governance structures and financial processes meet current requirements. We proactively inform you of any changes that affect your foundation.",
+        },
+        {
+          question: "How does this relate to our ANBI status?",
+          answer:
+            "Our processes are designed for ANBI compliance by default. Income registration, expense ratios, publication requirements, transaction transparency — everything the Belastingdienst and the CBF require, we deliver as part of our regular service. Not as a project. Not as additional work. Losing ANBI status through administrative oversight is exactly the kind of risk our service eliminates.",
+        },
+        {
+          question: "What if we receive large government grant flows (VWS, municipality, EU)?",
+          answer:
+            "Government grant flows are a distinct specialisation within our administration service. Application administration, project accounting per grant, progress reporting, final accountability — we automatically keep the relationship between grant conditions and money spent visible on My Orchestra. For board members, for the granting authority, and for your accountant.",
+        },
+        {
+          question: "What changes for our current auditor?",
+          answer:
+            "In principle nothing is required to change. Many clients keep their current external auditor for the statutory audit of the annual accounts — that role is separate from our work and remains independent. We deliver the management letter and all underlying documentation. In practice the relationship with auditors improves because our administration is delivered audit-ready; audit hours typically go down.",
         },
       ],
     },

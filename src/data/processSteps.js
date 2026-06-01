@@ -2,33 +2,33 @@ const data = {
   nl: [
     {
       number: 1,
-      title: "De Nulmeting",
+      title: "De nulmeting",
       description:
-        "Wij analyseren grondig uw huidige financiële administratie, donatieproces, kosten en governance-structuren om uw uitgangspositie in kaart te brengen.",
+        "Wij beoordelen grondig uw huidige financiële organisatie: beleggingen, administratie, governance, kostenpositie, compliance. Resultaat is een schriftelijke nulmeting — niet een verkoopgesprek.",
     },
     {
       number: 2,
-      title: "De Offerte",
+      title: "De offerte",
       description:
-        "Op basis van onze bevindingen ontvangt u een offerte op maat met een vast tarief. U weet precies wat u krijgt en wat het kost — geen verrassingen.",
+        "Op basis van de nulmeting ontvangt u een schriftelijke offerte met een vast jaarlijks tarief. Wat erin zit, wat niet, en waarom. Geen meerwerkclausules, geen open einden.",
     },
     {
       number: 3,
-      title: "De Onboarding",
+      title: "De onboarding",
       description:
-        "Wij begeleiden u stap voor stap door het gehele transitieproces, zodat de overdracht soepel verloopt met minimale verstoring van uw organisatie.",
+        "Wij voeren de transitie vanuit uw huidige dienstverleners. Beleggingen worden overgeboekt, administratie wordt overgedragen, governance-documenten gemigreerd naar Mijn Orchestra. Bestuur ervaart minimale verstoring.",
     },
     {
       number: 4,
-      title: "De Zekerheid",
+      title: "De zekerheid",
       description:
-        "U ontvangt absolute zekerheid dat uw administratie en vermogensbeheer goed zijn ingericht en volledig voldoen aan alle regelgeving.",
+        "Na onboarding ontvangt u een formele bevestiging dat alle financiële, fiscale, juridische en compliance-aspecten op orde zijn. Vanaf dat moment werken wij doorlopend onder vier-ogen-principe.",
     },
     {
       number: 5,
-      title: "Het Inzicht",
+      title: "Het inzicht",
       description:
-        "Krijg 24/7 toegang tot uw volledige financiële situatie via het Mijn Orchestra dashboard. Volledige transparantie, altijd.",
+        "Mijn Orchestra geeft het hele bestuur 24/7 real-time toegang tot portefeuille, administratie, governance-documenten en rapportages. Geautoriseerde toegang voor bestuursleden, penningmeester, accountant.",
     },
   ],
   en: [
@@ -36,31 +36,31 @@ const data = {
       number: 1,
       title: "The Baseline Assessment",
       description:
-        "We thoroughly analyse your current financial administration, grant processes, costs and governance structures to map your starting position.",
+        "We thoroughly assess your current financial organisation: investments, administration, governance, cost position, compliance. The output is a written baseline assessment — not a sales pitch.",
     },
     {
       number: 2,
       title: "The Proposal",
       description:
-        "Based on our findings, you receive a tailored proposal with a fixed fee. You know exactly what you get and what it costs — no surprises.",
+        "Based on the baseline you receive a written proposal with a fixed annual fee. What is included, what is not, and why. No additional-work clauses, no open ends.",
     },
     {
       number: 3,
       title: "The Onboarding",
       description:
-        "We guide you step by step through the entire transition process, ensuring a smooth handover with minimal disruption to your organisation.",
+        "We execute the transition from your current providers. Investments are transferred, administration handed over, governance documents migrated to My Orchestra. The board experiences minimal disruption.",
     },
     {
       number: 4,
       title: "The Assurance",
       description:
-        "You receive absolute assurance that your administration and wealth management are properly set up and fully comply with all regulations.",
+        "After onboarding you receive formal confirmation that all financial, fiscal, legal and compliance aspects are in order. From that point on we operate continuously under the four-eyes principle.",
     },
     {
       number: 5,
       title: "The Insight",
       description:
-        "Get 24/7 access to your complete financial situation via the My Orchestra dashboard. Full transparency, always.",
+        "My Orchestra gives the whole board 24/7 real-time access to portfolio, administration, governance documents and reports. Authorised access for board members, treasurer, and accountant.",
     },
   ],
 };

@@ -19,6 +19,7 @@ import News from "../pages/News";
 import NewsArticle from "../pages/NewsArticle";
 import Contact from "../pages/Contact";
 import MijnOrchestra from "../pages/MijnOrchestra";
+import FixedFee from "../pages/FixedFee";
 import NotFound from "../pages/NotFound";
 
 export const router = createBrowserRouter([
@@ -66,6 +67,7 @@ export const router = createBrowserRouter([
       },
       { path: "contact", element: <Contact />, handle: { titleKey: "contact" } },
       { path: "mijn-orchestra", element: <MijnOrchestra />, handle: { titleKey: "mijnOrchestra" } },
+      { path: "vaste-vergoeding", element: <FixedFee />, handle: { titleKey: "fixedFee" } },
       { path: "en/*", element: <Navigate to="/" replace /> },
       { path: "nl/*", element: <Navigate to="/" replace /> },
     ],

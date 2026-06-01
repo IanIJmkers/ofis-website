@@ -7,6 +7,7 @@ import SectionWrapper from "../components/layout/SectionWrapper";
 import SectionHeading from "../components/ui/SectionHeading";
 import Button from "../components/ui/Button";
 import CTASection from "../components/sections/CTASection";
+import SequenceBlock from "../components/sections/SequenceBlock";
 import { useLanguage } from "../context/LanguageContext";
 import { getServices } from "../data/services";
 
@@ -96,7 +97,11 @@ export default function ServicesOverview() {
           subtitle={t("servicesOverview", "gridSubtitle")}
         />
 
-        <StaggerChildren className="mt-16 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="mt-12">
+          <SequenceBlock />
+        </div>
+
+        <StaggerChildren className="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
           {services.map((service) => (
             <motion.div key={service.id} variants={staggerItem}>
               <Link to={service.path} className="group block h-full">

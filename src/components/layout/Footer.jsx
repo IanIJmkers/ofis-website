@@ -87,6 +87,14 @@ export default function Footer() {
                 {t("footer", "legal")}
               </h4>
               <ul className="space-y-3">
+                <li>
+                  <Link
+                    to="/vaste-vergoeding"
+                    className="text-sm text-navy-300 hover:text-white transition-colors duration-200"
+                  >
+                    {t("footer", "tariff")}
+                  </Link>
+                </li>
                 {legalLinks.map((link) => (
                   <li key={link.label}>
                     <button

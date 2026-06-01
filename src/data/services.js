@@ -4,31 +4,31 @@ const data = {
       id: "wealth-management",
       title: "Vermogensbeheer",
       shortDescription:
-        "Een breed controlebereik over beleggingen, treasury en liquiditeit. Onafhankelijk, institutioneel vermogensbeheer tegen vaste tarieven.",
+        "Het vermogen van uw stichting beheerd zoals pensioenfondsen en endowments dat doen: institutionele discipline, vaste vergoeding, regie over kosten.",
       fullDescription:
-        "Wij bieden een breed controlebereik over beleggingen, treasury en liquiditeitsbeheer. Als onafhankelijke partij zijn wij geen bank of broker — het belang van onze klanten staat altijd voorop. Onze institutionele aanpak combineert professioneel portfoliobeheer met kostenefficiëntie en volledige naleving van regelgeving.",
+        "Wij beheren het vermogen van uw stichting zoals pensioenfondsen en universiteitsendowments dat doen: portefeuilles ontworpen tegen de verplichtingen en doelstellingen van uw stichting, niet tegen een externe benchmark. Risicokaders, beleggingscommissie, vier-ogen-principe. Als onafhankelijke partij zijn wij geen bank en geen broker — wij ontvangen geen retrocessies en hebben geen producten te verkopen.",
       path: "/services/wealth-management",
       icon: "wealth-management",
       features: [
         {
-          title: "Institutioneel Proces",
+          title: "Institutioneel proces",
           description:
-            "Professioneel portfoliobeheer volgens institutionele standaarden en best practices.",
+            "Portefeuilles ontworpen tegen de verplichtingen van uw stichting, niet tegen een externe benchmark. Pensioenfonds-grade discipline op stichting-schaal.",
         },
         {
           title: "Risicobeheer",
           description:
-            "Uitgebreide risicomonitoring en -rapportage ter bescherming van uw kapitaal.",
+            "Risicokaders, beleggingscommissie, vier-ogen-principe op iedere transactie. Periodieke risicorapportage aan het bestuur — niet alleen wanneer er iets gebeurt.",
         },
         {
-          title: "Kostenefficiëntie",
+          title: "Kosten als structurele variabele",
           description:
-            "Vast jaarlijks tarief — nooit op basis van vermogen. Volledige transparantie in kosten.",
+            "Vaste jaarlijkse vergoeding. Geen retrocessies. Transparante kostenrapportage op iedere positie. Elke basispunt die u bespaart, kan naar uw missie.",
         },
         {
-          title: "Naleving Regelgeving",
+          title: "Naleving regelgeving",
           description:
-            "Volledige naleving van DNB, AFM en alle relevante regelgevingskaders.",
+            "Volledige naleving van DNB, AFM en alle relevante regelgevingskaders. Wat de toezichthouder vereist, leveren wij standaard.",
         },
       ],
     },
@@ -36,31 +36,31 @@ const data = {
       id: "administration",
       title: "Administratie",
       shortDescription:
-        "Nooit meer wakker liggen van uw administratie. Wij verzorgen de financiële verwerking, donatiebeheer en compliance-rapportage.",
+        "Het collectieve geheugen van uw stichting, geleverd met institutionele precisie. Boekhouding, betalingen, subsidies, jaarrekeningen — onder één dak.",
       fullDescription:
-        "Onze administratiediensten zorgen ervoor dat u zich nooit meer druk hoeft te maken over uw financiële boekhouding, betalingsverwerking of donatiebeheer. Wij houden nauwkeurige administratie bij, verzorgen alle compliance-rapportages en bieden u real-time toegang tot uw financiële gegevens via het Mijn Orchestra dashboard.",
+        "Administratie voor een stichting is geen boekhoudkundige bijzaak. Het is het collectieve geheugen van de organisatie — alles wat het bestuur over vijf, tien of dertig jaar zal moeten kunnen terugvinden. Wij voeren dat geheugen met dezelfde institutionele precisie waarmee wij beleggingen beheren. Niet als operationeel bijproduct, maar als zelfstandige discipline. Resultaat: minder uren van bestuur en penningmeester aan operationele frictie, meer uren aan de warme kant van uw stichting.",
       path: "/services/administration",
       icon: "administration",
       features: [
         {
-          title: "Financiële Verwerking",
+          title: "Financiële verwerking",
           description:
-            "Volledige boekhouding, betalingsverwerking en beheer van financiële administratie.",
+            "Volledige boekhouding, betalingsverwerking en beheer van financiële administratie met audit-trail per transactie.",
         },
         {
-          title: "Donatiebeheer",
+          title: "Subsidie- en donatieadministratie",
           description:
-            "Volledig beheer van donatieaanvragen, toewijzingen en rapportage.",
+            "Volledig beheer van subsidie-aanvragen, toewijzingen, uitkeringen en impactrapportage. Donaties geadministreerd, gerapporteerd en compliant.",
         },
         {
           title: "Compliance-rapportage",
           description:
-            "Tijdige en nauwkeurige rapportages, jaarrekeningen en belastingaangiftes.",
+            "Jaarrekeningen, belastingaangiftes, ANBI- en CBF-rapportages — tijdig, accuraat, en in lijn met sectornormen.",
         },
         {
-          title: "Digitale Toegang",
+          title: "Collectief geheugen",
           description:
-            "24/7 real-time toegang tot uw financiële gegevens via het Mijn Orchestra platform.",
+            "Mijn Orchestra bewaart alle financiële gegevens, bestuursnotulen, autorisaties en documenten op één plek. Wat in 2024 wordt besloten, is in 2031 nog terug te vinden.",
         },
       ],
     },
@@ -68,31 +68,31 @@ const data = {
       id: "governance",
       title: "Governance",
       shortDescription:
-        "Uw governance veilig georkestreerd. Adviesdiensten, jaarrapportage, risicobeheer en digitale toegang tot al uw gegevens.",
+        "Fiduciaire discipline voor het bestuur dat zijn werk serieus neemt. Meer-ogen-principe, beleidskaders, autorisatielagen — als organisatieprincipe, niet als project.",
       fullDescription:
-        "Goed bestuur is het fundament van iedere goed geleide charitatieve organisatie. Wij bieden uitgebreide governance-ondersteuning, waaronder bestuurlijk advies, jaarrapportage, risicobeheer en volledig documentbeheer. Ons 'meer-ogen-principe' waarborgt toezicht en verantwoording op ieder niveau.",
+        "Goede governance gaat verder dan compliance afvinken. Het betekent dat de juiste structuren, processen en toezichtmechanismen aanwezig zijn om ervoor te zorgen dat uw stichting opereert met integriteit, verantwoording en een onvermijdelijke focus op haar missie. Wij bieden de inhoudelijke ondersteuning en operationele uitvoering die uw bestuur nodig heeft om zijn fiduciaire verantwoordelijkheden met vertrouwen uit te oefenen. De rigor van een groot kantoor, geleverd op de schaal van uw stichting.",
       path: "/services/governance",
       icon: "governance",
       features: [
         {
           title: "Adviesdiensten",
           description:
-            "Deskundig advies over governance-structuren, beleidskaders en strategische besluitvorming.",
+            "Strategisch advies over bestuurssamenstelling, governance-structuren en beleidskaders. Onafhankelijk, sectorspecifiek, gericht op de fiduciaire plicht.",
         },
         {
           title: "Jaarrapportage",
           description:
-            "Professionele voorbereiding van jaarverslagen en financiële overzichten.",
+            "Professionele voorbereiding van jaarverslag, financiële overzichten en management letter aan uw externe accountant. Volledig conform sectorstandaarden.",
         },
         {
           title: "Risicobeheer",
           description:
-            "Identificatie, beoordeling en beheersing van organisatorische en financiële risico's.",
+            "Systematische identificatie en mitigatie van organisatorische, financiële en reputationele risico's. Periodieke rapportage aan het bestuur.",
         },
         {
           title: "Documentbeheer",
           description:
-            "Veilige, georganiseerde toegang tot alle governance-documenten via Mijn Orchestra.",
+            "Beveiligde, georganiseerde toegang tot alle governance-documenten, bestuursnotulen en besluitregisters via Mijn Orchestra.",
         },
       ],
     },
@@ -102,31 +102,31 @@ const data = {
       id: "wealth-management",
       title: "Wealth Management",
       shortDescription:
-        "A broad span of control over investments, treasury and liquidity. Independent, institutional wealth management at fixed fees.",
+        "Your foundation's wealth managed the way pension funds and endowments do: institutional discipline, fixed fee, oversight of costs.",
       fullDescription:
-        "We provide a broad span of control over investments, treasury and liquidity management. As an independent party, we are neither a bank nor a broker — the interests of our clients always come first. Our institutional approach combines professional portfolio management with cost efficiency and full regulatory compliance.",
+        "We manage your foundation's wealth the way pension funds and university endowments do: portfolios designed against the liabilities and objectives of your foundation, not against an external benchmark. Risk frameworks, investment committee, four-eyes principle. As an independent firm, we are neither a bank nor a broker — we receive no retrocessions and have no products to sell.",
       path: "/services/wealth-management",
       icon: "wealth-management",
       features: [
         {
           title: "Institutional Process",
           description:
-            "Professional portfolio management according to institutional standards and best practices.",
+            "Portfolios designed against the liabilities of your foundation, not against an external benchmark. Pension-fund-grade discipline at foundation scale.",
         },
         {
           title: "Risk Management",
           description:
-            "Comprehensive risk monitoring and reporting to protect your capital.",
+            "Risk frameworks, investment committee, four-eyes principle on every transaction. Periodic risk reporting to the board — not only when something happens.",
         },
         {
-          title: "Cost Efficiency",
+          title: "Costs as a Structural Variable",
           description:
-            "Fixed annual fee — never asset-based. Full transparency in costs.",
+            "Fixed annual fee. No retrocessions. Transparent cost reporting on every position. Every basis point you save can reach your mission.",
         },
         {
           title: "Regulatory Compliance",
           description:
-            "Full compliance with DNB, AFM and all relevant regulatory frameworks.",
+            "Full compliance with DNB, AFM and all relevant regulatory frameworks. What the regulator requires, we deliver by default.",
         },
       ],
     },
@@ -134,31 +134,31 @@ const data = {
       id: "administration",
       title: "Administration",
       shortDescription:
-        "Never lose sleep over your administration again. We handle financial processing, grant management and compliance reporting.",
+        "The collective memory of your foundation, delivered with institutional precision. Bookkeeping, payments, grants, annual accounts — under one roof.",
       fullDescription:
-        "Our administration services ensure you never have to worry about your financial bookkeeping, payment processing or grant management. We maintain accurate records, handle all compliance reporting and provide you with real-time access to your financial data via the My Orchestra dashboard.",
+        "Administration for a foundation is not a bookkeeping afterthought. It is the collective memory of the organisation — everything the board will need to find back five, ten or thirty years from now. We run that memory with the same institutional precision we bring to investments. Not as an operational by-product, but as a discipline in its own right. The outcome is concrete: fewer board and treasurer hours spent on operational friction, more hours spent on the warm side of your foundation.",
       path: "/services/administration",
       icon: "administration",
       features: [
         {
           title: "Financial Processing",
           description:
-            "Complete bookkeeping, payment processing and financial administration management.",
+            "Complete bookkeeping, payment processing and financial administration management with audit trail per transaction.",
         },
         {
-          title: "Grant Management",
+          title: "Grant and Donation Administration",
           description:
-            "Full management of grant applications, allocations and reporting.",
+            "Full management of grant applications, allocations, disbursements and impact reporting. Donations administered, reported and compliant.",
         },
         {
           title: "Compliance Reporting",
           description:
-            "Timely and accurate reports, annual accounts and tax returns.",
+            "Annual accounts, tax returns, ANBI and CBF reporting — timely, accurate, and aligned with sector standards.",
         },
         {
-          title: "Digital Access",
+          title: "Collective Memory",
           description:
-            "24/7 real-time access to your financial data via the My Orchestra platform.",
+            "My Orchestra preserves all financial data, board minutes, authorisations and documents in one place. What is decided in 2024 is still findable in 2031.",
         },
       ],
     },
@@ -166,31 +166,31 @@ const data = {
       id: "governance",
       title: "Governance",
       shortDescription:
-        "Your governance safely orchestrated. Advisory services, annual reporting, risk management and digital access to all your data.",
+        "Fiduciary discipline for boards that take their work seriously. Four-eyes principle, policy frameworks, authorisation layers — as an organising principle, not a project.",
       fullDescription:
-        "Good governance is the foundation of every well-run charitable organisation. We provide comprehensive governance support, including board advisory, annual reporting, risk management and full document management. Our 'four-eyes principle' ensures oversight and accountability at every level.",
+        "Good governance is more than ticking compliance boxes. It means the right structures, processes and oversight mechanisms are in place so your foundation operates with integrity, accountability and an unwavering focus on its mission. We provide the substantive support and operational delivery your board needs to discharge its fiduciary responsibilities with confidence. The rigour of a large firm, delivered at the scale of your foundation.",
       path: "/services/governance",
       icon: "governance",
       features: [
         {
           title: "Advisory Services",
           description:
-            "Expert advice on governance structures, policy frameworks and strategic decision-making.",
+            "Strategic advice on board composition, governance structures and policy frameworks. Independent, sector-specific, focused on the fiduciary duty.",
         },
         {
           title: "Annual Reporting",
           description:
-            "Professional preparation of annual reports and financial statements.",
+            "Professional preparation of the annual report, financial statements and management letter for your external auditor. Fully compliant with sector standards.",
         },
         {
           title: "Risk Management",
           description:
-            "Identification, assessment and mitigation of organisational and financial risks.",
+            "Systematic identification and mitigation of organisational, financial and reputational risks. Periodic reporting to the board.",
         },
         {
           title: "Document Management",
           description:
-            "Secure, organised access to all governance documents via My Orchestra.",
+            "Secure, organised access to all governance documents, board minutes and decision registers via My Orchestra.",
         },
       ],
     },

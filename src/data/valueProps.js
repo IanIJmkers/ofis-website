@@ -1,33 +1,33 @@
 const data = {
   nl: [
     {
-      title: "De Specialist",
+      title: "De specialist",
       description:
-        "Wij werken uitsluitend met charitatieve stichtingen, waardoor wij ongeëvenaarde sectorexpertise en diep begrip van uw unieke behoeften hebben.",
+        "Wij werken uitsluitend met stichtingen en goede doelen. Geen private banking erbij, geen corporate cliënten erbij. Eén doelgroep, één economische logica, één manier van werken.",
       icon: "specialist",
     },
     {
-      title: "Transparante Tarieven",
+      title: "Tarief op verantwoordelijkheid",
       description:
-        "Eén vast jaarlijks tarief. Geen vermogensgebaseerde kosten, geen verborgen kosten, geen verrassingen. U weet altijd precies wat u betaalt.",
+        "Eén vaste jaarlijkse vergoeding. Geen percentages, geen retrocessies, geen verrassingen. Elke basispunt die u bespaart, gaat naar uw missie.",
       icon: "transparency",
     },
     {
-      title: "Altijd Compliant",
+      title: "Institutioneel toezicht",
       description:
-        "Gemoedsrust in de wetenschap dat u aan iedere wettelijke vereiste voldoet. Wij blijven op de hoogte van alle wet- en regelgeving zodat u dat niet hoeft te doen.",
+        "Vermogensbeheer met institutionele discipline, governance volgens het meer-ogen-principe, administratie met audit-trail. De rigor van een groot kantoor, geleverd aan de schaal van uw stichting.",
       icon: "compliance",
     },
     {
-      title: "One-Stop-Shop",
+      title: "One-Stop Office",
       description:
-        "Alle financiële expertise onder één dak: vermogensbeheer, administratie en governance. Naadloos geïntegreerd.",
+        "Vermogensbeheer, administratie en governance onder één dak. Geen versnipperde dienstverleners om te coördineren — wij voeren de regie.",
       icon: "onestop",
     },
     {
-      title: "24/7 Inzicht",
+      title: "Mijn Orchestra",
       description:
-        "Real-time online toegang tot al uw financiële gegevens via het Mijn Orchestra dashboard. Altijd en overal.",
+        "Real-time online toegang tot uw volledige financiële positie, voor bestuur, penningmeester en geautoriseerde belanghebbenden. Altijd actueel, altijd inzichtelijk.",
       icon: "oversight",
     },
   ],
@@ -35,31 +35,31 @@ const data = {
     {
       title: "The Specialist",
       description:
-        "We work exclusively with charitable foundations, giving us unparalleled sector expertise and a deep understanding of your unique needs.",
+        "We work exclusively with foundations and charities. No private banking on the side, no corporate clients on the side. One audience, one economic logic, one way of working.",
       icon: "specialist",
     },
     {
-      title: "Transparent Fees",
+      title: "Fee on Responsibility",
       description:
-        "One fixed annual fee. No asset-based charges, no hidden costs, no surprises. You always know exactly what you pay.",
+        "One fixed annual fee. No percentages, no retrocessions, no surprises. Every basis point you save reaches your mission.",
       icon: "transparency",
     },
     {
-      title: "Always Compliant",
+      title: "Institutional Oversight",
       description:
-        "Peace of mind knowing you meet every regulatory requirement. We stay on top of all legislation so you don't have to.",
+        "Wealth management with institutional discipline, governance under the four-eyes principle, administration with full audit trail. The rigour of a large firm, delivered at the scale of your foundation.",
       icon: "compliance",
     },
     {
-      title: "One-Stop Shop",
+      title: "One-Stop Office",
       description:
         "All financial expertise under one roof: wealth management, administration and governance. Seamlessly integrated.",
       icon: "onestop",
     },
     {
-      title: "24/7 Insight",
+      title: "My Orchestra",
       description:
-        "Real-time online access to all your financial data via the My Orchestra dashboard. Anytime, anywhere.",
+        "Real-time online access to your full financial position, for board, treasurer and authorised stakeholders. Always current, always visible.",
       icon: "oversight",
     },
   ],
