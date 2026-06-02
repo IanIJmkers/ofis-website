@@ -53,7 +53,7 @@ const data = {
     {
       title: "One-Stop Office",
       description:
-        "All financial expertise under one roof: wealth management, administration and governance. Seamlessly integrated.",
+        "Wealth management, administration and governance under one roof. No fragmented providers to coordinate — we hold the stewardship.",
       icon: "onestop",
     },
     {

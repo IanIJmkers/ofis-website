@@ -139,11 +139,11 @@ export default function ClientsCharities() {
           <AnimatedSection direction="right" delay={0.2}>
             <div className="bg-white rounded-lg p-10 border border-warm-gray-100 shadow-card">
               <div className="text-center mb-8">
-                <p className="text-5xl lg:text-6xl font-heading text-navy-900">
-                  21+
+                <p className="text-3xl lg:text-4xl font-heading text-navy-900">
+                  {t("clientsCharities", "statSectorFocusValue")}
                 </p>
-                <p className="mt-2 text-warm-gray-500 font-body">
-                  {t("clientsCharities", "statOrgsServed")}
+                <p className="mt-3 text-warm-gray-500 font-body">
+                  {t("clientsCharities", "statSectorFocusLabel")}
                 </p>
               </div>
               <div className="h-px bg-warm-gray-100 my-8" />

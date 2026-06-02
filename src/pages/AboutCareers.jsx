@@ -87,13 +87,13 @@ export default function AboutCareers() {
             <div className="bg-cream rounded-lg p-10 border border-warm-gray-100">
               <div className="grid grid-cols-2 gap-8 text-center">
                 {[
-                  { value: "9", label: t("aboutCareers", "statTeamMembers") },
+                  { value: "20+", label: t("aboutCareers", "statTeamMembers") },
                   {
                     value: "20+",
                     label: t("aboutCareers", "statYearsService"),
                   },
                   {
-                    value: "21+",
+                    value: "100%",
                     label: t("aboutCareers", "statFoundationsServed"),
                   },
                   {

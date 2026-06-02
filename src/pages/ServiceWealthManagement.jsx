@@ -175,6 +175,15 @@ export default function ServiceWealthManagement() {
                       </div>
                     ))}
                   </div>
+                  <div className="mt-8 pt-6 border-t border-warm-gray-100">
+                    <Link
+                      to="/vaste-vergoeding"
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-gold-700 hover:text-gold-800 transition-colors group"
+                    >
+                      <span>{t("serviceWealth", "feeReadMore")}</span>
+                      <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
