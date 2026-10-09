@@ -16,7 +16,7 @@ const data = {
       number: 3,
       title: "De onboarding",
       description:
-        "Wij voeren de transitie vanuit uw huidige dienstverleners. Beleggingen worden overgeboekt, administratie wordt overgedragen, governance-documenten gemigreerd naar Mijn Orchestra. Bestuur ervaart minimale verstoring.",
+        "Wij voeren de transitie vanuit uw huidige dienstverleners. Beleggingen worden overgeboekt, administratie wordt overgedragen, governance-documenten gemigreerd naar MyOrchestra. Bestuur ervaart minimale verstoring.",
     },
     {
       number: 4,
@@ -28,7 +28,7 @@ const data = {
       number: 5,
       title: "Het inzicht",
       description:
-        "Mijn Orchestra geeft het hele bestuur 24/7 real-time toegang tot portefeuille, administratie, governance-documenten en rapportages. Geautoriseerde toegang voor bestuursleden, penningmeester, accountant.",
+        "MyOrchestra geeft het hele bestuur 24/7 real-time toegang tot portefeuille, administratie, governance-documenten en rapportages. Geautoriseerde toegang voor bestuursleden, penningmeester, accountant.",
     },
   ],
   en: [
@@ -48,7 +48,7 @@ const data = {
       number: 3,
       title: "The Onboarding",
       description:
-        "We execute the transition from your current providers. Investments are transferred, administration handed over, governance documents migrated to My Orchestra. The board experiences minimal disruption.",
+        "We execute the transition from your current providers. Investments are transferred, administration handed over, governance documents migrated to MyOrchestra. The board experiences minimal disruption.",
     },
     {
       number: 4,
@@ -60,7 +60,7 @@ const data = {
       number: 5,
       title: "The Insight",
       description:
-        "My Orchestra gives the whole board 24/7 real-time access to portfolio, administration, governance documents and reports. Authorised access for board members, treasurer, and accountant.",
+        "MyOrchestra gives the whole board 24/7 real-time access to portfolio, administration, governance documents and reports. Authorised access for board members, treasurer, and accountant.",
     },
   ],
 };

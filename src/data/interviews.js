@@ -77,7 +77,7 @@ const interviews = [
     organization: "Stichting van het Kind",
     interviewee: "Sascha van Veen",
     excerpt:
-      "Directeur Sascha van Veen vertelt hoe Stichting van het Kind met een doordachte strategie en het online platform Mijn Orchestra effectief werkt aan betere jeugdzorg in Nederland.",
+      "Directeur Sascha van Veen vertelt hoe Stichting van het Kind met een doordachte strategie en het online platform MyOrchestra effectief werkt aan betere jeugdzorg in Nederland.",
     content: `<p>Stichting van het Kind is een relatief jonge, maar professioneel gerunde organisatie die zich richt op jeugdzorg in Nederland. Directeur Sascha van Veen liet een marketingcarrière achter zich om de stichting te leiden.</p>
 
 <h2>Eigen fondsenwerving</h2>
@@ -88,9 +88,9 @@ const interviews = [
 
 <p>De stichting richt zich op ongeveer 51.000 Nederlandse kinderen die niet thuis kunnen wonen. Initiatieven omvatten het installeren van sportfaciliteiten bij zorginstellingen en het werven van pleeggezinnen. "Pleegzorg biedt een meer natuurlijke omgeving dan instellingen," aldus Van Veen.</p>
 
-<h2>Mijn Orchestra</h2>
+<h2>MyOrchestra</h2>
 
-<p>De administratie wordt beheerd via het online platform "Mijn Orchestra", dat real-time financieel inzicht biedt aan het management. Van Veen noemt het systeem "een zegen" vergeleken met eerdere boekhoudregelingen, omdat het wekelijkse budgetbewaking mogelijk maakt.</p>
+<p>De administratie wordt beheerd via het online platform "MyOrchestra", dat real-time financieel inzicht biedt aan het management. Van Veen noemt het systeem "een zegen" vergeleken met eerdere boekhoudregelingen, omdat het wekelijkse budgetbewaking mogelijk maakt.</p>
 
 <p>Ondanks de pandemie behaalde de organisatie sterke resultaten in 2020, dankzij haar trouwe donateurbasis en de focus op het tonen van de impact van bijdragen.</p>`,
   },
@@ -373,7 +373,7 @@ const interviews = [
     organization: "Fonds DBL",
     interviewee: "Fulco van Lede",
     excerpt:
-      "Fulco van Lede, penningmeester van het Amsterdamse Fonds DBL, vertelt over structurele hulp aan kwetsbare groepen en hoe Orchestra's MijnOrchestra-portal real-time inzicht biedt in subsidieaanvragen.",
+      "Fulco van Lede, penningmeester van het Amsterdamse Fonds DBL, vertelt over structurele hulp aan kwetsbare groepen en hoe Orchestra's MyOrchestra-portal real-time inzicht biedt in subsidieaanvragen.",
     content: `<p>Fulco van Lede is penningmeester van Fonds DBL, een Amsterdams vermogensfonds met diepe wortels in armenzorg uit de 19e eeuw. De organisatie ontstond in de jaren '70 uit drie fusiestichtingen onder leiding van Van Lede's grootvader.</p>
 
 <h2>Structurele hulp</h2>
@@ -382,9 +382,9 @@ const interviews = [
 
 <p>"Wij doen niet mee aan de verdoemde projectcarrousel," stelt Van Lede. Het fonds biedt meerjarige toezeggingen en helpt opkomende initiatieven een netwerk op te bouwen voordat de ondersteuning geleidelijk wordt afgebouwd.</p>
 
-<h2>MijnOrchestra</h2>
+<h2>MyOrchestra</h2>
 
-<p>Het fonds heeft het administratieve en financiële beheer overgeheveld naar Orchestra Charity Office, waarbij gebruik wordt gemaakt van het "MijnOrchestra"-portaal. Dit biedt real-time inzicht in subsidieaanvragen, goedkeuringen en betalingen, terwijl compliance en verantwoording voor audits worden gewaarborgd.</p>
+<p>Het fonds heeft het administratieve en financiële beheer overgeheveld naar Orchestra Charity Office, waarbij gebruik wordt gemaakt van het "MyOrchestra"-portaal. Dit biedt real-time inzicht in subsidieaanvragen, goedkeuringen en betalingen, terwijl compliance en verantwoording voor audits worden gewaarborgd.</p>
 
 <h2>Toekomst</h2>
 

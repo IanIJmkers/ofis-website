@@ -97,9 +97,9 @@ const faqsData = {
             "Absoluut. Hoewel veel van onze klanten profiteren van ons volledige geïntegreerde dienstenpakket, bent u welkom om ons voor een individuele dienst in te schakelen. Wij bepalen samen met u welke diensten het beste aansluiten bij de behoeften van uw stichting.",
         },
         {
-          question: "Wat is het Mijn Orchestra dashboard?",
+          question: "Wat is het MyOrchestra dashboard?",
           answer:
-            "Mijn Orchestra is geen dashboard maar het collectieve geheugen van uw stichting: alle financiële gegevens, bestuursnotulen, besluiten, subsidie-aanvragen, documenten en audit trails op één platform met rolgebaseerde toegang. Wat het bestuur in 2024 besluit, kan een nieuw bestuurslid in 2031 nog terugvinden — mét de gronden waarop het besluit werd genomen.",
+            "MyOrchestra is geen dashboard maar het collectieve geheugen van uw stichting: alle financiële gegevens, bestuursnotulen, besluiten, subsidie-aanvragen, documenten en audit trails op één platform met rolgebaseerde toegang. Wat het bestuur in 2024 besluit, kan een nieuw bestuurslid in 2031 nog terugvinden — mét de gronden waarop het besluit werd genomen.",
         },
         {
           question: "Voor welke stichtingsomvang is dit zinvol?",
@@ -169,7 +169,7 @@ const faqsData = {
         {
           question: "Wat als wij grote subsidiestromen ontvangen (VWS, gemeente, EU)?",
           answer:
-            "Subsidiestromen zijn een aparte specialisatie binnen onze administratiedienstverlening. Aanvraag-administratie, project-administratie per subsidie, voortgangsrapportage, eindverantwoording — wij houden de relatie tussen subsidievoorwaarden en bestede middelen automatisch zichtbaar in Mijn Orchestra. Voor bestuursleden, voor de subsidieverstrekker en voor uw accountant.",
+            "Subsidiestromen zijn een aparte specialisatie binnen onze administratiedienstverlening. Aanvraag-administratie, project-administratie per subsidie, voortgangsrapportage, eindverantwoording — wij houden de relatie tussen subsidievoorwaarden en bestede middelen automatisch zichtbaar in MyOrchestra. Voor bestuursleden, voor de subsidieverstrekker en voor uw accountant.",
         },
         {
           question: "Wat verandert er voor onze huidige accountant?",
@@ -194,9 +194,9 @@ const faqsData = {
             "Absolutely. While many of our clients benefit from our full integrated service package, you are welcome to engage us for an individual service. We will determine together which services best match your foundation's needs.",
         },
         {
-          question: "What is the My Orchestra dashboard?",
+          question: "What is the MyOrchestra dashboard?",
           answer:
-            "My Orchestra is not a dashboard but the collective memory of your foundation: all financial data, board minutes, decisions, grant applications, documents and audit trails on one platform with role-based access. What the board decides in 2024, a new board member in 2031 can still find back — with the grounds on which the decision was made.",
+            "MyOrchestra is not a dashboard but the collective memory of your foundation: all financial data, board minutes, decisions, grant applications, documents and audit trails on one platform with role-based access. What the board decides in 2024, a new board member in 2031 can still find back — with the grounds on which the decision was made.",
         },
         {
           question: "For what foundation size does this make sense?",
@@ -266,7 +266,7 @@ const faqsData = {
         {
           question: "What if we receive large government grant flows (VWS, municipality, EU)?",
           answer:
-            "Government grant flows are a distinct specialisation within our administration service. Application administration, project accounting per grant, progress reporting, final accountability — we automatically keep the relationship between grant conditions and money spent visible on My Orchestra. For board members, for the granting authority, and for your accountant.",
+            "Government grant flows are a distinct specialisation within our administration service. Application administration, project accounting per grant, progress reporting, final accountability — we automatically keep the relationship between grant conditions and money spent visible on MyOrchestra. For board members, for the granting authority, and for your accountant.",
         },
         {
           question: "What changes for our current auditor?",

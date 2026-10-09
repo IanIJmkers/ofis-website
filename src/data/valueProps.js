@@ -25,7 +25,7 @@ const data = {
       icon: "onestop",
     },
     {
-      title: "Mijn Orchestra",
+      title: "MyOrchestra",
       description:
         "Real-time online toegang tot uw volledige financiële positie, voor bestuur, penningmeester en geautoriseerde belanghebbenden. Altijd actueel, altijd inzichtelijk.",
       icon: "oversight",
@@ -57,7 +57,7 @@ const data = {
       icon: "onestop",
     },
     {
-      title: "My Orchestra",
+      title: "MyOrchestra",
       description:
         "Real-time online access to your full financial position, for board, treasurer and authorised stakeholders. Always current, always visible.",
       icon: "oversight",

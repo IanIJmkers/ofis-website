@@ -20,7 +20,7 @@ const data = {
     },
     {
       quote:
-        "Het Mijn Orchestra dashboard geeft ons real-time toegang tot alles wat we nodig hebben. De transparantie en professionaliteit zijn precies wat onze stichting vereist.",
+        "Het MyOrchestra dashboard geeft ons real-time toegang tot alles wat we nodig hebben. De transparantie en professionaliteit zijn precies wat onze stichting vereist.",
       name: "Voorzitter",
       organization: "Stichting van het Kind",
     },
@@ -46,7 +46,7 @@ const data = {
     },
     {
       quote:
-        "The My Orchestra dashboard gives us real-time access to everything we need. The transparency and professionalism are exactly what our foundation requires.",
+        "The MyOrchestra dashboard gives us real-time access to everything we need. The transparency and professionalism are exactly what our foundation requires.",
       name: "Chairman",
       organization: "Stichting van het Kind",
     },

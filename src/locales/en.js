@@ -1,6 +1,6 @@
 export default {
   common: {
-    myOrchestra: "My Orchestra",
+    myOrchestra: "MyOrchestra",
     contactUs: "Contact Us",
     followLinkedIn: "Follow Us on LinkedIn",
     moreInfo: "More information",
@@ -131,7 +131,7 @@ export default {
     frictionBody:
       'In a sector that has scaled fees with assets for decades, a fixed fee can feel suspicious. "Where is the catch?" — almost every first conversation with a board starts there. The answer is simple: there is no catch. There is only a different economic logic, built for foundations rather than around them. And it usually takes just that first conversation to show why.',
     // Collective Memory section (NEW — angle 3)
-    memoryEyebrow: "My Orchestra",
+    memoryEyebrow: "MyOrchestra",
     memoryTitle: "Not a dashboard. The collective memory of your foundation.",
     memoryBody:
       "Where many financial service providers end with a quarterly report, we begin with preserving what your foundation knows. Board minutes, decision registers, grant administration, investment policy statement, document vault, audit trail — that knowledge is not a by-product of our work. It is the work. We consolidate it on one platform and hand it back to your board, your treasurer, your accountant. A new board member in 2031 should be able to see what the board decided in 2024 — and why.",
@@ -157,7 +157,7 @@ export default {
       "Read what our clients say about working with Orchestra.",
     trustBadgesLabel: "Regulated and supervised by",
     appEyebrow: "Access anytime, anywhere",
-    appTitle: "My Orchestra App",
+    appTitle: "MyOrchestra App",
     appDescription:
       "View your portfolio, receive personalised reports and stay up to date with the latest developments — directly from your phone.",
     appFeature1: "Portfolio insight",
@@ -207,7 +207,7 @@ export default {
     whyItem2Title: "Fee on responsibility",
     whyItem2Desc:
       "One fixed annual fee, agreed in advance, adjusted only for inflation. No asset-based charges. Every basis point your foundation saves is a basis point that reaches your mission.",
-    whyItem3Title: "My Orchestra",
+    whyItem3Title: "MyOrchestra",
     whyItem3Desc:
       "One platform for the whole board. Real-time insight into portfolio, donation flows, annual accounts and governance documents. Authorised access for board members, treasurer and accountant.",
     whyItem4Title: "Full compliance",
@@ -249,7 +249,7 @@ export default {
       "Based on the statement we build a portfolio from institutional building blocks — passive and active mandates, treasury, liquidity. Costs as a structural variable. No retrocessions; transparent cost reporting on every position.",
     processStep3Title: "Ongoing oversight",
     processStep3Desc:
-      "Monthly integral reporting to the board. Periodic rebalancing within the statement. Annual review against changed liabilities or objectives. Four-eyes principle on every transaction. All reporting available in real time on My Orchestra.",
+      "Monthly integral reporting to the board. Periodic rebalancing within the statement. Annual review against changed liabilities or objectives. Four-eyes principle on every transaction. All reporting available in real time on MyOrchestra.",
     relatedEyebrow: "Related Services",
     relatedTitle: "Part of an integrated approach",
     relatedSubtitle:
@@ -268,9 +268,9 @@ export default {
       "Whether you manage grant programmes, an endowment or operational funds, our administration team ensures every transaction is recorded, every report is delivered on time, every legal requirement is covered — and that the whole remains visible and traceable for whoever has to oversee it later. The outcome is concrete: fewer board and treasurer hours spent on operational friction, more hours spent on the warm side of your foundation.",
     platformEyebrow: "Digital Platform",
     platformTitle:
-      "My Orchestra — the collective memory of your foundation, in one place.",
+      "MyOrchestra — the collective memory of your foundation, in one place.",
     platformText1:
-      "My Orchestra is not a dashboard. It is the institutional brain of your foundation: all financial data, all board minutes, all decisions, all grant applications, all documents, all audit trails — on one platform with role-based access. What the board decides in 2024, a new board member in 2031 can still find back, with the grounds on which the decision was made.",
+      "MyOrchestra is not a dashboard. It is the institutional brain of your foundation: all financial data, all board minutes, all decisions, all grant applications, all documents, all audit trails — on one platform with role-based access. What the board decides in 2024, a new board member in 2031 can still find back, with the grounds on which the decision was made.",
     platformText2:
       "Board members see what they need to govern. The treasurer sees what they need to do their role. The accountant has access to what feeds the annual accounts. State-of-the-art tools for grant management, board meetings, document management and decision-making — built for the work a foundation actually does, not generalised from corporate software.",
     platformCard1Title: "Real-time Dashboard",
@@ -291,7 +291,7 @@ export default {
       "A streamlined process designed to give you peace of mind while maintaining full transparency.",
     processStep1Title: "Onboarding & Setup",
     processStep1Desc:
-      "We audit your existing administration, migrate your data and set up your My Orchestra account with full access for your team.",
+      "We audit your existing administration, migrate your data and set up your MyOrchestra account with full access for your team.",
     processStep2Title: "Ongoing Management",
     processStep2Desc:
       "Daily processing of transactions, bookkeeping, payment runs, grant administration and all routine financial operations.",
@@ -348,7 +348,7 @@ export default {
       "Clear, transparent communication to donors, regulators, beneficiaries and other stakeholders. No jargon, no hidden assumptions — what your foundation does and with what result.",
     frameworkItem6Title: "Digital Governance",
     frameworkItem6Desc:
-      "Secure, organised access to all governance documents, board minutes and decision registers via My Orchestra. One place where the full history of the board's work is visible.",
+      "Secure, organised access to all governance documents, board minutes and decision registers via MyOrchestra. One place where the full history of the board's work is visible.",
     relatedEyebrow: "Related Services",
     relatedTitle: "Part of an integrated approach",
     relatedSubtitle:
@@ -427,7 +427,7 @@ export default {
     resultEyebrow: "The result",
     resultTitle: "Full peace of mind.",
     resultText:
-      "At the end of the five-step process your foundation has a fully integrated financial infrastructure — institutionally managed, fully compliant, available in real time on My Orchestra. And the board has back the time and attention previously spent on financial fragmentation.",
+      "At the end of the five-step process your foundation has a fully integrated financial infrastructure — institutionally managed, fully compliant, available in real time on MyOrchestra. And the board has back the time and attention previously spent on financial fragmentation.",
     resultCta: "Start Your Journey",
     ctaTitle: "Ready to get started?",
     ctaSubtitle:
@@ -586,7 +586,7 @@ export default {
       "Transparent and accurate annual accounts that meet the specific reporting standards for charitable institutions.",
     service4Title: "Digital Oversight",
     service4Desc:
-      "Real-time insight into your financial position via the My Orchestra dashboard, giving your board full transparency at all times.",
+      "Real-time insight into your financial position via the MyOrchestra dashboard, giving your board full transparency at all times.",
     expertiseEyebrow: "Sector expertise",
     expertiseTitle: "We understand your mission. And the work around it.",
     expertiseText1:
@@ -707,16 +707,16 @@ export default {
       "The article you are looking for does not exist or is no longer available.",
     backToNews: "Back to News",
   },
-  mijnOrchestra: {
-    heroEyebrow: "My Orchestra",
+  myOrchestra: {
+    heroEyebrow: "MyOrchestra",
     heroTitle: "Your office online",
     heroDescription:
-      "My Orchestra is the central platform where everyone involved in your organisation can log in and monitor the organisation's status. Updated daily, with clear task assignments and full transparency.",
-    heroLoginCta: "Log in to My Orchestra",
+      "MyOrchestra is the central platform where everyone involved in your organisation can log in and monitor the organisation's status. Updated daily, with clear task assignments and full transparency.",
+    heroLoginCta: "Log in to MyOrchestra",
     overviewEyebrow: "The Platform",
     overviewTitle: "Everything in one place",
     overviewSubtitle:
-      "No more need for separate file storage, CRM systems or project management tools. My Orchestra consolidates all your services in one clear platform.",
+      "No more need for separate file storage, CRM systems or project management tools. MyOrchestra consolidates all your services in one clear platform.",
     feature1Title: "Real-time Dashboard",
     feature1Desc:
       "View your complete financial position at a glance, updated in real time with the latest transactions and developments.",
@@ -733,10 +733,10 @@ export default {
     dashboardEyebrow: "Interactive Platform",
     dashboardTitle: "One overview, full control",
     dashboardSubtitle:
-      "The My Orchestra platform provides you with an intuitive dashboard with modules for accounting, banking, invoicing, projects and more.",
+      "The MyOrchestra platform provides you with an intuitive dashboard with modules for accounting, banking, invoicing, projects and more.",
     ctaTitle: "Ready to log in?",
     ctaSubtitle:
-      "Log in to My Orchestra for immediate access to your financial overview, documents and reports.",
+      "Log in to MyOrchestra for immediate access to your financial overview, documents and reports.",
   },
   dashboard: {
     // Sidebar
@@ -906,20 +906,20 @@ export default {
       '"Cheaper" is not the right word. "Logical" is. If your foundation\'s wealth doubles, our work generally does not. A fee that scales with your wealth eventually grows out of proportion to the work — and for a foundation, that means structurally fewer resources for the mission. A fixed fee stays in proportion to the originally agreed scope.',
     faq3Question: "Do you work alongside our current bank or fund manager?",
     faq3Answer:
-      "Yes. In many cases clients keep positions with multiple banks and (fund) managers — especially during a transition. We ensure the whole remains visible, measured, and managed coherently via My Orchestra. Which parties execute the work is secondary; that the whole is held under one stewardship is primary.",
+      "Yes. In many cases clients keep positions with multiple banks and (fund) managers — especially during a transition. We ensure the whole remains visible, measured, and managed coherently via MyOrchestra. Which parties execute the work is secondary; that the whole is held under one stewardship is primary.",
     faq4Question: "For what foundation size does this make sense?",
     faq4Answer:
       "Our service is structurally built for foundations where the complexity of wealth management, governance and administration begins to weigh meaningfully — typically from foundation assets of indicatively several million euros, or fundraising organisations with substantial operational budgets. For pure investment management our fixed-fee approach is most economically relevant for larger foundation portfolios; for the full Charity Office (management + administration + governance) the threshold is lower — every foundation where the board spends more time on financial fragmentation than on the mission stands to gain.",
     faq5Question: "What is included in the fixed fee?",
     faq5Answer:
-      "That is fully dependent on what your foundation requires to be financially orchestrated. What the full Charity Office can include: wealth management, drafting and monitoring of the investment policy statement, all financial administration and bookkeeping, grant and donation administration, annual accounts, ANBI and CBF reporting, governance advisory, board support, coordination with external auditor, and the full My Orchestra environment for the entire board. External costs (transaction costs on investments, fund costs, third-party costs such as notary or lawyer) are reported separately and transparently, and continuously assessed against potentially more efficient alternatives.",
+      "That is fully dependent on what your foundation requires to be financially orchestrated. What the full Charity Office can include: wealth management, drafting and monitoring of the investment policy statement, all financial administration and bookkeeping, grant and donation administration, annual accounts, ANBI and CBF reporting, governance advisory, board support, coordination with external auditor, and the full MyOrchestra environment for the entire board. External costs (transaction costs on investments, fund costs, third-party costs such as notary or lawyer) are reported separately and transparently, and continuously assessed against potentially more efficient alternatives.",
     faq6Question: "Can our board have a second opinion first?",
     faq6Answer:
       "Yes, of course. Many boards begin there. We are happy to give an independent assessment of how your foundation is currently organised financially — investment strategy, cost positions, administrative setup, governance discipline, compliance — without any obligation to engage further. For many boards this is the first time the full financial picture of their own foundation appears on a single page.",
   },
   titles: {
     home: "Home",
-    mijnOrchestra: "My Orchestra",
+    myOrchestra: "MyOrchestra",
     fixedFee: "Fixed fee for foundations",
     servicesOverview: "Our Services",
     wealthManagement: "Wealth Management",

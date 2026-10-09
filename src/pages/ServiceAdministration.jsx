@@ -134,7 +134,7 @@ export default function ServiceAdministration() {
         </div>
       </SectionWrapper>
 
-      {/* My Orchestra platform callout */}
+      {/* MyOrchestra platform callout */}
       <SectionWrapper bg="navy" size="lg">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <AnimatedSection direction="left">

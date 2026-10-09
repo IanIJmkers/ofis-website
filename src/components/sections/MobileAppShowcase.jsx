@@ -165,7 +165,7 @@ export default function MobileAppShowcase() {
         {/* Right: App mockup */}
         <AnimatedSection direction="right" delay={0.15}>
           <div className="flex justify-center lg:justify-end">
-            <img src={appMock} alt="My Orchestra app" className="w-full" />
+            <img src={appMock} alt="MyOrchestra app" className="w-full" />
           </div>
         </AnimatedSection>
       </div>

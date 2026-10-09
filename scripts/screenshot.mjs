@@ -26,7 +26,7 @@ const routes = [
   { lang: "nl", slug: "news-vermogensbeheermythe-ontkracht", path: "/news/vermogensbeheermythe-ontkracht" },
   { lang: "nl", slug: "news-onzichtbare-arm-vermogensbeheer-deel-1", path: "/news/onzichtbare-arm-vermogensbeheer-deel-1" },
   { lang: "nl", slug: "contact", path: "/contact" },
-  { lang: "nl", slug: "mijn-orchestra", path: "/mijn-orchestra" },
+  { lang: "nl", slug: "myorchestra", path: "/myorchestra" },
   { lang: "nl", slug: "vaste-vergoeding", path: "/vaste-vergoeding" },
 ];
 

@@ -60,7 +60,7 @@ const data = {
         {
           title: "Collectief geheugen",
           description:
-            "Mijn Orchestra bewaart alle financiële gegevens, bestuursnotulen, autorisaties en documenten op één plek. Wat in 2024 wordt besloten, is in 2031 nog terug te vinden.",
+            "MyOrchestra bewaart alle financiële gegevens, bestuursnotulen, autorisaties en documenten op één plek. Wat in 2024 wordt besloten, is in 2031 nog terug te vinden.",
         },
       ],
     },
@@ -92,7 +92,7 @@ const data = {
         {
           title: "Documentbeheer",
           description:
-            "Beveiligde, georganiseerde toegang tot alle governance-documenten, bestuursnotulen en besluitregisters via Mijn Orchestra.",
+            "Beveiligde, georganiseerde toegang tot alle governance-documenten, bestuursnotulen en besluitregisters via MyOrchestra.",
         },
       ],
     },
@@ -158,7 +158,7 @@ const data = {
         {
           title: "Collective Memory",
           description:
-            "My Orchestra preserves all financial data, board minutes, authorisations and documents in one place. What is decided in 2024 is still findable in 2031.",
+            "MyOrchestra preserves all financial data, board minutes, authorisations and documents in one place. What is decided in 2024 is still findable in 2031.",
         },
       ],
     },
@@ -190,7 +190,7 @@ const data = {
         {
           title: "Document Management",
           description:
-            "Secure, organised access to all governance documents, board minutes and decision registers via My Orchestra.",
+            "Secure, organised access to all governance documents, board minutes and decision registers via MyOrchestra.",
         },
       ],
     },
