@@ -58,7 +58,7 @@ const clientTypesData = {
 export const clientOrganizations = [
   // Charities (Goede Doelen)
   { id: "amsterdam-umc", name: "Amsterdam UMC", logo: amsterdamUmcLogo, url: "https://www.steunamsterdamumc.nl/stichting-amc-foundation", type: "charity" },
-  { id: "vlinderkind", name: "Vlinderkind", logo: vlinderkindLogo, url: "https://www.vlinderkind.nl/index.php/nl/", type: "charity" },
+  { id: "vlinderkind", name: "Vlinderkind", logo: vlinderkindLogo, url: "https://www.vlinderkind.nl/", type: "charity" },
   { id: "stichting-als", name: "Stichting ALS", logo: alsLogo, url: "https://www.als.nl", type: "charity" },
   { id: "feyenoord-foundation", name: "Feyenoord Foundation", logo: feyenoordFoundationLogo, url: "https://www.feyenoord.nl/maatschappelijk/over-ons/feyenoord-foundation", type: "charity" },
   { id: "steun-emma", name: "Steun Emma", logo: emmaLogo, url: "https://www.steunemma.nl", type: "charity" },
