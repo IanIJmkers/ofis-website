@@ -226,6 +226,7 @@ export default {
     overviewText2:
       "As an independent firm, we are neither a bank, nor a broker, nor a fund house. We receive no retrocessions and have no products to sell. Every recommendation we make is shaped by the interest of your foundation — and by nothing else.",
     feeTitle: "Fixed fee — because our work does not scale with your wealth.",
+    feeChartTitle: "Impact of costs over time",
     feeText1:
       "We charge a fixed annual fee that is never based on the size of the assets we manage. That is not a marketing choice. It is an economic conclusion: when your wealth doubles, our work generally does not. A fee that does scale grows out of proportion to the work — and for a foundation, that literally means: fewer resources for the mission.",
     feeText2:
@@ -879,7 +880,7 @@ export default {
     arithmeticTitle:
       "What 1% of annual costs over twenty-five years means for your mission.",
     arithmeticIntro:
-      "The operational face of your foundation is not a place for altruism. It is a place to minimise costs, so the warm face — your beneficiaries, your programmes, your mission — retains as much as possible. One percentage point in annual costs seems small. But costs are a structural variable: they compound, year on year, on the entire foundation endowment. On a foundation endowment of five million euros, assuming a gross return of six percent over twenty-five years, the picture looks like this — and the last column shows what is no longer available for the warm side:",
+      "One percentage point in annual costs seems small. But costs are a structural variable: they compound, year on year, on the entire foundation endowment. On a foundation endowment of five million euros, assuming a gross return of six percent over twenty-five years, the picture looks like this — and the last column shows what is no longer available for the warm side:",
     arithmeticCol1: "Fee model",
     arithmeticCol2: "Wealth after 25 years",
     arithmeticCol3: "Not available for the mission",

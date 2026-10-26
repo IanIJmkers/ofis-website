@@ -103,9 +103,6 @@ export default function ServiceAdministration() {
             </h2>
             <div className="mt-4 h-0.75 w-10 bg-gold-700" />
             <p className="mt-6 text-warm-gray-500 leading-relaxed text-lg">
-              {service.fullDescription}
-            </p>
-            <p className="mt-4 text-warm-gray-500 leading-relaxed">
               {t("serviceAdmin", "overviewText1")}
             </p>
             <p className="mt-4 text-warm-gray-500 leading-relaxed">

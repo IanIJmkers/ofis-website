@@ -104,9 +104,6 @@ export default function ServiceWealthManagement() {
             </h2>
             <div className="mt-4 h-0.75 w-10 bg-gold-700" />
             <p className="mt-6 text-warm-gray-500 leading-relaxed text-lg">
-              {service.fullDescription}
-            </p>
-            <p className="mt-4 text-warm-gray-500 leading-relaxed">
               {t("serviceWealth", "overviewText1")}
             </p>
             <p className="mt-4 text-warm-gray-500 leading-relaxed">
@@ -189,7 +186,7 @@ export default function ServiceWealthManagement() {
             </div>
             <div className="mt-10">
               <p className="text-sm font-semibold text-navy-900 mb-3">
-                {t("serviceWealth", "feeTitle")} — impact over tijd
+                {t("serviceWealth", "feeChartTitle")}
               </p>
               <img
                 src={impactChart}

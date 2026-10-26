@@ -5,8 +5,6 @@ const data = {
       title: "Vermogensbeheer",
       shortDescription:
         "Het vermogen van uw stichting beheerd zoals pensioenfondsen en endowments dat doen: institutionele discipline, vaste vergoeding, regie over kosten.",
-      fullDescription:
-        "Wij beheren het vermogen van uw stichting zoals pensioenfondsen en universiteitsendowments dat doen: portefeuilles ontworpen tegen de verplichtingen en doelstellingen van uw stichting, niet tegen een externe benchmark. Risicokaders, beleggingscommissie, vier-ogen-principe. Als onafhankelijke partij zijn wij geen bank en geen broker — wij ontvangen geen retrocessies en hebben geen producten te verkopen.",
       path: "/services/wealth-management",
       icon: "wealth-management",
       features: [
@@ -37,8 +35,6 @@ const data = {
       title: "Administratie",
       shortDescription:
         "Het collectieve geheugen van uw stichting, geleverd met institutionele precisie. Boekhouding, betalingen, subsidies, jaarrekeningen — onder één dak.",
-      fullDescription:
-        "Administratie voor een stichting is geen boekhoudkundige bijzaak. Het is het collectieve geheugen van de organisatie — alles wat het bestuur over vijf, tien of dertig jaar zal moeten kunnen terugvinden. Wij voeren dat geheugen met dezelfde institutionele precisie waarmee wij beleggingen beheren. Niet als operationeel bijproduct, maar als zelfstandige discipline. Resultaat: minder uren van bestuur en penningmeester aan operationele frictie, meer uren aan de warme kant van uw stichting.",
       path: "/services/administration",
       icon: "administration",
       features: [
@@ -69,30 +65,28 @@ const data = {
       title: "Governance",
       shortDescription:
         "Fiduciaire discipline voor het bestuur dat zijn werk serieus neemt. Meer-ogen-principe, beleidskaders, autorisatielagen — als organisatieprincipe, niet als project.",
-      fullDescription:
-        "Goede governance gaat verder dan compliance afvinken. Het betekent dat de juiste structuren, processen en toezichtmechanismen aanwezig zijn om ervoor te zorgen dat uw stichting opereert met integriteit, verantwoording en een onvermijdelijke focus op haar missie. Wij bieden de inhoudelijke ondersteuning en operationele uitvoering die uw bestuur nodig heeft om zijn fiduciaire verantwoordelijkheden met vertrouwen uit te oefenen. De rigor van een groot kantoor, geleverd op de schaal van uw stichting.",
       path: "/services/governance",
       icon: "governance",
       features: [
         {
           title: "Adviesdiensten",
           description:
-            "Strategisch advies over bestuurssamenstelling, governance-structuren en beleidskaders. Onafhankelijk, sectorspecifiek, gericht op de fiduciaire plicht.",
+            "Een onafhankelijke sparringpartner voor het bestuur bij elke bestuurlijke keuze.",
         },
         {
           title: "Jaarrapportage",
           description:
-            "Professionele voorbereiding van jaarverslag, financiële overzichten en management letter aan uw externe accountant. Volledig conform sectorstandaarden.",
+            "Een jaarverslag dat klaarligt voor uw accountant, zonder last-minute werk.",
         },
         {
           title: "Risicobeheer",
           description:
-            "Systematische identificatie en mitigatie van organisatorische, financiële en reputationele risico's. Periodieke rapportage aan het bestuur.",
+            "Risico's in beeld voordat ze problemen worden.",
         },
         {
           title: "Documentbeheer",
           description:
-            "Beveiligde, georganiseerde toegang tot alle governance-documenten, bestuursnotulen en besluitregisters via MyOrchestra.",
+            "Alle bestuursstukken veilig op één plek.",
         },
       ],
     },
@@ -103,8 +97,6 @@ const data = {
       title: "Wealth Management",
       shortDescription:
         "Your foundation's wealth managed the way pension funds and endowments do: institutional discipline, fixed fee, oversight of costs.",
-      fullDescription:
-        "We manage your foundation's wealth the way pension funds and university endowments do: portfolios designed against the liabilities and objectives of your foundation, not against an external benchmark. Risk frameworks, investment committee, four-eyes principle. As an independent firm, we are neither a bank nor a broker — we receive no retrocessions and have no products to sell.",
       path: "/services/wealth-management",
       icon: "wealth-management",
       features: [
@@ -135,8 +127,6 @@ const data = {
       title: "Administration",
       shortDescription:
         "The collective memory of your foundation, delivered with institutional precision. Bookkeeping, payments, grants, annual accounts — under one roof.",
-      fullDescription:
-        "Administration for a foundation is not a bookkeeping afterthought. It is the collective memory of the organisation — everything the board will need to find back five, ten or thirty years from now. We run that memory with the same institutional precision we bring to investments. Not as an operational by-product, but as a discipline in its own right. The outcome is concrete: fewer board and treasurer hours spent on operational friction, more hours spent on the warm side of your foundation.",
       path: "/services/administration",
       icon: "administration",
       features: [
@@ -167,30 +157,28 @@ const data = {
       title: "Governance",
       shortDescription:
         "Fiduciary discipline for boards that take their work seriously. Four-eyes principle, policy frameworks, authorisation layers — as an organising principle, not a project.",
-      fullDescription:
-        "Good governance is more than ticking compliance boxes. It means the right structures, processes and oversight mechanisms are in place so your foundation operates with integrity, accountability and an unwavering focus on its mission. We provide the substantive support and operational delivery your board needs to discharge its fiduciary responsibilities with confidence. The rigour of a large firm, delivered at the scale of your foundation.",
       path: "/services/governance",
       icon: "governance",
       features: [
         {
           title: "Advisory Services",
           description:
-            "Strategic advice on board composition, governance structures and policy frameworks. Independent, sector-specific, focused on the fiduciary duty.",
+            "An independent sparring partner for the board on every governance decision.",
         },
         {
           title: "Annual Reporting",
           description:
-            "Professional preparation of the annual report, financial statements and management letter for your external auditor. Fully compliant with sector standards.",
+            "An annual report ready for your auditor, without last-minute work.",
         },
         {
           title: "Risk Management",
           description:
-            "Systematic identification and mitigation of organisational, financial and reputational risks. Periodic reporting to the board.",
+            "Risks in view before they become problems.",
         },
         {
           title: "Document Management",
           description:
-            "Secure, organised access to all governance documents, board minutes and decision registers via MyOrchestra.",
+            "All board documents securely in one place.",
         },
       ],
     },
